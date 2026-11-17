@@ -1,0 +1,649 @@
+@font-face {
+  font-family: bodyFont;
+  src: url(Fonts/cairopixel/Cairopixel.ttf);
+}
+
+@font-face {
+  font-family: homeFont;
+  src: url(Fonts/cavalhatriz/Cavalhatriz.ttf);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  background: #000;
+}
+
+body {
+  font-family: bodyFont;
+  color: #f01ad3;
+  font-size: 20px;
+  line-height: 2.3;
+  padding: 40px 24px 120px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+/* Título unificado: misma tipografía y color en home, archivo, diccionario y proyecto */
+h1,
+h2 {
+  font-family: homeFont, monospace;
+  font-weight: 500;
+  color: #ffaffb;
+}
+
+h2 {
+  font-size: 44px;
+  line-height: 1;
+  margin: 0;
+}
+
+/* cabecera de la página del archivo: volver + título */
+.pagina-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 0 0 14px;
+}
+
+#home{
+  text-align:center;
+}
+#home h1{
+  font-family:'homeFont', monospace;
+  font-size:130px;
+  font-weight:500;
+  letter-spacing:1px;
+  margin:500 0 0 0px;
+  color:#ffaffb;
+  animation: blink-text 0.7s steps(1) infinite;
+}
+
+@keyframes blink-text{
+  0%, 49%{ opacity:1; }
+  50%, 100%{ opacity:0; }
+}
+
+.enter {
+  position: relative;
+  text-decoration: none;
+  display: inline-flex;
+
+  background: #000000;
+  color: #ffaffb;
+
+  border: 1px solid #ffaffb;
+  border-radius: 25px;
+
+  width: 110px;
+  height: 40px;
+
+  margin: 2px;
+  padding: 0 3px;
+
+  justify-content: center;
+  align-items: center;
+
+  vertical-align: middle;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+/* hover / foco de teclado: se invierte (rosa claro con texto negro) */
+.enter:hover,
+.enter:focus-visible {
+  background: #ffaffb;
+  color: #000;
+  outline: none;
+}
+
+/* Contenedor del texto */
+#cloud {
+  display: block;
+}
+
+  .w {
+    position: relative;
+    display: inline-flex;
+  
+    background: #f01ad3;
+    color: #fff;
+  
+    border: 1px solid #000;
+    border-radius: 25px;
+  
+    width: 125px;
+    height: 40px;
+  
+    margin: 2px;
+    padding: 0 3px;
+  
+    justify-content: center;
+    align-items: center;
+  
+    vertical-align: middle;
+    cursor: pointer;
+  }
+  
+/* Palabra integrada en una frase */
+.w.inline {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  width: auto;
+  height: auto;
+
+  padding: 0;
+  margin: 0;
+
+  display: inline;
+
+  color: #f01ad3;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+
+  cursor: pointer;
+}
+
+/* Información desplegada encima de la palabra */
+.meta {
+  position: absolute;
+
+  bottom: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+
+  white-space: nowrap;
+  z-index: 10;
+}
+
+
+/* Fecha */
+.d {
+  background: #ffaffb;
+  color: #000;
+
+  border: 1px solid #000;
+  border-radius: 25px;
+
+  height: 40px;
+  padding: 0 10px;
+  margin: 0;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+
+/* Sent to me / sent by me */
+.n {
+  background: #000;
+  color: #fff;
+
+  border: 1px solid #fff;
+  border-radius: 25px;
+
+  height: 40px;
+  padding: 0 10px;
+  margin: 0;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+}
+
+
+/* Estado activo */
+.w.active,
+.d.active,
+.n.active {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+}
+
+/* ---------- Página diccionario / archivo ---------- */
+body.dicc {
+  line-height: 1.4;
+  padding-top: 0;
+}
+
+.dicc-top {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 0 14px;
+  background: #000;
+  border-bottom: 1px solid #f01ad3;
+}
+
+.grupo {
+  margin: 28px 0 0;
+}
+
+.grupo-titulo {
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: #ffaffb;
+  opacity: 0.7;
+  margin-bottom: 10px;
+}
+
+.grupo-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* etiquetas del índice: tamaño según la palabra, no ancho fijo */
+.grupo-items .w,
+.grupo-items .d,
+.grupo-items .n {
+  width: auto;
+  height: 34px;
+  margin: 0;
+  padding: 0 14px;
+  font-size: 18px;
+}
+
+/* palabras dentro de los mensajes: misma pastilla que la nube */
+.qtext .w {
+  width: auto;
+  height: 30px;
+  margin: 2px 1px;
+  padding: 0 11px;
+}
+
+/* Resultados: sin recuadro */
+.results {
+  margin: 28px 0 4px;
+}
+
+.rlabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 6px;
+  color: #ffaffb;
+  font-size: 17px;
+}
+
+.cerrar {
+  font-family: bodyFont, monospace;
+  font-size: 24px;
+  line-height: 1;
+  color: #ffaffb;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.qblock {
+  padding: 14px 0;
+  border-bottom: 1px dotted #5c2a56;
+}
+
+.qblock:last-child {
+  border-bottom: none;
+}
+
+.qmeta {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.qmeta .d,
+.qmeta .n {
+  height: 24px;
+  padding: 0 9px;
+  font-size: 13px;
+}
+
+.qtext {
+  font-size: 19px;
+  line-height: 1.9;
+  color: #ffd6fa;
+}
+
+@media (max-width: 600px) {
+  h2 { font-size: 34px; }
+  .grupo-items .w,
+  .grupo-items .d,
+  .grupo-items .n { font-size: 16px; height: 32px; padding: 0 11px; }
+  .qtext { font-size: 17px; }
+}
+
+/* ---------- Página "sobre mí" ---------- */
+body.sobre {
+  max-width: 680px;
+  padding: 80px 24px 120px;
+}
+
+/* separación bajo el título de «proyecto» */
+.sobre-texto h2 { margin-bottom: 40px; }
+
+/* Texto largo con la tipografía del proyecto, ajustada para leer */
+.sobre-texto p {
+  font-family: bodyFont, monospace;
+  font-size: 21px;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  word-spacing: 0.12em;
+  color: #ffd6fa;
+  margin: 0 0 1.6em;
+  text-align: left;
+  -webkit-font-smoothing: none;
+}
+
+/* La pregunta final destacada, en el rosa del proyecto */
+.sobre-texto p.pregunta {
+  color: #f01ad3;
+  border-left: 2px solid #f01ad3;
+  padding-left: 18px;
+  margin: 2em 0 2.4em;
+}
+
+/* botones al pie de «proyecto» */
+.sobre-botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* botón con texto largo: el ancho se ajusta a la palabra */
+.enter.ancho {
+  width: auto;
+  padding: 0 18px;
+}
+
+@media (max-width: 600px) {
+  .sobre-texto p { font-size: 18px; line-height: 1.45; }
+}
+/* ---------- Diccionario descargable ---------- */
+/* botón de descarga con flecha, a la derecha de la cabecera */
+.descarga {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 25px;
+  border: 1px solid #f01ad3;
+  background: #f01ad3;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.descarga .flecha {
+  display: inline-block;
+  font-size: 22px;
+  line-height: 1;
+  transition: transform 0.15s;
+}
+
+.descarga:hover {
+  background: #000;
+  color: #f01ad3;
+}
+
+.descarga:hover .flecha {
+  transform: translateY(3px);
+}
+
+/* cabecera del diccionario: dos filas (título + índice) */
+.dic-cabecera {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.dic-fila {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+#letras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  flex: 1;
+}
+
+.letra {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 6px;
+  border-radius: 25px;
+  border: 1px solid #ffaffb;
+  color: #ffaffb;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+a.letra:hover {
+  background: #ffaffb;
+  color: #000;
+}
+
+.letra.vacia {
+  opacity: 0.25;
+}
+
+#buscar {
+  font-family: bodyFont, monospace;
+  font-size: 16px;
+  height: 34px;
+  width: 200px;
+  padding: 0 14px;
+  border-radius: 25px;
+  border: 1px solid #f01ad3;
+  background: #000;
+  color: #ffd6fa;
+  outline: none;
+}
+
+#buscar::placeholder {
+  color: #f01ad3;
+  opacity: 0.7;
+}
+
+#buscar:focus {
+  border-color: #ffaffb;
+}
+
+.dic-letra {
+  scroll-margin-top: 150px;
+}
+
+#diccionario {
+  margin-top: 24px;
+}
+
+.dic-letra h3 {
+  font-family: homeFont, monospace;
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 1;
+  color: #ffaffb;
+  margin: 0 0 10px;
+}
+
+.dic-entrada {
+  scroll-margin-top: 150px;
+}
+
+/* entrada o acepción enlazada directamente (#termino, #termino-2) */
+.dic-entrada:target .w {
+  outline: 2px solid #fff;
+  outline-offset: 1px;
+}
+
+.acepciones li:target {
+  background: #2a0024;
+  border-radius: 6px;
+}
+
+/* remisiones: (→ palabra) */
+.remite {
+  color: #ffaffb;
+}
+
+.remite a {
+  color: #f01ad3;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+#vacio {
+  margin-top: 36px;
+  color: #ffaffb;
+}
+
+.dic-entrada {
+  scroll-margin-top: 150px;
+  padding: 16px 0 14px;
+  border-bottom: 1px dotted #5c2a56;
+  font-size: 19px;
+  line-height: 1.5;
+}
+
+.dic-lema {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.dic-entrada .w {
+  width: auto;
+  height: 32px;
+  margin: 0;
+  padding: 0 13px;
+  text-decoration: none;
+}
+
+.origen {
+  font-size: 15px;
+  color: #ffaffb;
+}
+
+.acepciones {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.acepciones li {
+  scroll-margin-top: 150px;
+  padding: 4px 6px;
+  margin: 0 -6px;
+  color: #ffd6fa;
+}
+
+.acepciones .num {
+  color: #f01ad3;
+  margin-right: 4px;
+}
+
+/* categoría gramatical (m., f. pl., adj.…) */
+.acepciones .cat {
+  color: #ffaffb;
+  font-size: 0.82em;
+  margin-right: 4px;
+}
+
+/* ejemplo sacado del archivo */
+.acepciones .ej {
+  color: #f01ad3;
+  margin-left: 4px;
+}
+
+.dic-ver {
+  margin: 6px 0 0;
+}
+
+.dic-nota {
+  margin: 8px 0 0;
+  font-size: 16px;
+  color: #ffaffb;
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .descarga { padding: 0 12px; }
+  .dic-letra h3 { font-size: 34px; }
+  #buscar { width: 100%; }
+  .dic-entrada { font-size: 17px; }
+  .dic-lema { flex-wrap: wrap; }
+}
+/* botón empujado a la derecha de su fila (cabeceras) */
+.a-la-derecha {
+  margin-left: auto;
+}
+
+/* botón al final de la página, abajo a la derecha */
+.pie-botones {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 36px;
+}
+
+/* ---------- Fotos de fondo (home y proyecto) ---------- */
+/* Cada página tiene su foto. Para cambiarla, cambia la ruta en --fondo. */
+body.home  { --fondo: url("Img/fondo.jpg"); }
+body.sobre { --fondo: url("Img/fondo-proyecto.jpg"); }
+
+body.home::before,
+body.sobre::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), /* oscurece la foto para que se lea el texto */
+    var(--fondo) center / cover no-repeat;
+}
+
+/* el texto largo de «proyecto» necesita más oscuridad para leerse */
+body.sobre::before {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
+    var(--fondo) center / cover no-repeat;
+}
+
+/* el fondo negro general taparía la foto: en estas páginas lo quitamos */
+body.home,
+body.sobre {
+  background: transparent;
+}
+
+html:has(body.home),
+html:has(body.sobre) {
+  background: #000; /* se ve mientras carga la foto o si no la encuentra */
+}

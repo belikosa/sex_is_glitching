@@ -614,36 +614,48 @@ a.letra:hover {
   margin-top: 36px;
 }
 
-/* ---------- Fotos de fondo (home y proyecto) ---------- */
-/* Cada página tiene su foto. Para cambiarla, cambia la ruta en --fondo. */
-body.home  { --fondo: url("Img/fondo.jpg"); }
-body.sobre { --fondo: url("Img/fondo-proyecto.jpg"); }
+/* ---------- Fotos de fondo: una por página ---------- */
+/* Para cambiar la foto de una página, cambia su ruta aquí. */
+body.home     { --fondo: url("Icon/fondo.jpg"); }
+body.sobre    { --fondo: url("Icon/fondo2.jpg"); }
+body.archivo  { --fondo: url("Icon/fondo3.jpg"); }
+body.dicc     { --fondo: url("Icon/fondo3.jpg"); }
+body.terminos { --fondo: url("Icon/fondo2.jpg"); }
+
+/* Cuánto se oscurece cada foto (0 = nada, 1 = negro).
+   Las páginas con mucho texto necesitan más para que se lea. */
+body.home     { --oscuro: 0.45; }
+body.sobre    { --oscuro: 0.65; }
+body.archivo  { --oscuro: 0.70; }
+body.dicc     { --oscuro: 0.75; }
 
 body.home::before,
-body.sobre::before {
+body.sobre::before,
+body.archivo::before,
+body.dicc::before {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), /* oscurece la foto para que se lea el texto */
+    linear-gradient(rgba(0, 0, 0, var(--oscuro)), rgba(0, 0, 0, var(--oscuro))),
     var(--fondo) center / cover no-repeat;
 }
 
-/* el texto largo de «proyecto» necesita más oscuridad para leerse */
-body.sobre::before {
-  background:
-    linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)),
-    var(--fondo) center / cover no-repeat;
-}
-
-/* el fondo negro general taparía la foto: en estas páginas lo quitamos */
+/* el fondo negro general taparía la foto: lo quitamos del body */
 body.home,
-body.sobre {
+body.sobre,
+body.archivo,
+body.dicc {
   background: transparent;
 }
 
-html:has(body.home),
-html:has(body.sobre) {
-  background: #000; /* se ve mientras carga la foto o si no la encuentra */
+/* se ve mientras carga la foto o si no la encuentra */
+html {
+  background: #000;
+}
+
+/* la cabecera fija del diccionario deja ver un poco la foto al hacer scroll */
+.dicc-top {
+  background: rgba(0, 0, 0, 0.85);
 }

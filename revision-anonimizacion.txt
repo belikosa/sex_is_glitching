@@ -1,0 +1,411 @@
+Mensajes modificados al anonimizar data.csv
+(antes → después; los saltos de línea se muestran como « / »)
+
+1. septiembre 2021 · by_me
+ANTES:   Ya no me quiero follar a Mateo, ya no me gusta
+DESPUÉS: Ya no me quiero follar a [nombre], ya no me gusta
+
+2. noviembre 2021 · to_me
+ANTES:   Me llamo Ian, te vi en Tinder y veo que haces cuadros, me gustaría que hicieses un cuadro de mi desnudo (encargo de retrato desnudo vía Tinder)
+DESPUÉS: Me llamo [nombre], te vi en Tinder y veo que haces cuadros, me gustaría que hicieses un cuadro de mi desnudo (encargo de retrato desnudo vía Tinder)
+
+3. diciembre 2023 · by_me
+ANTES:   Sii por favor guille q no nos hablamos nunca :( pa lo q te quiero
+DESPUÉS: Sii por favor [nombre] q no nos hablamos nunca :( pa lo q te quiero
+
+4. junio 2024 · by_me
+ANTES:   Hola Claudia !💫 te escribo porque estoy con el TFG de Bellas Artes y tengo una pieza en relación con el lenguaje humano-animal y humano-máquina, he visto el tuyo De la animalización a la mecanización del Hombre en ruinet buscando obras y trabajo de referencia y es privado, te escribí por correo que creo que es el de la universidad y que esta en desuso, así que te habló también por aquí para pregun
+DESPUÉS: Hola [nombre] !💫 te escribo porque estoy con el TFG de Bellas Artes y tengo una pieza en relación con el lenguaje humano-animal y humano-máquina, he visto el tuyo De la animalización a la mecanización del Hombre en ruinet buscando obras y trabajo de referencia y es privado, te escribí por correo que creo que es el de la universidad y que esta en desuso, así que te habló también por aquí para pregu
+
+5. julio 2024 · to_me
+ANTES:   Greeting gorgeous,😻I was browsing randomly on here when I saw your profile pic, I could not go through without leaving a message because you are very beautiful😍😍💖❤️xx do you need a sugar daddy who’s gonna help you financially help you pay your bills and also give you a weekly allowance for sum of $5000 via PayPal only 💞💞💞💗 I am not into anything sexual, I just need a legit sugar baby to text me al
+DESPUÉS: Greeting gorgeous,😻I was browsing randomly on here when I saw your profile pic, I could not go through without leaving a message because you are very beautiful😍😍💖
+
+6. agosto 2024 · to_me
+ANTES:   maría ha enviado un archivo adjunto. cocktail_pipa
+DESPUÉS: [archivo adjunto]
+
+7. septiembre 2024 · by_me
+ANTES:   gracuas lucia te quiero ??
+DESPUÉS: gracuas [nombre] te quiero ??
+
+8. octubre 2024 · by_me
+ANTES:   Has enviado un archivo adjunto. It just keeps spinning fuckjerry
+DESPUÉS: [archivo adjunto] It just keeps spinning
+
+9. noviembre 2024 · by_me
+ANTES:   Te quiero lucia !
+DESPUÉS: Te quiero [nombre] !
+
+10. febrero 2025 · by_me
+ANTES:   Que bonitas las de Allan😭
+DESPUÉS: Que bonitas las de [nombre]😭
+
+11. febrero 2025 · to_me
+ANTES:   🤤🤤🤤 ❤sara
+DESPUÉS: 🤤🤤🤤
+
+12. febrero 2025 · to_me
+ANTES:   🫶🏻💋 ❤sara
+DESPUÉS: 🫶🏻💋
+
+13. marzo 2025 · to_me
+ANTES:   Y a ver si vienes tu un finde a darnos besos a Pablo y a mi
+DESPUÉS: Y a ver si vienes tu un finde a darnos besos a [nombre] y a mi
+
+14. marzo 2025 · to_me
+ANTES:   "estoy muy cansada d mi vida en general tia es todo muy rutinario y puf se me hace mucho cuesta arriba, con guille estoy rarisima tb porque se notan los 4 años y nos noto estancaos y nose"
+DESPUÉS: "estoy muy cansada d mi vida en general tia es todo muy rutinario y puf se me hace mucho cuesta arriba, con [nombre] estoy rarisima tb porque se notan los 4 años y nos noto estancaos y nose"
+
+15. abril 2025 · to_me
+ANTES:   Juls ha enviado un archivo adjunto. Pensé en todo el mundo, menos en los que estaban en el portaventura esgilipolla
+DESPUÉS: [archivo adjunto] Pensé en todo el mundo, menos en los que estaban en el portaventura
+
+16. mayo 2025 · to_me
+ANTES:   hazme una camiseta de los deftones 😈 ❤️sara
+DESPUÉS: hazme una camiseta de los deftones 😈
+
+17. octubre 2025 · by_me
+ANTES:   Aaaa calla pincha en la sónica Patri
+DESPUÉS: Aaaa calla pincha en la sónica [nombre]
+
+18. marzo 2026 · to_me
+ANTES:   👼🏼 ha enviado un archivo adjunto. el vaso esta fucklusi
+DESPUÉS: [archivo adjunto] el vaso esta
+
+19. junio 2026 · by_me
+ANTES:   Hellowww bombonme puedes hacer un favor y decirle a Javier vadillo que reventé mi móvil? No se enciende
+DESPUÉS: Hellowww bombonme puedes hacer un favor y decirle a [nombre] que reventé mi móvil? No se enciende
+
+20. julio 2026 · by_me
+ANTES:   I'm doing research in archive and webs of sexual information, and the evolution of the digital image of the body ❤J - 2ek
+DESPUÉS: I'm doing research in archive and webs of sexual information, and the evolution of the digital image of the body
+
+21. octubre 2025 · by_me
+ANTES:   Has enviado un archivo adjunto. SUL SUL! In some truly shocking news for the gaming community, Electronic Arts is set to end its decades long run as a publicly traded company, following news that the publisher has been acquired by Saudi Arabia’s Public Investment Fund (PIF), Silver Lake, and Affinity Partners – the latter led by Jared Kushner, son-in-law of U.S. President Donald Trump."; / ; / The
+DESPUÉS: [archivo adjunto] SUL SUL! In some truly shocking news for the gaming community, Electronic Arts is set to end its decades long run as a publicly traded company, following news that the publisher has been acquired by Saudi Arabia’s Public Investment Fund (PIF), Silver Lake, and Affinity Partners – the latter led by Jared Kushner, son-in-law of U.S. President Donald Trump. /  / The deal, valued at 
+
+22. junio 2025 · to_me
+ANTES:   👼🏼 ha enviado un archivo adjunto. VENDIDA otraputacuentadedibujos https://www.instagram.com/p/DHIiCVJqrzH/
+DESPUÉS: [archivo adjunto] VENDIDA
+
+23. abril 2025 · by_me
+ANTES:   Has enviado un archivo adjunto. La Bajada del Ángel 😇 Tradición de la Semana Santa de Aranda de Duero, provincia de Burgos 🇪🇸"; / ; / Hay que decir, que fuera de contexto, la imágenes es muy curiosa; un globo colgado a metros de altura, un niño disfrazado de ángel pataleando con dos palomas o el himno de España… todo en sí crea una imagen como poco curiosa.  / ; / En realidad representa la anuncia
+DESPUÉS: [archivo adjunto] La Bajada del Ángel 😇 Tradición de la Semana Santa de Aranda de Duero, provincia de Burgos 🇪🇸 /  / Hay que decir, que fuera de contexto, la imágenes es muy curiosa; un globo colgado a metros de altura, un niño disfrazado de ángel pataleando con dos palomas o el himno de España… todo en sí crea una imagen como poco curiosa. /  / En realidad representa la anunciación a la virgen po
+
+24. diciembre 2024 · to_me
+ANTES:   También me sirve, de pie en la cama se nos verá hasta más ❤sara (dic. 16, 2024 2:10 pm)
+DESPUÉS: También me sirve, de pie en la cama se nos verá hasta más
+
+25. marzo 2026 · to_me
+ANTES:   👁️‍🗨️ ha enviado un archivo adjunto. In 2025, during NYU’s “Stupid Hackathon”, students enrolled in the program are invited to “make something stupid”. Among those ideas was a Tamagotchi housed inside a vape, designed by Rebecca Xun and Lucia Camacho. The vape features a digital pet that dies if you stop hitting it, blending nostalgia with modern addiction behavior."; / ; / "Designed as both a jok
+DESPUÉS: [archivo adjunto] In 2025, during NYU’s “Stupid Hackathon”, students enrolled in the program are invited to “make something stupid”. Among those ideas was a Tamagotchi housed inside a vape, designed by Rebecca Xun and Lucia Camacho. The vape features a digital pet that dies if you stop hitting it, blending nostalgia with modern addiction behavior. /  / Designed as both a joke and a commentary on a
+
+26. febrero 2025 · to_me
+ANTES:   Nada ya le he contestado bien 🗣️🗣️m dicen la rompecorazones falsas ilusiones 🗣️🗣️ o sea no se estoy como en un punto q conocer a peña tal perfecta pero con la puta calma k miedo da la gente Damn 👍 ❤sara
+DESPUÉS: Nada ya le he contestado bien 🗣️🗣️m dicen la rompecorazones falsas ilusiones 🗣️🗣️ o sea no se estoy como en un punto q conocer a peña tal perfecta pero con la puta calma k miedo da la gente Damn 👍
+
+27. febrero 2025 · to_me
+ANTES:   Pronto resultados 🗣️🗣️ si apruebo pienso proyectarlo en electroputa la próxima vez k pinche ❤sara
+DESPUÉS: Pronto resultados 🗣️🗣️ si apruebo pienso proyectarlo en electroputa la próxima vez k pinche
+
+28. enero 2025 · to_me
+ANTES:   Jose Martí no tiene ni puta idea d lo k se pierde
+DESPUÉS: [nombre] no tiene ni puta idea d lo k se pierde
+
+29. febrero 2026 · to_me
+ANTES:   alicia ha enviado un archivo adjunto. Hice una camara 😎 julian.principe https://www.instagram.com/reel/DU6vNoPjkXP/?id=3835585677409273295_14797208
+DESPUÉS: [archivo adjunto] Hice una camara 😎
+
+30. enero 2026 · to_me
+ANTES:   alicia ha enviado un archivo adjunto. De todo menos eso"; / ; / .; / .; / "#reel #parati #humor #fyp putahacienda https://www.instagram.com/reel/DTv3Ge-CvNv/?id=3814509747534230383_75470658063
+DESPUÉS: [archivo adjunto] De todo menos eso /  / #reel #parati #humor #fyp
+
+31. enero 2026 · by_me
+ANTES:   Has enviado un archivo adjunto. +/- 3"; / ; / -; / ; / +/− is a digital art series that emerges from the encounter between two distinct practices.; / ; / The works combine reconstructed visual material with its computational transformation, bringing together two different ways of forming an image.; / ; / Rather than producing a fixed result, the series operates within a state of tension, where ima
+DESPUÉS: [archivo adjunto] +/- 3 /  / +/− is a digital art series that emerges from the encounter between two distinct practices. /  / The works combine reconstructed visual material with its computational transformation, bringing together two different ways of forming an image. /  / Rather than producing a fixed result, the series operates within a state of tension, where images continuously shift between
+
+32. septiembre 2025 · to_me
+ANTES:   alicia ha enviado un archivo adjunto. En las ruinas de una nave industrial abandonada florece @pluto______________ , un espacio artístico autogestionado que impulsa la escena cultural de València desde 2020."; / ; / Uno de nuestros proyectos más emblemáticos es la Beca Espacial, programa que apoya a lxs jóvenes talentos emergentes y que se ha convertido en un referente anual para nuevas sensibilid
+DESPUÉS: [archivo adjunto] En las ruinas de una nave industrial abandonada florece @[usuario] , un espacio artístico autogestionado que impulsa la escena cultural de València desde 2020. /  / Uno de nuestros proyectos más emblemáticos es la Beca Espacial, programa que apoya a lxs jóvenes talentos emergentes y que se ha convertido en un referente anual para nuevas sensibilidades artísticas en la ciudad. /  
+
+33. agosto 2025 · to_me
+ANTES:   alicia ha enviado un archivo adjunto. 🎵En los conciertos y performances de #LEVMatadero2025, SPIME.IM presentará 'Grey Line'. Su directo audiovisual os llevará a través de una narrativa que entrelaza la crisis climática, la sobreinformación y la ambigüedad moral, en una experiencia donde imágenes y sonido evocan la saturación del presente."; / ; / Una exploración intensa y sensorial del color gris
+DESPUÉS: [archivo adjunto] 🎵En los conciertos y performances de #LEVMatadero2025, SPIME.IM presentará 'Grey Line'. Su directo audiovisual os llevará a través de una narrativa que entrelaza la crisis climática, la sobreinformación y la ambigüedad moral, en una experiencia donde imágenes y sonido evocan la saturación del presente. /  / Una exploración intensa y sensorial del color gris como representación de
+
+34. abril 2025 · by_me
+ANTES:   A ti te gustan castas y tapadas y yo voy operada y soy puta💀 y luego le empezaba "pero eso te gusta e eso te pone" ❤alicia
+DESPUÉS: A ti te gustan castas y tapadas y yo voy operada y soy puta💀 y luego le empezaba "pero eso te gusta e eso te pone"
+
+35. enero 2025 · by_me
+ANTES:   Has enviado un archivo adjunto. "Finals week is one of those stressful yet unforgettable times in every university student's life. Some of us prepare our notes months in advance, while others confidently say, 'I’ll study the day before, no problem!' But what happens when that final day arrives? Absolute chaos! My roommates have turned last-minute studying into an art form."; / ; / The lights stay 
+DESPUÉS: [archivo adjunto] "Finals week is one of those stressful yet unforgettable times in every university student's life. Some of us prepare our notes months in advance, while others confidently say, 'I’ll study the day before, no problem!' But what happens when that final day arrives? Absolute chaos! My roommates have turned last-minute studying into an art form." /  / The lights stay on all night, no
+
+36. mayo 2024 · to_me
+ANTES:   alicia ha enviado un archivo adjunto. ¡1 día para FOOLK!"; / ; / @isabeldodiego habita un universo creativo de gritos y susurros, de melodías tradicionales y sonoridades quebradas, de ecos rurales y destellos industriales a los que añade muchos beats, samplers y sintetizadores para crear un trampantojo inclasificable. ; / ; / No te pierdas su directo.; / ; / ¡Últimas entradas en la bio de @latermi
+DESPUÉS: [archivo adjunto] ¡1 día para FOOLK! /  / @[usuario] habita un universo creativo de gritos y susurros, de melodías tradicionales y sonoridades quebradas, de ecos rurales y destellos industriales a los que añade muchos beats, samplers y sintetizadores para crear un trampantojo inclasificable. /  / No te pierdas su directo. /  / ¡Últimas entradas en la bio de @[usuario]! /  / 🏴 Organiza: @[usuario],
+
+37. noviembre 2023 · by_me
+ANTES:   Has enviado un archivo adjunto. let’s look into the process behind my recent 3D printed sculpture 🦀✨ can’t wait to share more detail at my webinar Dec 2 with @designmorphine ~ 5 days to register ~ link in bio ⚡️"; / ; / "#3dprint #blender #b3d #computationaldesign #shapeways #3dart #generativedesign #proceduralart #organic #design #geometry #sculpture #beautifulobjects #bones #skin #digitalart #bt
+DESPUÉS: [archivo adjunto] let’s look into the process behind my recent 3D printed sculpture 🦀✨ can’t wait to share more detail at my webinar Dec 2 with @[usuario] ~ 5 days to register ~ link in bio ⚡️ /  / #3dprint #blender #b3d #computationaldesign #shapeways #3dart #generativedesign #proceduralart #organic #design #geometry #sculpture #beautifulobjects #bones #skin #digitalart #bts #makingof #tutorial #
+
+38. agosto 2023 · by_me
+ANTES:   Me dijo María q le avisaste ese día q se iba a sobar a casa de su chorbo y así tenéis su cama así q csbriais tu y dos más creo ❤️C.IZARBE (ago. 05, 2023 9:36 am)
+DESPUÉS: Me dijo [nombre] q le avisaste ese día q se iba a sobar a casa de su chorbo y así tenéis su cama así q csbriais tu y dos más creo
+
+39. octubre 2024 · to_me
+ANTES:   Usuario de Instagram ha enviado un archivo adjunto. ⬇️INFO⬇️"; / ; / Conoces el nuevo parque de camas elásticas de Valencia?? @jumpyard_valencia llega para revolucionar las tardes de ocio 🤩; / ; / 📍Centro comercial Bonaire. ; / ; / Tienen diferentes espacios para que toda la familia pueda disfrutar y saltar como locos. ; / Apto a partir de 3 años y sin límite de edad 🙌🏼; / ; / Podrás encontrar:; /
+DESPUÉS: [archivo adjunto] ⬇️INFO⬇️ /  / Conoces el nuevo parque de camas elásticas de Valencia?? @[usuario] llega para revolucionar las tardes de ocio 🤩 /  / 📍Centro comercial Bonaire. /  / Tienen diferentes espacios para que toda la familia pueda disfrutar y saltar como locos. / Apto a partir de 3 años y sin límite de edad 🙌🏼 /  / Podrás encontrar: / 🎯Camas elásticas / 🥷🏻Ninja course / ✈️Sky Rider / 🎮Sal
+
+40. abril 2026 · to_me
+ANTES:   Si siempre hay un momento en la vida en que estos hijos de puta te escriben https://www.instagram.com/stories/belikosa/3880230432746791481
+DESPUÉS: Si siempre hay un momento en la vida en que estos hijos de puta te escriben
+
+41. febrero 2026 · to_me
+ANTES:   Hijos de puta https://www.instagram.com/stories/belikosa/3841751168477313817
+DESPUÉS: Hijos de puta
+
+42. marzo 2025 · to_me
+ANTES:   Boda gitana y es una puta piba random vestida de frozen ❤sara
+DESPUÉS: Boda gitana y es una puta piba random vestida de frozen
+
+43. enero 2025 · by_me
+ANTES:   La puta parece hecho con Ia https://www.instagram.com/stories/juliartrece/3557550400111572973 ❤Juls (ene. 31, 2025 1:53 am)
+DESPUÉS: La puta parece hecho con Ia
+
+44. octubre 2024 · by_me
+ANTES:   Has enviado un archivo adjunto. Me invitaron a un “té católico” y me encantó 🤍"; / Fue una maravillosa tarde entre amigas de hablar de Dios, de la Virgen y de nuestro camino cristiano. Todos tenemos luchas, batallas y aprendizajes y conversar con mis amigas sobre todo esto fue un regalo increíble!; / Bien dicen que las alegrías merecen ser compartidas 🌸; / ; / "#diosesamor #mujerescatolicas #mujer
+DESPUÉS: [archivo adjunto] Me invitaron a un “té católico” y me encantó 🤍 / Fue una maravillosa tarde entre amigas de hablar de Dios, de la Virgen y de nuestro camino cristiano. Todos tenemos luchas, batallas y aprendizajes y conversar con mis amigas sobre todo esto fue un regalo increíble! / Bien dicen que las alegrías merecen ser compartidas 🌸 /  / #diosesamor #mujerescatolicas #mujercatolica #mujercrist
+
+45. diciembre 2025 · to_me
+ANTES:   Juls ha enviado un archivo adjunto. Este Jabón llevo haciéndolo un montón, seguro que hay recetas más exactas pero yo soy así 😂 lo hago todo a ojo. Si se os hace gelatina en bloque no paaaaasa nada! Le echáis agua y removeis eso es xq lleva más jabón que agua. Y suele pasar cuando se ve usando. A mi me dura muchísimo y es un jabón súper efectivo y suave a la vez y Biodegradable!!! Así que te lleva
+DESPUÉS: [archivo adjunto] Este Jabón llevo haciéndolo un montón, seguro que hay recetas más exactas pero yo soy así 😂 lo hago todo a ojo. Si se os hace gelatina en bloque no paaaaasa nada! Le echáis agua y removeis eso es xq lleva más jabón que agua. Y suele pasar cuando se ve usando. A mi me dura muchísimo y es un jabón súper efectivo y suave a la vez y Biodegradable!!! Así que te lleva unos 10minutillos
+
+46. diciembre 2025 · to_me
+ANTES:   Usuario de Instagram ha enviado un archivo adjunto. Cuando la transición del "woooaaah" de #HannahMontana dura tanto que les da tiempo de cambiar la cama 🪄🛏 ¿Te diste cuenta del error?"; / ; / "#HannahMontana #MileyCyrus #DisneyChannel #Fail #EditingFail #ConPochoclos con_pochoclos https://www.instagram.com/reel/DR0unvfDYe2/?id=3779851028456638390_8555071105 ❤sara
+DESPUÉS: [archivo adjunto] Cuando la transición del "woooaaah" de #HannahMontana dura tanto que les da tiempo de cambiar la cama 🪄🛏 ¿Te diste cuenta del error? /  / #HannahMontana #MileyCyrus #DisneyChannel #Fail #EditingFail #ConPochoclos
+
+47. noviembre 2025 · to_me
+ANTES:   Juls ha enviado un archivo adjunto. Arepas de yuca se hacen con apenas un ingrediente: la yuca. "; / Sin gluten, muy fácil de preparar y con una textura increíble.; / En esta receta las relleno con el famoso relleno Reina Pepiada, una mezcla cremosa de pollo, aguacate, espectacular.; / Perfectas para desayunos, comidas o cenas rápidas, estas arepas saludables son una forma deliciosa de variar y di
+DESPUÉS: [archivo adjunto] Arepas de yuca se hacen con apenas un ingrediente: la yuca. / Sin gluten, muy fácil de preparar y con una textura increíble. / En esta receta las relleno con el famoso relleno Reina Pepiada, una mezcla cremosa de pollo, aguacate, espectacular. / Perfectas para desayunos, comidas o cenas rápidas, estas arepas saludables son una forma deliciosa de variar y disfrutar con pocos ingre
+
+48. octubre 2025 · by_me
+ANTES:   Wndkwnqmqmw hija de puta ❤maría
+DESPUÉS: Wndkwnqmqmw hija de puta
+
+49. agosto 2023 · to_me
+ANTES:   Un hadita en mi camaaaaaaaa💖💖💖 https://www.instagram.com/stories/belikosa/3160098793414798809
+DESPUÉS: Un hadita en mi camaaaaaaaa💖💖💖
+
+50. junio 2025 · by_me
+ANTES:   Menuda hija d puta ❤Mariu ❤Sabrina Atanasiu
+DESPUÉS: Menuda hija d puta
+
+51. diciembre 2024 · to_me
+ANTES:   puta https://www.instagram.com/stories/belikosa/3535691977878306567
+DESPUÉS: puta
+
+52. febrero 2025 · to_me
+ANTES:   Tía……. Estáis como una puta #regadera ❤sara
+DESPUÉS: Tía……. Estáis como una puta #regadera
+
+53. mayo 2025 · by_me
+ANTES:   Promocionando a las putas d weimar ajajaja ❤Sabrina Atanasiu
+DESPUÉS: Promocionando a las putas d weimar ajajaja
+
+54. febrero 2025 · to_me
+ANTES:   cómo se hace no soy capaz de callarme la puta boca https://www.instagram.com/stories/belikosa/3567059591619586037
+DESPUÉS: cómo se hace no soy capaz de callarme la puta boca
+
+55. diciembre 2025 · by_me
+ANTES:   Hija de puta ❤Usuario de Instagram
+DESPUÉS: Hija de puta
+
+56. noviembre 2025 · by_me
+ANTES:   Hija de puta ❤Usuario de Instagram
+DESPUÉS: Hija de puta
+
+57. octubre 2025 · by_me
+ANTES:   Naaada perdoon Alex se quedó sin batería y me dio un susto y buscama números de amigos suyos ❤wip
+DESPUÉS: Naaada perdoon [nombre] se quedó sin batería y me dio un susto y buscama números de amigos suyos
+
+58. mayo 2020 · to_me
+ANTES:   Hay que ser hijadeputa https://www.instagram.com/stories/belikosa/2315659935249112714
+DESPUÉS: Hay que ser hijadeputa
+
+59. enero 2020 · to_me
+ANTES:   QUE PUTA DIOSA https://www.instagram.com/stories/belikosa/2233013347075309881
+DESPUÉS: QUE PUTA DIOSA
+
+60. agosto 2022 · by_me
+ANTES:   Has enviado un archivo adjunto. hola ciervas, pues estoy triste y desolada, por lo visto este heteropatriarcado cansado se manifiesta en cada rincón que habitamos. en mayo, tras coincidir y conocer al grupo Chill Mafia en un concierto que dimos en el Villasound de Bilbao, por flipada, por soberbia y por pipa comenzaron por tuiter a hacerme el peor ciber bullying de mi vida. ben yart estuvo semanas
+DESPUÉS: [archivo adjunto] hola ciervas, pues estoy triste y desolada, por lo visto este heteropatriarcado cansado se manifiesta en cada rincón que habitamos. en mayo, tras coincidir y conocer al grupo Chill Mafia en un concierto que dimos en el Villasound de Bilbao, por flipada, por soberbia y por pipa comenzaron por tuiter a hacerme el peor ciber bullying de mi vida. [nombre] estuvo semanas comentando mi
+
+61. noviembre 2021 · by_me
+ANTES:   Fermín ahora es el camarero más chulo de la zona. Pídele una caña que le encanta fardar de de tatus… 🤠🐍💖"; / Gracias x soportarme. La confianza da asco. Te quiero✨; / .; / .; / .; / .; / .; / .; / .; / .; / .; / ; / #tattoo #snaketattoo #snakes #murciatattoo #valenciatattoo #buenobonitobarato #armstattoo ; / "#bodytattoo #quefrio #virgensanta #voypalbrasero lavalkiriaa https://www.instagram.com/p/
+DESPUÉS: Fermín ahora es el camarero más chulo de la zona. Pídele una caña que le encanta fardar de de tatus… 🤠🐍💖 / Gracias x soportarme. La confianza da asco. Te quiero✨ /  / #tattoo #snaketattoo #snakes #murciatattoo #valenciatattoo #buenobonitobarato #armstattoo / #bodytattoo #quefrio #virgensanta #voypalbrasero
+
+62. agosto 2021 · to_me
+ANTES:   Hija de la gran puta https://www.instagram.com/stories/belikosa/2641836107043637545
+DESPUÉS: Hija de la gran puta
+
+63. agosto 2021 · to_me
+ANTES:   Misabrosa cama https://www.instagram.com/stories/belikosa/2635653590464804315
+DESPUÉS: Misabrosa cama
+
+64. agosto 2021 · to_me
+ANTES:   Que novia puta? https://www.instagram.com/stories/belikosa/2633088505334469127
+DESPUÉS: Que novia puta?
+
+65. julio 2021 · to_me
+ANTES:   Ese quien puta zorra? https://www.instagram.com/stories/belikosa/2625100542311110075
+DESPUÉS: Ese quien puta zorra?
+
+66. julio 2021 · to_me
+ANTES:   Vaya puta la maría ❤️anigrelep (jul. 04, 2021 3:48 pm)
+DESPUÉS: Vaya puta la [nombre]
+
+67. marzo 2018 · to_me
+ANTES:   Si, en mi puta casa 😂😂 https://www.instagram.com/stories/belikosa/1729304990559054872
+DESPUÉS: Si, en mi puta casa 😂😂
+
+68. diciembre 2021 · by_me
+ANTES:   K va😭😭 putada xiki ❤️🦇Carlos Zárate🦇 (dic. 09, 2021 1:23 pm)
+DESPUÉS: K va😭😭 putada xiki
+
+69. agosto 2020 · to_me
+ANTES:   QUE ESE VÍDEO LO TIENE LA PUTA MARTA EN DESTACADOS ❤️Alexandra
+DESPUÉS: QUE ESE VÍDEO LO TIENE LA PUTA [nombre] EN DESTACADOS
+
+70. marzo 2020 · by_me
+ANTES:   yo el otro día stalkee unos fotos d una capea .... d mi colegio ..... y hay un grupo de tres chavalillos q 👌🏻👌🏻..... entro en los ig y dos con novia y el ex del otro es una puta modelo I feel u sister ❤️Alexandra ❤️Paula ☼
+DESPUÉS: yo el otro día stalkee unos fotos d una capea .... d mi colegio ..... y hay un grupo de tres chavalillos q 👌🏻👌🏻..... entro en los ig y dos con novia y el ex del otro es una puta modelo I feel u sister
+
+71. noviembre 2021 · to_me
+ANTES:   10 pavos está de puta madre ❤️sara (nov. 02, 2021 2:30 am)
+DESPUÉS: 10 pavos está de puta madre
+
+72. septiembre 2021 · to_me
+ANTES:   Aaah hostia jshdkasj no me entero de nada puta antisocial 😔😔😔😔 ❤️sara (sept. 13, 2021 12:18 pm)
+DESPUÉS: Aaah hostia jshdkasj no me entero de nada puta antisocial 😔😔😔😔
+
+73. mayo 2023 · by_me
+ANTES:   Has enviado un archivo adjunto. Nuevo producto: ✨Hexa Snap Lens - Sony FE✨ en preventa! "; / -; / Reciclamos las lentes de las cámaras desechables que nos dejáis y creamos un nuevo producto para vosotrxs 🙂👍🏻; / "#analogico #fotografiaanalogica #camaraanalogica #filmphotography salesdeplatamadrid https://www.instagram.com/reel/CsoqExaKGuL/?id=3109920588582906763_1493991249
+DESPUÉS: [archivo adjunto] Nuevo producto: ✨Hexa Snap Lens - Sony FE✨ en preventa! /  / Reciclamos las lentes de las cámaras desechables que nos dejáis y creamos un nuevo producto para vosotrxs 🙂👍🏻 / #analogico #fotografiaanalogica #camaraanalogica #filmphotography
+
+74. enero 2023 · by_me
+ANTES:   Antes de irte avísame e puta k voy a x mi sabana si está seca ❤️Mariu (ene. 22, 2023 2:24 pm)
+DESPUÉS: Antes de irte avísame e puta k voy a x mi sabana si está seca
+
+75. noviembre 2019 · by_me
+ANTES:   os habéis jamao tu y paula con las fotos q no veas hijas de puta
+DESPUÉS: os habéis jamao tu y [nombre] con las fotos q no veas hijas de puta
+
+76. mayo 2021 · by_me
+ANTES:   Hijoputa ❤️mateo (may. 19, 2021 4:47 am)
+DESPUÉS: Hijoputa
+
+77. marzo 2020 · to_me
+ANTES:   Ostia puta no puc https://www.instagram.com/stories/belikosa/2261939800324044504
+DESPUÉS: Ostia puta no puc
+
+78. julio 2021 · to_me
+ANTES:   Que putada la verdad ❤️sara (jul. 01, 2021 11:04 am)
+DESPUÉS: Que putada la verdad
+
+79. agosto 2022 · to_me
+ANTES:   ɐ ha enviado un archivo adjunto. hola ciervas, pues estoy triste y desolada, por lo visto este heteropatriarcado cansado se manifiesta en cada rincón que habitamos. en mayo, tras coincidir y conocer al grupo Chill Mafia en un concierto que dimos en el Villasound de Bilbao, por flipada, por soberbia y por pipa comenzaron por tuiter a hacerme el peor ciber bullying de mi vida. ben yart estuvo semana
+DESPUÉS: [archivo adjunto] hola ciervas, pues estoy triste y desolada, por lo visto este heteropatriarcado cansado se manifiesta en cada rincón que habitamos. en mayo, tras coincidir y conocer al grupo Chill Mafia en un concierto que dimos en el Villasound de Bilbao, por flipada, por soberbia y por pipa comenzaron por tuiter a hacerme el peor ciber bullying de mi vida. [nombre] estuvo semanas comentando mi
+
+80. junio 2022 · by_me
+ANTES:   Hijo puta ❤️thejosemarin (jun. 18, 2022 2:55 pm)
+DESPUÉS: Hijo puta
+
+81. mayo 2021 · to_me
+ANTES:   Que guspa mi puta msdre https://www.instagram.com/stories/belikosa/2572844154487023587
+DESPUÉS: Que guspa mi puta msdre
+
+82. septiembre 2022 · by_me
+ANTES:   Has enviado un archivo adjunto. hola ciervas, pues estoy triste y desolada, por lo visto este heteropatriarcado cansado se manifiesta en cada rincón que habitamos. en mayo, tras coincidir y conocer al grupo Chill Mafia en un concierto que dimos en el Villasound de Bilbao, por flipada, por soberbia y por pipa comenzaron por tuiter a hacerme el peor ciber bullying de mi vida. ben yart estuvo semanas
+DESPUÉS: [archivo adjunto] hola ciervas, pues estoy triste y desolada, por lo visto este heteropatriarcado cansado se manifiesta en cada rincón que habitamos. en mayo, tras coincidir y conocer al grupo Chill Mafia en un concierto que dimos en el Villasound de Bilbao, por flipada, por soberbia y por pipa comenzaron por tuiter a hacerme el peor ciber bullying de mi vida. [nombre] estuvo semanas comentando mi
+
+83. agosto 2022 · to_me
+ANTES:   Camaleónica ❤️sara (ago. 11, 2022 2:58 pm)
+DESPUÉS: Camaleónica
+
+84. septiembre 2018 · to_me
+ANTES:   Y con pablo (el de la maria) pues un poco parecido y cuando me dijo que se cambiaba a la escuela pues en parte ni puta gracia jej
+DESPUÉS: Y con [nombre] (el de la maria) pues un poco parecido y cuando me dijo que se cambiaba a la escuela pues en parte ni puta gracia jej
+
+85. enero 2022 · to_me
+ANTES:   Ey Beli, que tengas puesta la canción de camarón es un +mil
+DESPUÉS: Ey [nombre], que tengas puesta la canción de camarón es un +mil
+
+86. diciembre 2025 · by_me
+ANTES:   No llames al timbre llámame a mí está Nere en la cama
+DESPUÉS: No llames al timbre llámame a mí está [nombre] en la cama
+
+87. enero 2026 · by_me
+ANTES:   Lo del polvo es putada Julia es alérgica y lo tiene que guardar todo en cajas y la ropa que no se pone rollo x temporadas al vacío
+DESPUÉS: Lo del polvo es putada [nombre] es alérgica y lo tiene que guardar todo en cajas y la ropa que no se pone rollo x temporadas al vacío
+
+88. febrero 2025 · by_me
+ANTES:   Como romper una relación es difícil ❤Alex
+DESPUÉS: Como romper una relación es difícil
+
+89. febrero 2025 · to_me
+ANTES:   O sea si a mi lo k m paso fue como q m fue llegando la Info Liu a partes, ademas m dejé d llevar con el man x experiencias propias no relacionadas con ser un turbio solo un capullo tal ❤sara
+DESPUÉS: O sea si a mi lo k m paso fue como q m fue llegando la Info Liu a partes, ademas m dejé d llevar con el man x experiencias propias no relacionadas con ser un turbio solo un capullo tal
+
+90. marzo 2026 · to_me
+ANTES:   alicia ha enviado un archivo adjunto. ▶︎▶︎ Victor Ruiz Colomer. Generación 2026 — l>ii<z"; / ; / → Victor Ruiz Colomer desarrolla una investigación escultórica y espacial que se adentra en la relación entre los trastornos formales del pensamiento y las formas de organización del espacio.; / ; / En su trabajo explora cómo los espacios afectan a las personas y sus relaciones. A través de la escultur
+DESPUÉS: [archivo adjunto] ▶︎▶︎ Victor Ruiz Colomer. Generación 2026 — l>ii<z /  / → Victor Ruiz Colomer desarrolla una investigación escultórica y espacial que se adentra en la relación entre los trastornos formales del pensamiento y las formas de organización del espacio. /  / En su trabajo explora cómo los espacios afectan a las personas y sus relaciones. A través de la escultura, cuestiona y transforma
+
+91. octubre 2024 · by_me
+ANTES:   Has enviado un archivo adjunto. ⚠️ Nueva #OPENCALL internacional para artistas visuales ⚠️"; / ; / Participa en la 18ª Edición del Festival PROYECTOR de Imagen en Movimiento internacional que se celebra cada año en Madrid; / ; / ¿Qué buscamos?; / PROYECTOR se interesa más por la experimentación, el site specific y la relación con el espectador, el cuerpo, la escala y el espacio que acoge la pieza.
+DESPUÉS: [archivo adjunto] ⚠️ Nueva #OPENCALL internacional para artistas visuales ⚠️ /  / Participa en la 18ª Edición del Festival PROYECTOR de Imagen en Movimiento internacional que se celebra cada año en Madrid /  / ¿Qué buscamos? / PROYECTOR se interesa más por la experimentación, el site specific y la relación con el espectador, el cuerpo, la escala y el espacio que acoge la pieza. /  / 📽️ Tipos de ob
+
+92. junio 2024 · by_me
+ANTES:   Hola Claudia !💫 te escribo porque estoy con el TFG de Bellas Artes y tengo una pieza en relación con el lenguaje humano-animal y humano-máquina, he visto el tuyo De la animalización a la mecanización del Hombre en ruinet buscando obras y trabajo de referencia y es privado, te escribí por correo que creo que es el de la universidad y que esta en desuso, así que te habló también por aquí para pregun
+DESPUÉS: Hola [nombre] !💫 te escribo porque estoy con el TFG de Bellas Artes y tengo una pieza en relación con el lenguaje humano-animal y humano-máquina, he visto el tuyo De la animalización a la mecanización del Hombre en ruinet buscando obras y trabajo de referencia y es privado, te escribí por correo que creo que es el de la universidad y que esta en desuso, así que te habló también por aquí para pregu
+
+93. octubre 2025 · to_me
+ANTES:   Usuario de Instagram ha enviado un archivo adjunto. JUGANDO AL IMPOSTOR 🤼🕵🏼🤫 Explicación: Cada jugador recibe una tarjeta con una palabra… menos uno, que es el impostor 😈."; / ; / Todos dicen palabras relacionadas con la palabra elegida, sin decirla directamente, y el impostor tiene que fingir que sabe cuál es.; / ; / Al final, todos votan quién creen que miente.; / "Si aciertan, gana el grupo. Si
+DESPUÉS: [archivo adjunto] JUGANDO AL IMPOSTOR 🤼🕵🏼🤫 Explicación: Cada jugador recibe una tarjeta con una palabra… menos uno, que es el impostor 😈. /  / Todos dicen palabras relacionadas con la palabra elegida, sin decirla directamente, y el impostor tiene que fingir que sabe cuál es. /  / Al final, todos votan quién creen que miente. / Si aciertan, gana el grupo. Si no… ¡gana el impostor! 👀🔥
+
+94. febrero 2026 · to_me
+ANTES:   La ha enviado un archivo adjunto. 🎙️ BAU lanza una convocatoria a su comunidad para participar en el proyecto expositivo multidisciplinar de la @sala_apolo y la @galeriasenda, que aborda la relación entre la cultura de club y el arte a través de la mirada de artistas emergentes y figuras de renombre."; /  ; / Alumni del Máster en Artes Digitales y Programación Creativa trabajarán en sus propuestas
+DESPUÉS: [archivo adjunto] 🎙️ BAU lanza una convocatoria a su comunidad para participar en el proyecto expositivo multidisciplinar de la @[usuario] y la @[usuario], que aborda la relación entre la cultura de club y el arte a través de la mirada de artistas emergentes y figuras de renombre. /  / Alumni del Máster en Artes Digitales y Programación Creativa trabajarán en sus propuestas bajo la tutorización de
+
+95. noviembre 2025 · to_me
+ANTES:   La ha enviado un archivo adjunto. ✨ #OPENCALL internacional para artistas visuales"; / ; / Participa en la 19ª edición de PROYECTOR, festival de imagen en movimiento internacional, que se celebra cada año en Madrid. ; / ; / Se caracteriza por apostar por obras no cinemanormativas y se interesa especialmente por la experimentación.; / ; / 🔍¿Qué buscamos?; / ; / Piezas que:; / → Se desarrollen como 
+DESPUÉS: [archivo adjunto] ✨ #OPENCALL internacional para artistas visuales /  / Participa en la 19ª edición de PROYECTOR, festival de imagen en movimiento internacional, que se celebra cada año en Madrid. /  / Se caracteriza por apostar por obras no cinemanormativas y se interesa especialmente por la experimentación. /  / 🔍¿Qué buscamos? /  / Piezas que: / → Se desarrollen como site-specific. / → Proponga
+
+96. enero 2026 · to_me
+ANTES:   samu ha enviado un archivo adjunto. 😱En el oeste de Japón, Yurina Noguchi, de 32 años, realizó una ceremonia simbólica al casarse con Klaus, una personalidad creada por inteligencia artificial, presente a través de la pantalla de un teléfono."; / ; / "💍 La mujer explicó que la relación comenzó con simples conversaciones y, con el tiempo, evolucionó hasta una propuesta de matrimonio que decidió ace
+DESPUÉS: [archivo adjunto] 😱En el oeste de Japón, Yurina Noguchi, de 32 años, realizó una ceremonia simbólica al casarse con Klaus, una personalidad creada por inteligencia artificial, presente a través de la pantalla de un teléfono. /  / 💍 La mujer explicó que la relación comenzó con simples conversaciones y, con el tiempo, evolucionó hasta una propuesta de matrimonio que decidió aceptar.
+
+97. febrero 2024 · by_me
+ANTES:   pero si para el tfg como lo digital ha vambiado la manera de relacionarnos y asi ❤Uchiha (feb. 24, 2024 5:29 pm)
+DESPUÉS: pero si para el tfg como lo digital ha vambiado la manera de relacionarnos y asi
+
+98. agosto 2025 · to_me
+ANTES:   Usuario de Instagram ha enviado un archivo adjunto. El humor salvará al mundo 🌎  y particularmente a quienes terminaron, sin darse cuenta, metidos en vínculos que parecían amor… y resultaron trauma."; / ; / Te vas poniendo de a poco ese vestido blanco lleno de promesas que nadie planeaba cumplir. Y un día, cuando todo se desmorona, te encontrás “internándote” a trabajar en tu salud mental, tratand
+DESPUÉS: [archivo adjunto] El humor salvará al mundo 🌎  y particularmente a quienes terminaron, sin darse cuenta, metidos en vínculos que parecían amor… y resultaron trauma. /  / Te vas poniendo de a poco ese vestido blanco lleno de promesas que nadie planeaba cumplir. Y un día, cuando todo se desmorona, te encontrás “internándote” a trabajar en tu salud mental, tratando de entender qué pasó y cómo seguir.
+
+99. abril 2026 · to_me
+ANTES:   ¡Hola Sara! Soy Dani, redactor de casting de First Dates. Disculpa si te molesto! Estamos buscando gente interesante y mirando por aquí me fijé en tu perfil! 😊 ¿Te animas a que te presentemos a alguien en nuestro restaurante? (Si estás sin pareja, en relación abierta o poliamorosa, claro jaja) Si es así, avísame y te cuento con más detalle. Muchas gracias y feliz día ❤️ ❤Daniel Alonso - Casting Fi
+DESPUÉS: ¡Hola Sara! Soy [nombre], redactor de casting de First Dates. Disculpa si te molesto! Estamos buscando gente interesante y mirando por aquí me fijé en tu perfil! 😊 ¿Te animas a que te presentemos a alguien en nuestro restaurante? (Si estás sin pareja, en relación abierta o poliamorosa, claro jaja) Si es así, avísame y te cuento con más detalle. Muchas gracias y feliz día ❤️
+
+100. abril 2021 · to_me
+ANTES:   ¿Cómo se relaciona la marihuana con la menstruación? ¿Puede el cannabis ayudar a las mujeres y personas menstruantes que sufren de dolores muy fuertes durante el periodo?⁠"; / ⁠; / Resolvimos estas y otras dudas en vice.com⁠; / ⁠; / "🔗 Link en bio para leer la nota completa. viceenespanol https://www.instagram.com/p/CNQdCeHninb/ ❤️sara (abr. 05, 2021 2:41 am)
+DESPUÉS: ¿Cómo se relaciona la marihuana con la menstruación? ¿Puede el cannabis ayudar a las mujeres y personas menstruantes que sufren de dolores muy fuertes durante el periodo?⁠ /  / Resolvimos estas y otras dudas en vice.com⁠ /  / 🔗 Link en bio para leer la nota completa.
+
+101. abril 2019 · to_me
+ANTES:   “Elena relación sexual” ahora he establecido una relación sexual con su alma
+DESPUÉS: “[nombre] relación sexual” ahora he establecido una relación sexual con su alma
+
+102. abril 2023 · to_me
+ANTES:   Estetica relacional ❤️sara (may. 02, 2023 6:09 am)
+DESPUÉS: Estetica relacional
+

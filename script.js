@@ -47,7 +47,7 @@ async function boot(){
     if(resWords.ok){
       let wtext = await resWords.text();
       wtext = wtext.replace(/;+\r?\n/g, "\n").replace(/;+$/, "");
-      const wrows = parseCSV(wtext);
+      const wrows = repairRows(parseCSV(wtext));
       const whead = wrows[0].map(h=>h.trim().toLowerCase());
       const ci = whead.indexOf("categoria");
       const fi = whead.indexOf("forma");
@@ -55,8 +55,9 @@ async function boot(){
         const newCanon = {};
         wrows.slice(1).forEach(r=>{
           const cat = (r[ci]||"").trim();
-          const form = (r[fi]||"").trim();
-          if(!cat || !form) return;
+          // los espacios de la forma son intencionados (" polla" no captura "gilipollas")
+          const form = (r[fi]||"").replace(/\r/g, "");
+          if(!cat || !form.trim()) return;
           if(!newCanon[cat]) newCanon[cat] = [];
           newCanon[cat].push(form);
         });
@@ -79,7 +80,7 @@ async function boot(){
       // Excel (config regional española) mete un ';' de más al final de cada línea
       // al exportar CSV "separado por comas" -- lo quitamos aquí para que nunca rompa la carga
       text = text.replace(/;+\r?\n/g, "\n").replace(/;+$/, "");
-      const rows = parseCSV(text);
+      const rows = repairRows(parseCSV(text));
       const header = rows[0].map(h=>h.trim().toLowerCase());
       const idx = {
         fecha_larga: header.indexOf("fecha_larga"),
@@ -89,6 +90,7 @@ async function boot(){
         text: header.indexOf("text"),
       };
       const dataRows = rows.slice(1).filter(r => r[idx.text] && r[idx.text].trim());
+      if(dataRows.length < rows.length - 1) console.warn("data.csv: " + (rows.length - 1 - dataRows.length) + " filas sin texto");
       ENTRIES = dataRows.map(r => normalizeEntry({
         fecha_larga: idx.fecha_larga>-1 ? r[idx.fecha_larga] : "",
         year: r[idx.year], month: r[idx.month], direction: r[idx.direction], text: r[idx.text],
@@ -171,6 +173,19 @@ function parseCSV(text){
   }
   if(field.length || row.length){ row.push(field); rows.push(row); }
   return rows.filter(r => r.length > 1 || r[0] !== "");
+}
+
+// Excel a veces guarda una fila entera entre comillas ("enero 2019,2019,1,by_me,""texto"""):
+// el lector la ve como una sola columna. Aquí se vuelve a leer por dentro.
+// Si el texto lleva comas sin comillas, las columnas sobrantes se juntan de nuevo en el texto.
+function repairRows(rows){
+  const out = [];
+  rows.forEach((r, i) => {
+    if(i > 0 && r.length === 1 && r[0].includes(",")) r = parseCSV(r[0])[0] || r;
+    if(i > 0 && r.length > 5) r = [...r.slice(0, 4), r.slice(4).join(",")];
+    out.push(r);
+  });
+  return out;
 }
 
 function handleCSVFile(file){
@@ -273,16 +288,20 @@ function highlightAll(text){
   });
   allForms.sort((a,b)=> b.form.length - a.form.length);
 
-  const lower = text.toLowerCase();
+  // se rodea el texto de espacios para que las formas con espacio (" polla") encuentren el principio y el final
+  const lower = " " + text.toLowerCase() + " ";
   const matches = [];
   allForms.forEach(({canon, form})=>{
     const f = form.toLowerCase();
+    const lead = f.length - f.trimStart().length;
+    const core = f.trim().length;
     let idx = 0;
     while(true){
       const pos = lower.indexOf(f, idx);
       if(pos === -1) break;
-      matches.push({start:pos, end:pos+f.length, canon});
-      idx = pos + f.length;
+      const start = pos + lead - 1;   // -1 por el espacio añadido delante
+      matches.push({start, end:start+core, canon});
+      idx = pos + Math.max(f.length, 1);
     }
   });
 

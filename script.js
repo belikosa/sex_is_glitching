@@ -7,6 +7,32 @@ function escapeHtml(s){
   return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 }
 
+// La palabra tiene que empezar como palabra: «puta» cuenta en «putada»,
+// pero no en «computacionales»; «sex» no cuenta en «homosexual».
+const LETRA = /[\p{L}\p{N}]/u;
+function empiezaPalabra(texto, pos){
+  return pos === 0 || !LETRA.test(texto[pos-1]);
+}
+// Palabras que solo cuentan enteras: «cum» sí, pero no dentro de «cumplir».
+// Para añadir otra, escríbela aquí en minúsculas.
+const SOLO_ENTERAS = new Set(["cum"]);
+function acabaPalabra(texto, fin){
+  return fin >= texto.length || !LETRA.test(texto[fin]);
+}
+function encajaForma(texto, pos, forma){
+  if(LETRA.test(forma[0]) && !empiezaPalabra(texto, pos)) return false;
+  if(SOLO_ENTERAS.has(forma) && !acabaPalabra(texto, pos + forma.length)) return false;
+  return true;
+}
+function contieneForma(texto, forma){
+  let i = 0;
+  while((i = texto.indexOf(forma, i)) !== -1){
+    if(encajaForma(texto, i, forma)) return true;
+    i += 1;
+  }
+  return false;
+}
+
 function tagsForText(text){
   const t = " " + text.toLowerCase() + " ";
   const found = [];
@@ -14,7 +40,7 @@ function tagsForText(text){
     if(canon === "intimo") continue;
     for(const form of CANON[canon]){
       if(form === "___never___") continue;
-      if(t.includes(form.toLowerCase())){ found.push(canon); break; }
+      if(contieneForma(t, form.toLowerCase())){ found.push(canon); break; }
     }
   }
   return found.length ? found : ["intimo"];
@@ -280,6 +306,10 @@ function prepararEntradas(lista){
   conPalabras.sort((a,b) => (a.year*100 + a.month) - (b.year*100 + b.month));
   const vistos = new Set();
   return conPalabras.filter(e => {
+    // los mensajes cortos que se repiten («So hot», «Jajaja») son mensajes distintos:
+    // solo se tratan como reenvío los adjuntos reenviados y los textos largos
+    const esReenvio = /enviado un archivo adjunto/i.test(e.text) || sinAviso(e.text).length >= 60;
+    if(!esReenvio) return true;
     const k = claveTexto(e.text);
     if(vistos.has(k)) return false;
     vistos.add(k);
@@ -335,7 +365,8 @@ function highlightAll(text){
     while(true){
       const pos = lower.indexOf(f, idx);
       if(pos === -1) break;
-      matches.push({start:pos, end:pos+f.length, canon});
+      if(encajaForma(lower, pos, f))
+        matches.push({start:pos, end:pos+f.length, canon});
       idx = pos + f.length;
     }
   });

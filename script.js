@@ -264,7 +264,31 @@ function abrirDesdeDireccion(){
 }
 window.addEventListener("hashchange", abrirDesdeDireccion);
 
+// ---------- qué mensajes salen en la web ----------
+// 1) Solo los que contienen alguna palabra del glosario (words.csv).
+// 2) Sin reenvíos: si el mismo texto aparece varias veces (recibido y
+//    reenviado), se queda solo el más antiguo.
+function sinAviso(texto){
+  // «Has enviado un archivo adjunto.» / «X ha enviado un archivo adjunto.»
+  return texto.replace(/^.*?\bhas? enviado un archivo adjunto\.?\s*/i, "");
+}
+function claveTexto(texto){
+  return sinAviso(texto).toLowerCase().replace(/\s+/g, " ").trim();
+}
+function prepararEntradas(lista){
+  const conPalabras = lista.filter(e => !(e.tags.length === 1 && e.tags[0] === "intimo"));
+  conPalabras.sort((a,b) => (a.year*100 + a.month) - (b.year*100 + b.month));
+  const vistos = new Set();
+  return conPalabras.filter(e => {
+    const k = claveTexto(e.text);
+    if(vistos.has(k)) return false;
+    vistos.add(k);
+    return true;
+  });
+}
+
 function renderCloud(){
+  ENTRIES = prepararEntradas(ENTRIES);
   cloud.innerHTML = "";
   openResults = null;
   openTrigger = null;

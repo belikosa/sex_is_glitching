@@ -27,14 +27,29 @@ ENTRADAS.forEach(e => {
   PORNOMBRE[base(e.termino.split(",")[0].trim())] ||= e;   // «chochólogo, -a, -e» -> «chochólogo»
 });
 
+// Palabras que viven en el otro diccionario: «(Ver xenosexualidad)» en el
+// diccionario principal salta a terminos.html, y al revés.
+// Para enlazar una palabra nueva entre páginas, añádela aquí.
+const EN_OTRA_PAGINA = {
+  "xenosexualidad": "terminos.html#xenosexualidad",
+  "chochologo":     "terminos.html#chochologo-a-e",
+  "chochologia":    "terminos.html#chochologia",
+  "chocho":         "diccionario.html#chocho",
+  "vaginismo":      "diccionario.html#vaginismo",
+};
+
 // «vaginismo#2» -> enlace a la acepción 2 de vaginismo
 function remision(ref){
   const [t, n] = ref.trim().split("#");
   const dest = PORNOMBRE[base(t)];
   const texto = esc(t) + (n ? ", " + esc(n) : "");
-  if(!dest) return texto;
-  const href = "#" + slug(dest.termino) + (n ? "-" + n : "");
-  return `<a href="${href}">${texto}</a>`;
+  if(dest){
+    const href = "#" + slug(dest.termino) + (n ? "-" + n : "");
+    return `<a href="${href}">${texto}</a>`;
+  }
+  const fuera = EN_OTRA_PAGINA[base(t)];
+  if(fuera) return `<a href="${fuera}${n ? "-" + n : ""}">${texto}</a>`;
+  return texto;
 }
 
 // «(Ver rabo)» dentro de una definición -> «(→ rabo)» con enlace
@@ -110,3 +125,26 @@ if(buscar) buscar.addEventListener("input", () => {
 window.addEventListener("hashchange", () => {
   if(buscar && buscar.value){ buscar.value = ""; buscar.dispatchEvent(new Event("input")); }
 });
+
+// ---------- unión con el archivo ----------
+// Si una palabra del diccionario está en el archivo (words.csv), su pastilla
+// lleva a archive.html con los mensajes de esa palabra.
+// Solo en el diccionario principal: los términos propios no están en el archivo.
+if(document.body.classList.contains("dicc") && !document.body.classList.contains("terminos")){
+  fetch("words.csv", {cache: "no-store"})
+    .then(r => r.ok ? r.text() : "")
+    .then(texto => {
+      const palabras = new Set(
+        texto.split(/\r?\n/).slice(1)
+          .map(l => slug(l.split(",")[0] || ""))
+          .filter(Boolean)
+      );
+      document.querySelectorAll(".dic-entrada").forEach(art => {
+        if(!palabras.has(art.id)) return;
+        const pastilla = art.querySelector(".dic-lema .w");
+        pastilla.href = "archive.html#" + art.id;
+        pastilla.title = "ver en el archivo";
+      });
+    })
+    .catch(() => {});   // abierto sin servidor: las pastillas se quedan como estaban
+}

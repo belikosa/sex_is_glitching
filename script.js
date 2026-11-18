@@ -47,7 +47,7 @@ async function boot(){
     if(resWords.ok){
       let wtext = await resWords.text();
       wtext = wtext.replace(/;+\r?\n/g, "\n").replace(/;+$/, "");
-      const wrows = repairRows(parseCSV(wtext));
+      const wrows = parseCSV(wtext);
       const whead = wrows[0].map(h=>h.trim().toLowerCase());
       const ci = whead.indexOf("categoria");
       const fi = whead.indexOf("forma");
@@ -55,9 +55,8 @@ async function boot(){
         const newCanon = {};
         wrows.slice(1).forEach(r=>{
           const cat = (r[ci]||"").trim();
-          // los espacios de la forma son intencionados (" polla" no captura "gilipollas")
-          const form = (r[fi]||"").replace(/\r/g, "");
-          if(!cat || !form.trim()) return;
+          const form = (r[fi]||"").trim();
+          if(!cat || !form) return;
           if(!newCanon[cat]) newCanon[cat] = [];
           newCanon[cat].push(form);
         });
@@ -80,7 +79,7 @@ async function boot(){
       // Excel (config regional española) mete un ';' de más al final de cada línea
       // al exportar CSV "separado por comas" -- lo quitamos aquí para que nunca rompa la carga
       text = text.replace(/;+\r?\n/g, "\n").replace(/;+$/, "");
-      const rows = repairRows(parseCSV(text));
+      const rows = parseCSV(text);
       const header = rows[0].map(h=>h.trim().toLowerCase());
       const idx = {
         fecha_larga: header.indexOf("fecha_larga"),
@@ -90,7 +89,6 @@ async function boot(){
         text: header.indexOf("text"),
       };
       const dataRows = rows.slice(1).filter(r => r[idx.text] && r[idx.text].trim());
-      if(dataRows.length < rows.length - 1) console.warn("data.csv: " + (rows.length - 1 - dataRows.length) + " filas sin texto");
       ENTRIES = dataRows.map(r => normalizeEntry({
         fecha_larga: idx.fecha_larga>-1 ? r[idx.fecha_larga] : "",
         year: r[idx.year], month: r[idx.month], direction: r[idx.direction], text: r[idx.text],
@@ -175,19 +173,6 @@ function parseCSV(text){
   return rows.filter(r => r.length > 1 || r[0] !== "");
 }
 
-// Excel a veces guarda una fila entera entre comillas ("enero 2019,2019,1,by_me,""texto"""):
-// el lector la ve como una sola columna. Aquí se vuelve a leer por dentro.
-// Si el texto lleva comas sin comillas, las columnas sobrantes se juntan de nuevo en el texto.
-function repairRows(rows){
-  const out = [];
-  rows.forEach((r, i) => {
-    if(i > 0 && r.length === 1 && r[0].includes(",")) r = parseCSV(r[0])[0] || r;
-    if(i > 0 && r.length > 5) r = [...r.slice(0, 4), r.slice(4).join(",")];
-    out.push(r);
-  });
-  return out;
-}
-
 function handleCSVFile(file){
   const reader = new FileReader();
   reader.onload = (ev)=>{
@@ -251,6 +236,34 @@ function makeBadge(cls, type, key, label, count){
   return span;
 }
 
+// ---------- unión con el diccionario ----------
+// misma forma de escribir las direcciones que en el diccionario: «coño» -> «cono»
+function slugPalabra(s){
+  return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+    .replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+}
+
+// palabras que tienen entrada en el diccionario (diccionario-data.js)
+const EN_DICCIONARIO = new Set(
+  (typeof DICCIONARIO !== "undefined" ? DICCIONARIO : []).map(e => slugPalabra(e.termino))
+);
+
+function enlaceDiccionario(palabra){
+  const s = slugPalabra(palabra);
+  if(!EN_DICCIONARIO.has(s)) return "";
+  return ` <span class="remite">(→ <a href="diccionario.html#${s}">diccionario</a>)</span>`;
+}
+
+// al llegar desde el diccionario con archive.html#palabra, abre esa palabra
+function abrirDesdeDireccion(){
+  const s = decodeURIComponent(location.hash.slice(1));
+  if(!s) return;
+  const el = [...cloud.querySelectorAll('.grupo-items > [data-type="word"]')]
+    .find(x => slugPalabra(x.dataset.key) === s);
+  if(el && openTrigger !== el) openBucket("word", el.dataset.key, el);
+}
+window.addEventListener("hashchange", abrirDesdeDireccion);
+
 function renderCloud(){
   cloud.innerHTML = "";
   openResults = null;
@@ -275,6 +288,8 @@ function renderCloud(){
   [["to_me","sent to me"],["by_me","sent by me"]].forEach(([k,l])=>{
     g.appendChild(makeBadge("n", "direction", k, l, dirCount[k]));
   });
+
+  abrirDesdeDireccion();
 }
 
 function highlightAll(text){
@@ -288,20 +303,16 @@ function highlightAll(text){
   });
   allForms.sort((a,b)=> b.form.length - a.form.length);
 
-  // se rodea el texto de espacios para que las formas con espacio (" polla") encuentren el principio y el final
-  const lower = " " + text.toLowerCase() + " ";
+  const lower = text.toLowerCase();
   const matches = [];
   allForms.forEach(({canon, form})=>{
     const f = form.toLowerCase();
-    const lead = f.length - f.trimStart().length;
-    const core = f.trim().length;
     let idx = 0;
     while(true){
       const pos = lower.indexOf(f, idx);
       if(pos === -1) break;
-      const start = pos + lead - 1;   // -1 por el espacio añadido delante
-      matches.push({start, end:start+core, canon});
-      idx = pos + Math.max(f.length, 1);
+      matches.push({start:pos, end:pos+f.length, canon});
+      idx = pos + f.length;
     }
   });
 
@@ -361,7 +372,8 @@ function openBucket(type, key, anchorEl){
 
   const box = document.createElement("div");
   box.className = "results";
-  let html = `<div class="rlabel"><span>${escapeHtml(label)} · ${matches.length} mensaje${matches.length===1?"":"s"}</span><button class="cerrar" type="button" aria-label="cerrar">×</button></div>`;
+  const enDicc = type === "word" ? enlaceDiccionario(key) : "";
+  let html = `<div class="rlabel"><span>${escapeHtml(label)} · ${matches.length} mensaje${matches.length===1?"":"s"}${enDicc}</span><button class="cerrar" type="button" aria-label="cerrar">×</button></div>`;
   matches.forEach(m=>{
     const dirLabel = m.direction === "by_me" ? "sent by me" : "sent to me";
     html += `<div class="qblock">

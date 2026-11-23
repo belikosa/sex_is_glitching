@@ -10,7 +10,7 @@
 // Dentro de una definición, "(Ver rabo)" se convierte en un enlace (→ rabo).
 // "(Ver vaginismo, 2)" remite a la acepción 2 de vaginismo.
 
-const DICCIONARIO = [
+var DICCIONARIO = [
   {
     "termino": "anticonceptivas",
     "origen": "",
@@ -248,26 +248,6 @@ const DICCIONARIO = [
     "nota": ""
   },
   {
-    "termino": "coño",
-    "origen": "",
-    "acepciones": [
-      {
-        "num": "1",
-        "cat": "interj.",
-        "def": "Refuerzo de pregunta o de sorpresa.",
-        "ej": "Qué coño. / Ah, coño. / Coño, q coincidencia."
-      },
-      {
-        "num": "2",
-        "cat": "m.",
-        "def": "Parte del cuerpo para describir altura. (Ver rabo)",
-        "ej": "Si me subo a una silla te queda la cara a la altura de mi coño."
-      }
-    ],
-    "ver": [],
-    "nota": ""
-  },
-  {
     "termino": "consentimiento",
     "origen": "",
     "acepciones": [
@@ -296,6 +276,26 @@ const DICCIONARIO = [
         "cat": "prnl.",
         "def": "Deseo sobre el propio cuerpo.",
         "ej": "De que me la chupes un poco más y de corrermee."
+      }
+    ],
+    "ver": [],
+    "nota": ""
+  },
+  {
+    "termino": "coño",
+    "origen": "",
+    "acepciones": [
+      {
+        "num": "1",
+        "cat": "interj.",
+        "def": "Refuerzo de pregunta o de sorpresa.",
+        "ej": "Qué coño. / Ah, coño. / Coño, q coincidencia."
+      },
+      {
+        "num": "2",
+        "cat": "m.",
+        "def": "Parte del cuerpo para describir altura. (Ver rabo)",
+        "ej": "Si me subo a una silla te queda la cara a la altura de mi coño."
       }
     ],
     "ver": [],
@@ -540,6 +540,20 @@ const DICCIONARIO = [
     "nota": ""
   },
   {
+    "termino": "heterosocial",
+    "origen": "",
+    "acepciones": [
+      {
+        "num": "",
+        "cat": "adj.",
+        "def": "Dicho del sistema que produce y regula el deseo como si fuera natural y que clasifica como anomalía lo que lo interfiere.",
+        "ej": ""
+      }
+    ],
+    "ver": [],
+    "nota": ""
+  },
+  {
     "termino": "horny",
     "origen": "Voz ingl.",
     "acepciones": [
@@ -596,6 +610,26 @@ const DICCIONARIO = [
         "cat": "m.",
         "def": "Pregunta.",
         "ej": "What do you think is your biggest kink?"
+      }
+    ],
+    "ver": [],
+    "nota": ""
+  },
+  {
+    "termino": "ligar",
+    "origen": "",
+    "acepciones": [
+      {
+        "num": "1",
+        "cat": "intr.",
+        "def": "Iniciar un encuentro o una relación con alguien fuera de las apps, a lo tradicional. (Ver tinder)",
+        "ej": "Ya no tinder ahora ligo a lo tradicional hacerte la interesante en el metro."
+      },
+      {
+        "num": "2",
+        "cat": "m.",
+        "def": "Ligue: persona con la que se liga a través de una app de citas. (Ver bumble)",
+        "ej": "Eso es el karma por robarle el ligue d bumble."
       }
     ],
     "ver": [],
@@ -666,20 +700,6 @@ const DICCIONARIO = [
         "cat": "m.",
         "def": "Respuesta a algo.",
         "ej": "Orgasmo."
-      }
-    ],
-    "ver": [],
-    "nota": ""
-  },
-  {
-    "termino": "pélvico",
-    "origen": "",
-    "acepciones": [
-      {
-        "num": "",
-        "cat": "adj.",
-        "def": "Región del cuerpo en cuya terapia empieza un nuevo proceso.",
-        "ej": "Hoy tengo mi primera terapia de suelo pélvico de mi vida."
       }
     ],
     "ver": [],
@@ -850,6 +870,20 @@ const DICCIONARIO = [
     "nota": ""
   },
   {
+    "termino": "pélvico",
+    "origen": "",
+    "acepciones": [
+      {
+        "num": "",
+        "cat": "adj.",
+        "def": "Región del cuerpo en cuya terapia empieza un nuevo proceso.",
+        "ej": "Hoy tengo mi primera terapia de suelo pélvico de mi vida."
+      }
+    ],
+    "ver": [],
+    "nota": ""
+  },
+  {
     "termino": "rabo",
     "origen": "",
     "acepciones": [
@@ -890,10 +924,22 @@ const DICCIONARIO = [
         "cat": "f.",
         "def": "Vínculo con dispositivos.",
         "ej": "Im so sorry si tengo una relación para social con mis dispositivos."
+      },
+      {
+        "num": "5",
+        "cat": "loc. prep.",
+        "def": "En relación con, en relación a: referido a algo. Aparece en convocatorias y mensajes de trabajo.",
+        "ej": "Quieres que ponga algo en relación a que lo hayas perdido?"
+      },
+      {
+        "num": "6",
+        "cat": "f.",
+        "def": "Relación sexual: relación con otra persona que involucre sexo. (Ver sexo, sex)",
+        "ej": "Es como si tuviese una relación sexual con un amigo."
       }
     ],
     "ver": [],
-    "nota": "Algunos mensajes recogidos bajo esta palabra son convocatorias de arte que usan la expresión «en relación con»."
+    "nota": ""
   },
   {
     "termino": "seducir",
@@ -1184,26 +1230,6 @@ const DICCIONARIO = [
     "nota": ""
   },
   {
-    "termino": "vínculo",
-    "origen": "",
-    "acepciones": [
-      {
-        "num": "1",
-        "cat": "m.",
-        "def": "Unión que se quiere conservar.",
-        "ej": "Me gustaría seguir teniendo relación y no perder el vínculo."
-      },
-      {
-        "num": "2",
-        "cat": "m.",
-        "def": "Unión que se establece con un objeto.",
-        "ej": "Has hecho un vínculo muy fuerte con la chatarra esa."
-      }
-    ],
-    "ver": [],
-    "nota": ""
-  },
-  {
     "termino": "virgen",
     "origen": "",
     "acepciones": [
@@ -1228,8 +1254,28 @@ const DICCIONARIO = [
       {
         "num": "4",
         "cat": "f.",
-        "def": "Palabra compuesta que aparece en un cartel.",
+        "def": "Palabra compuesta.",
         "ej": "Se han puesto tu cartel del coñovirgen en las uñas."
+      }
+    ],
+    "ver": [],
+    "nota": ""
+  },
+  {
+    "termino": "vínculo",
+    "origen": "",
+    "acepciones": [
+      {
+        "num": "1",
+        "cat": "m.",
+        "def": "Unión que se quiere conservar.",
+        "ej": "Me gustaría seguir teniendo relación y no perder el vínculo."
+      },
+      {
+        "num": "2",
+        "cat": "m.",
+        "def": "Unión que se establece con un objeto.",
+        "ej": "Has hecho un vínculo muy fuerte con la chatarra esa."
       }
     ],
     "ver": [],

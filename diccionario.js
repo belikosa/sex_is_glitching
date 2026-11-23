@@ -91,7 +91,10 @@ function entrada(e){
 const porLetra = {};
 ENTRADAS.forEach(e => { (porLetra[letraDe(e.termino)] ||= []).push(e); });
 
-document.getElementById("diccionario").innerHTML = Object.keys(porLetra)
+// En el archivo (index.html) este código solo presta sus funciones para la
+// columna de definiciones: no hay diccionario entero que pintar.
+const contenedorDicc = document.getElementById("diccionario");
+if(contenedorDicc) contenedorDicc.innerHTML = Object.keys(porLetra)
   .sort((a,b) => ABC.indexOf(a) - ABC.indexOf(b))
   .map(L => `<section class="dic-letra" id="letra-${L}">${porLetra[L].map(entrada).join("")}</section>`)
   .join("");
@@ -128,7 +131,7 @@ window.addEventListener("hashchange", () => {
 
 // ---------- unión con el archivo ----------
 // Si una palabra del diccionario está en el archivo (words.csv), su pastilla
-// lleva a archive.html con los mensajes de esa palabra.
+// lleva al archivo (index.html) con los mensajes de esa palabra.
 // Solo en el diccionario principal: los términos propios no están en el archivo.
 if(document.body.classList.contains("dicc") && !document.body.classList.contains("terminos")){
   fetch("words.csv", {cache: "no-store"})
@@ -142,7 +145,7 @@ if(document.body.classList.contains("dicc") && !document.body.classList.contains
       document.querySelectorAll(".dic-entrada").forEach(art => {
         if(!palabras.has(art.id)) return;
         const pastilla = art.querySelector(".dic-lema .w");
-        pastilla.href = "archive.html#" + art.id;
+        pastilla.href = "index.html#" + art.id;
         pastilla.title = "ver en el archivo";
       });
     })

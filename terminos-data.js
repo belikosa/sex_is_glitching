@@ -2,7 +2,7 @@
 // Mismo formato que diccionario-data.js.
 // Dentro de una definición, "(Ver chochólogo)" se convierte en un enlace (→ chochólogo).
 
-const DICCIONARIO = [
+var DICCIONARIO = window.TERMINOS = [
   {
     "termino": "chochología",
     "origen": "",

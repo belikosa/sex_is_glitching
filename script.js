@@ -242,53 +242,37 @@ function restoreOriginal(){
   boot();
 }
 
-// ---------- render ----------
-const cloud = document.getElementById("cloud");
+// =====================================================================
+// ARCHIVO EN TIRAS (abecedario)
+// Cada palabra del glosario es una tira vertical. Cerrada es un lomo con la
+// inicial y la palabra; abierta enseña su definición (según el recorrido) y
+// debajo sus mensajes. Los años y la dirección filtran todas las tiras.
+// =====================================================================
 
-function makeGroup(title){
-  const sec = document.createElement("section");
-  sec.className = "grupo";
-  sec.innerHTML = `<div class="grupo-items"></div>`;
-  cloud.appendChild(sec);
-  return sec.querySelector(".grupo-items");
-}
+const tiras   = document.getElementById("tiras");
+const filtros = document.getElementById("filtros");
 
-function makeBadge(cls, type, key, label, count){
-  const span = document.createElement("span");
-  span.className = cls;
-  span.dataset.type = type;
-  span.dataset.key = key;
-  span.textContent = String(label);
-  return span;
-}
+let FILTRO_ANOS = new Set();   // vacío = todos los años
+let FILTRO_DIR  = null;        // null = las dos direcciones
 
-// ---------- unión con el diccionario ----------
-// misma forma de escribir las direcciones que en el diccionario: «coño» -> «cono»
 function slugPalabra(s){
-  return String(s).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
-    .replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+  return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"")
+    .replace(/[^a-z0-9ñ]+/g,"-").replace(/ñ/g,"n").replace(/^-|-$/g,"");
 }
 
-// palabras que tienen entrada en el diccionario (diccionario-data.js)
-const EN_DICCIONARIO = new Set(
-  (typeof DICCIONARIO !== "undefined" ? DICCIONARIO : []).map(e => slugPalabra(e.termino))
-);
-
-function enlaceDiccionario(palabra){
-  const s = slugPalabra(palabra);
-  if(!EN_DICCIONARIO.has(s)) return "";
-  return ` <span class="remite">(→ <a href="diccionario.html#${s}">diccionario</a>)</span>`;
+function entradaDe(palabra){
+  if(typeof PORNOMBRE === "undefined") return null;
+  const b = base(String(palabra));
+  if(PORNOMBRE[b]) return PORNOMBRE[b];
+  // términos propios (xenosexualidad…)
+  return (window.TERMINOS || []).find(e => base(e.termino.split(",")[0].trim()) === b) || null;
 }
 
-// al llegar desde el diccionario con archive.html#palabra, abre esa palabra
-function abrirDesdeDireccion(){
-  const s = decodeURIComponent(location.hash.slice(1));
-  if(!s) return;
-  const el = [...cloud.querySelectorAll('.grupo-items > [data-type="word"]')]
-    .find(x => slugPalabra(x.dataset.key) === s);
-  if(el && openTrigger !== el) openBucket("word", el.dataset.key, el);
+function pasaFiltro(e){
+  if(FILTRO_ANOS.size && !FILTRO_ANOS.has(e.year)) return false;
+  if(FILTRO_DIR && e.direction !== FILTRO_DIR) return false;
+  return true;
 }
-window.addEventListener("hashchange", abrirDesdeDireccion);
 
 // ---------- qué mensajes salen en la web ----------
 // 1) Solo los que contienen alguna palabra del glosario (words.csv).
@@ -301,7 +285,29 @@ function sinAviso(texto){
 function claveTexto(texto){
   return sinAviso(texto).toLowerCase().replace(/\s+/g, " ").trim();
 }
+// mensajes que no deben salir en una palabra concreta (se reconocen por un trozo de su texto)
+const QUITAR_DE = {
+  "relación": [
+    "Hola Mood, Soy Sara Alastuey",
+    "Hola Claudia !",
+    "#OPENCALL internacional para artistas visuales",
+    "BAU lanza una convocatoria a su comunidad",
+    "Victor Ruiz Colomer",
+  ],
+};
+function quitarDePalabras(e){
+  const t = e.text.trim();
+  for(const w in QUITAR_DE){
+    if(e.tags.includes(w) && QUITAR_DE[w].some(trozo => t.includes(trozo))){
+      e.tags = e.tags.filter(x => x !== w);
+      if(!e.tags.length) e.tags = ["intimo"];
+    }
+  }
+  return e;
+}
+
 function prepararEntradas(lista){
+  lista.forEach(quitarDePalabras);
   const conPalabras = lista.filter(e => !(e.tags.length === 1 && e.tags[0] === "intimo"));
   conPalabras.sort((a,b) => (a.year*100 + a.month) - (b.year*100 + b.month));
   const vistos = new Set();
@@ -315,35 +321,6 @@ function prepararEntradas(lista){
     vistos.add(k);
     return true;
   });
-}
-
-function renderCloud(){
-  ENTRIES = prepararEntradas(ENTRIES);
-  cloud.innerHTML = "";
-  openResults = null;
-  openTrigger = null;
-
-  const yearCount = {};
-  const wordCount = {};
-  const dirCount = {to_me:0, by_me:0};
-  ENTRIES.forEach(e=>{
-    yearCount[e.year] = (yearCount[e.year]||0) + 1;
-    e.tags.forEach(t=>{ wordCount[t] = (wordCount[t]||0) + 1; });
-    dirCount[e.direction]++;
-  });
-
-  const years = Object.keys(yearCount).map(Number).sort((a,b)=>a-b);
-  const words = Object.keys(wordCount).filter(w=>w!=="intimo").sort((a,b)=>a.localeCompare(b,"es"));
-
-  // todo junto en una sola nube: años, palabras y dirección
-  const g = makeGroup("");
-  years.forEach(y=> g.appendChild(makeBadge("d", "year", y, y, yearCount[y])));
-  words.forEach(w=> g.appendChild(makeBadge("w", "word", w, w, wordCount[w])));
-  [["to_me","sent to me"],["by_me","sent by me"]].forEach(([k,l])=>{
-    g.appendChild(makeBadge("n", "direction", k, l, dirCount[k]));
-  });
-
-  abrirDesdeDireccion();
 }
 
 function highlightAll(text){
@@ -392,64 +369,352 @@ function highlightAll(text){
   return result;
 }
 
-let openResults = null;
-let openTrigger = null;
+// ---------- recorridos (recorridos.js) ----------
+// Palabras pulsadas en esta visita, en orden. Decide qué acepción se enseña.
+let RECORRIDO = [];
 
-function closeResults(){
-  if(openResults){ openResults.remove(); openResults = null; }
-  if(openTrigger){ openTrigger.classList.remove("active"); openTrigger = null; }
-}
-
-function openBucket(type, key, anchorEl){
-  const topBadge = document.querySelector(`#cloud .grupo-items > [data-type="${type}"][data-key="${CSS.escape(String(key))}"]`);
-  const useAnchor = topBadge || anchorEl;
-
-  // volver a pulsar la misma etiqueta la cierra
-  if(openTrigger === useAnchor){ closeResults(); return; }
-  closeResults();
-
-  useAnchor.classList.add("active");
-  openTrigger = useAnchor;
-
-  let matches;
-  let label;
-  if(type==="year"){
-    matches = ENTRIES.filter(e => e.year === Number(key));
-    label = String(key);
-  } else if(type==="direction"){
-    matches = ENTRIES.filter(e => e.direction === key);
-    label = key === "by_me" ? "sent by me" : "sent to me";
-  } else {
-    matches = ENTRIES.filter(e => e.tags.includes(key));
-    label = String(key);
+function acepcionPorRecorrido(termino, previas){
+  const b = base(termino.split(",")[0].trim());
+  const buscar = (reglas, sino) => {
+    for(let i = previas.length - 1; i >= 0; i--){
+      for(const r of reglas){
+        if(r.desde.some(d => base(d) === previas[i])) return {num: r.acepcion, desde: previas[i]};
+      }
+    }
+    return {num: sino, desde: null};
+  };
+  if(typeof VAGINISMO !== "undefined" && b === "vaginismo"){
+    const cuerpo = new Set(VAGINISMO.cuerpoYDeseo.map(base));
+    const vistas = new Set(previas.filter(p => cuerpo.has(p)));
+    if(vistas.size >= VAGINISMO.minimo) return {num: VAGINISMO.final, desde: "recorrido"};
+    return buscar(VAGINISMO.reglas, VAGINISMO.sino);
   }
-  matches.sort((a,b)=>(a.year*100+a.month)-(b.year*100+b.month));
-
-  const box = document.createElement("div");
-  box.className = "results";
-  const enDicc = type === "word" ? enlaceDiccionario(key) : "";
-  let html = `<div class="rlabel"><span>${escapeHtml(label)} · ${matches.length} mensaje${matches.length===1?"":"s"}${enDicc}</span><button class="cerrar" type="button" aria-label="cerrar">×</button></div>`;
-  matches.forEach(m=>{
-    const dirLabel = m.direction === "by_me" ? "sent by me" : "sent to me";
-    html += `<div class="qblock">
-      <div class="qmeta"><span class="d" data-type="year" data-key="${m.year}">${escapeHtml(m.fecha_larga)}</span><span class="n" data-type="direction" data-key="${m.direction}">${dirLabel}</span></div>
-      <div class="qtext">${highlightAll(m.text)}</div>
-    </div>`;
-  });
-  box.innerHTML = html;
-
-  // los resultados aparecen debajo del grupo, sin romper la fila de etiquetas
-  const grupo = useAnchor.closest(".grupo");
-  (grupo || useAnchor).insertAdjacentElement("afterend", box);
-  openResults = box;
-  box.scrollIntoView({behavior:"smooth", block:"nearest"});
+  if(typeof RECORRIDOS === "undefined") return null;
+  const clave = Object.keys(RECORRIDOS).find(k => base(k) === b);
+  if(!clave) return null;
+  return buscar(RECORRIDOS[clave].reglas, RECORRIDOS[clave].sino);
 }
 
-cloud.addEventListener("click", (ev)=>{
-  if(ev.target.closest(".cerrar")){ closeResults(); return; }
-  const el = ev.target.closest("[data-type]");
+// las palabras que ya están abiertas cambian su definición en directo
+function actualizarAbiertas(excepto){
+  tiras.querySelectorAll(".pal.abierta").forEach(li => {
+    if(li === excepto) return;
+    const def = li.querySelector(".pal-def");
+    if(!def) return;
+    const nueva = definicionHTML(li.dataset.key, "vivo");
+    if(def.innerHTML === nueva) return;
+    def.innerHTML = nueva;
+    def.classList.remove("cambia"); void def.offsetWidth; def.classList.add("cambia");
+  });
+}
+
+// enseña arriba las últimas palabras pulsadas, que son las que cambian las definiciones
+function pintarRecorrido(){
+  const el = document.getElementById("recorrido");
   if(!el) return;
-  openBucket(el.dataset.type, el.dataset.key, el);
+  if(!RECORRIDO.length){ el.hidden = true; el.innerHTML = ""; return; }
+  const ultimas = RECORRIDO.slice(-6).map(b => `<b>${escapeHtml(nombreDe(b))}</b>`).join(" → ");
+  el.innerHTML = `tu recorrido: ${RECORRIDO.length > 6 ? "… → " : ""}${ultimas}`;
+  el.title = RECORRIDO.map(nombreDe).join(" → ");
+  el.hidden = false;
+}
+
+function nombreDe(b){
+  const e = PORNOMBRE[b];
+  return e ? e.termino.split(",")[0].trim() : b;
+}
+
+
+
+// ---------- pintar: una columna por letra, como HHHA ----------
+const ABECEDARIO = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ".split("");
+
+function renderCloud(){
+  ENTRIES = prepararEntradas(ENTRIES);
+  leerDescripcion();
+  pintarFiltros();
+  pintarTiras();
+  pintarDescripcion();
+  abrirDesdeDireccion();
+}
+
+// la descripción del proyecto: sus palabras del glosario se pueden clicar
+// (las de los términos propios ya vienen marcadas en index.html)
+function pintarDescripcion(){
+  document.querySelectorAll(".descripcion p").forEach(p => {
+    const textos = [];
+    const paseo = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+    while(paseo.nextNode()){
+      const n = paseo.currentNode;
+      if(!n.parentElement.closest(".w, .nombre")) textos.push(n);
+    }
+    textos.forEach(n => {
+      const caja = document.createElement("span");
+      caja.innerHTML = highlightAll(n.textContent);
+      // solo enlazamos las que tienen columna en el archivo
+      caja.querySelectorAll(".w").forEach(w => {
+        if(!palabraLi(w.dataset.key)) w.replaceWith(document.createTextNode(w.textContent));
+      });
+      n.replaceWith(...caja.childNodes);
+    });
+  });
+}
+
+document.querySelector(".descripcion")?.addEventListener("click", ev => {
+  const w = ev.target.closest(".w");
+  if(w) irAPalabra(w.dataset.key);
 });
+
+function pintarFiltros(){
+  if(!filtros) return;
+  const anos = [...new Set(ENTRIES.map(e => e.year))].sort((a,b) => a-b);
+  filtros.innerHTML =
+    anos.map(y => `<button type="button" class="filtro" data-ano="${y}">${y}</button>`).join("") +
+    `<span class="filtro-sep">·</span>` +
+    `<button type="button" class="filtro" data-dir="to_me">sent to me</button>` +
+    `<button type="button" class="filtro" data-dir="by_me">sent by me</button>` +
+    `<button type="button" class="filtro-limpiar" hidden>quitar filtros</button>`;
+}
+
+// La descripción de «Sex is Glitching» cuenta como una fuente más del archivo:
+// cada palabra que comparte con él suma 1 y enseña las frases donde aparece.
+let DESCRIPCION = [];   // [{texto, tags}]
+function leerDescripcion(){
+  const texto = [...document.querySelectorAll(".descripcion p")].map(p => p.textContent.trim()).join(" ")
+    .replace(/Sex is Glitching/g, "\u0000");   // el nombre del proyecto no cuenta como «sex»
+  DESCRIPCION = (texto.match(/[^.?!]+[.?!]+/g) || []).map(f => {
+    const frase = f.trim().replace(/\u0000/g, "Sex is Glitching");
+    // solo las palabras que se marcan en el texto (en «sexual» cuenta sexual, no sex)
+    const tags = [...new Set([...highlightAll(f.trim()).matchAll(/data-key="([^"]+)"/g)].map(m => m[1]))];
+    return {texto: frase, tags};
+  }).filter(f => f.tags.length);
+}
+function frasesDescripcion(w){ return DESCRIPCION.filter(f => f.tags.includes(w)); }
+
+function palabrasOrdenadas(){
+  const set = new Set();
+  ENTRIES.forEach(e => e.tags.forEach(t => { if(t !== "intimo") set.add(t); }));
+  DESCRIPCION.forEach(f => f.tags.forEach(t => set.add(t)));
+  return [...set].sort((a,b) => a.localeCompare(b, "es", {sensitivity:"base"}));
+}
+
+function cuentaDe(w){
+  return ENTRIES.filter(e => e.tags.includes(w) && pasaFiltro(e)).length
+       + (frasesDescripcion(w).length ? 1 : 0);
+}
+
+function letraDePalabra(w){
+  const c = base(w).charAt(0).toUpperCase();
+  return ABECEDARIO.includes(c) ? c : "#";
+}
+
+function pintarTiras(){
+  // recordar qué estaba abierto para no perderlo al filtrar
+  const colsAbiertas = new Set([...tiras.querySelectorAll(".col.abierta")].map(c => c.dataset.letra));
+  const palsAbiertas = new Set([...tiras.querySelectorAll(".pal.abierta")].map(p => p.dataset.key));
+
+  const porLetra = {};
+  palabrasOrdenadas().forEach(w => { (porLetra[letraDePalabra(w)] ||= []).push(w); });
+
+  tiras.innerHTML = ABECEDARIO.map(L => {
+    const pals = porLetra[L] || [];
+    const lista = pals.map(w => {
+      const n = cuentaDe(w);
+      return `<li class="pal${n ? "" : " sin"}" data-key="${escapeHtml(w)}">
+          <a href="#${slugPalabra(w)}" class="pal-link" data-key="${escapeHtml(w)}">${escapeHtml(w)}</a><span class="pal-n">${n}</span>
+          <div class="pal-detalle"></div>
+        </li>`;
+    }).join("");
+    return `<section class="col${pals.length ? "" : " vacia"}" data-letra="${L}" id="letra-${L}">
+        <button type="button" class="col-letra" aria-label="letra ${L}">${L}</button>
+        <div class="col-cuerpo">${pals.length ? `<ul class="col-palabras">${lista}</ul>` : ""}</div>
+      </section>`;
+  }).join("");
+
+  colsAbiertas.forEach(L => tiras.querySelector(`.col[data-letra="${L}"]`)?.classList.add("abierta"));
+  palsAbiertas.forEach(k => {
+    const li = tiras.querySelector(`.pal[data-key="${CSS.escape(k)}"]`);
+    if(li) abrirPalabra(li, {sinRecorrido: true, sinScroll: true});
+  });
+}
+
+// ---------- definición y mensajes de una palabra ----------
+function definicionHTML(palabra, sinRecorrido){
+  const e = entradaDe(palabra);
+  if(!e) return `<p class="dic-nota">Esta palabra todavía no tiene entrada en el diccionario.</p>`;
+  const yo = base(e.termino.split(",")[0].trim());
+  let elegida;
+  if(!sinRecorrido){
+    elegida = acepcionPorRecorrido(e.termino, RECORRIDO.filter(p => p !== yo));
+    RECORRIDO = RECORRIDO.filter(p => p !== yo).concat(yo);
+  } else if(sinRecorrido === "vivo"){
+    // palabra ya abierta: se recalcula con todo lo pulsado después
+    elegida = acepcionPorRecorrido(e.termino, RECORRIDO.filter(p => p !== yo));
+  } else {
+    const i = RECORRIDO.indexOf(yo);
+    elegida = acepcionPorRecorrido(e.termino, i < 0 ? RECORRIDO : RECORRIDO.slice(0, i));
+  }
+  let acep = elegida && e.acepciones.find(a => a.num === elegida.num);
+  // la palabra del recorrido que decide la acepción sale como una remisión más: (→ coño)
+  if(acep && elegida.desde && elegida.desde !== "recorrido"){
+    const desde = nombreDe(elegida.desde);
+    if(!new RegExp("\\(Ver " + desde + "\\)", "i").test(acep.def))
+      acep = {...acep, def: /\)\s*$/.test(acep.def)
+        ? acep.def.trim() + " (Ver " + desde + ")"                    // ya acaba en una remisión
+        : acep.def.replace(/\.?\s*$/, "") + ". (Ver " + desde + ")"};
+  }
+  const html = entrada(acep ? {...e, acepciones: [acep]} : e);
+  return html.replace(/ id="[^"]*"/g, "").replace(/href="#/g, 'href="diccionario.html#');
+}
+
+function mensajesHTML(palabra){
+  const lista = ENTRIES.filter(e => e.tags.includes(palabra) && pasaFiltro(e))
+    .sort((a,b) => (a.year*100+a.month) - (b.year*100+b.month));
+  const frases = frasesDescripcion(palabra);
+  const desc = frases.length ? `<div class="msg msg-desc">
+      <div class="msg-meta">Sex is Glitching — descripción</div>
+      <div class="msg-texto">${frases.map(f => highlightAll(f.texto)).join(" ")}</div>
+    </div>` : "";
+  if(!lista.length) return desc + (desc ? "" : `<p class="vacio">Ningún mensaje con estos filtros.</p>`);
+  return desc + lista.map(m => `<div class="msg">
+      <div class="msg-meta">${escapeHtml(m.fecha_larga)} — ${m.direction === "by_me" ? "sent by me" : "sent to me"}</div>
+      <div class="msg-texto">${highlightAll(m.text)}</div>
+    </div>`).join("");
+}
+
+function abrirPalabra(li, {sinRecorrido = false, sinScroll = false} = {}){
+  const w = li.dataset.key;
+  li.querySelector(".pal-detalle").innerHTML =
+    `<div class="pal-def">${definicionHTML(w, sinRecorrido)}</div><div class="pal-mensajes">${mensajesHTML(w)}</div>`;
+  li.classList.add("abierta");
+  marcarEnDescripcion();
+  pintarRecorrido();
+  if(!sinRecorrido) actualizarAbiertas(li);
+  const col = li.closest(".col");
+  col.classList.add("abierta");
+  if(!sinScroll){
+    col.scrollIntoView({behavior: "smooth", inline: "nearest", block: "nearest"});
+    setTimeout(() => {
+      const cuerpo = col.querySelector(".col-cuerpo");
+      cuerpo.scrollTo({top: li.offsetTop - cuerpo.offsetTop - 4, behavior: "smooth"});
+    }, 250);
+  }
+}
+
+function cerrarPalabra(li){
+  li.classList.remove("abierta");
+  li.querySelector(".pal-detalle").innerHTML = "";
+  marcarEnDescripcion();
+}
+
+// las palabras abiertas en el archivo se marcan también en la descripción
+function marcarEnDescripcion(){
+  const abiertas = new Set([...tiras.querySelectorAll(".pal.abierta")].map(x => x.dataset.key));
+  document.querySelectorAll(".descripcion .w").forEach(w =>
+    w.classList.toggle("active", abiertas.has(w.dataset.key)));
+}
+
+function palabraLi(palabra){
+  const b = base(String(palabra));
+  return [...tiras.querySelectorAll(".pal")].find(x => base(x.dataset.key) === b) || null;
+}
+
+function irAPalabra(palabra){
+  const li = palabraLi(palabra);
+  if(!li) return false;
+  if(li.classList.contains("abierta")){
+    const col = li.closest(".col");
+    col.classList.add("abierta");
+    col.scrollIntoView({behavior: "smooth", inline: "nearest", block: "nearest"});
+    const cuerpo = col.querySelector(".col-cuerpo");
+    cuerpo.scrollTo({top: li.offsetTop - cuerpo.offsetTop - 4, behavior: "smooth"});
+  } else abrirPalabra(li);
+  return true;
+}
+
+// al llegar desde el diccionario con index.html#palabra
+function abrirDesdeDireccion(){
+  const s = decodeURIComponent(location.hash.slice(1));
+  if(!s) return;
+  const li = [...tiras.querySelectorAll(".pal")].find(x => slugPalabra(x.dataset.key) === s);
+  if(li && !li.classList.contains("abierta")) abrirPalabra(li);
+}
+window.addEventListener("hashchange", abrirDesdeDireccion);
+
+// ---------- clics ----------
+tiras.addEventListener("click", ev => {
+  // palabra del glosario dentro de un mensaje: va a esa palabra
+  const enMensaje = ev.target.closest(".msg-texto .w");
+  if(enMensaje){ irAPalabra(enMensaje.dataset.key); return; }
+
+  // remisión (→ rabo) en una definición: va a esa palabra sin salir del archivo
+  const remite = ev.target.closest(".remite a");
+  if(remite && /^(diccionario|terminos)\.html#/.test(remite.getAttribute("href"))){
+    const id = remite.getAttribute("href").split("#")[1].replace(/-\d+$/, "");
+    const e = [...ENTRADAS, ...(window.TERMINOS || [])].find(x => slug(x.termino) === id);
+    if(e && irAPalabra(e.termino.split(",")[0].trim())) ev.preventDefault();
+    return;
+  }
+
+  // palabra del índice: abre o cierra su detalle
+  const link = ev.target.closest(".pal-link");
+  if(link){
+    ev.preventDefault();
+    const li = link.closest(".pal");
+    li.classList.contains("abierta") ? cerrarPalabra(li) : abrirPalabra(li);
+    return;
+  }
+
+  // la letra: abre o cierra la columna
+  const letra = ev.target.closest(".col-letra");
+  if(letra){
+    const col = letra.closest(".col");
+    if(col.classList.contains("vacia")) return;
+    col.classList.toggle("abierta");
+    return;
+  }
+
+  // clic en una columna cerrada: la abre
+  const col = ev.target.closest(".col");
+  if(col && !col.classList.contains("abierta") && !col.classList.contains("vacia")) col.classList.add("abierta");
+});
+
+if(filtros) filtros.addEventListener("click", ev => {
+  const b = ev.target.closest("button");
+  if(!b) return;
+  if(b.classList.contains("filtro-limpiar")){
+    FILTRO_ANOS.clear(); FILTRO_DIR = null;
+  } else if(b.dataset.ano){
+    const y = Number(b.dataset.ano);
+    FILTRO_ANOS.has(y) ? FILTRO_ANOS.delete(y) : FILTRO_ANOS.add(y);
+  } else if(b.dataset.dir){
+    FILTRO_DIR = FILTRO_DIR === b.dataset.dir ? null : b.dataset.dir;
+  }
+  filtros.querySelectorAll("[data-ano]").forEach(x => x.classList.toggle("active", FILTRO_ANOS.has(Number(x.dataset.ano))));
+  filtros.querySelectorAll("[data-dir]").forEach(x => x.classList.toggle("active", FILTRO_DIR === x.dataset.dir));
+  filtros.querySelector(".filtro-limpiar").hidden = !(FILTRO_ANOS.size || FILTRO_DIR);
+  pintarTiras();
+});
+
+// «cerrar todo»
+document.getElementById("cerrar-todas")?.addEventListener("click", () => {
+  tiras.querySelectorAll(".pal.abierta").forEach(cerrarPalabra);
+  tiras.querySelectorAll(".col.abierta").forEach(c => c.classList.remove("abierta"));
+  RECORRIDO = [];   // también empieza el recorrido de cero
+  pintarRecorrido();
+});
+
+// «Sex is Glitching» se guarda y se abre como las columnas
+(function(){
+  const lateral = document.querySelector(".lateral");
+  const boton = document.getElementById("guardar-lateral");
+  if(!lateral || !boton) return;
+  lateral.addEventListener("click", ev => {
+    const guardada = lateral.classList.contains("guardada");
+    if(!guardada && !ev.target.closest("#guardar-lateral")) return;   // abierta: solo el título la guarda
+    lateral.classList.toggle("guardada");
+    boton.setAttribute("aria-expanded", String(guardada));
+  });
+})();
 
 boot();

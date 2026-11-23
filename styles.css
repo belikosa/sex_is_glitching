@@ -659,3 +659,207 @@ html {
 .dicc-top {
   background: rgba(0, 0, 0, 0.85);
 }
+/* ---------- Archivo como portada: dos columnas ---------- */
+/* izquierda: nube y mensajes · derecha: definiciones de las palabras elegidas */
+body.archivo {
+  max-width: 1320px;
+  line-height: 1.6;
+}
+
+.archivo-columnas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 40px;
+  align-items: start;
+}
+
+#definiciones {
+  position: sticky;
+  top: 24px;
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+  padding: 0 4px 24px 22px;
+  border-left: 1px solid #f01ad3;
+  margin-top: 28px;
+  scrollbar-width: thin;
+  scrollbar-color: #f01ad3 transparent;
+}
+
+.def-vacio {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  color: #ffaffb;
+  opacity: 0.7;
+}
+
+.def-cabecera {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 4px;
+}
+
+.def-limpiar,
+.def-cerrar {
+  font-family: bodyFont, monospace;
+  background: none;
+  border: none;
+  color: #ffaffb;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.def-limpiar { font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
+.def-cerrar  { font-size: 24px; line-height: 1; float: right; margin-top: 18px; }
+
+.def-limpiar:hover,
+.def-cerrar:hover { color: #fff; }
+
+/* cada definición: el mismo formato que en diccionario.html, un poco más pequeño */
+.def-card .dic-entrada {
+  font-size: 17px;
+  padding: 16px 0 14px;
+}
+
+.def-card .dic-entrada .w {
+  height: 30px;
+  font-size: 17px;
+  text-decoration: none;
+}
+
+/* la última palabra elegida se distingue de las anteriores */
+.def-card:not(.actual) { opacity: 0.6; }
+.def-card:not(.actual):hover { opacity: 1; }
+
+/* móvil: la columna pasa a ser una bandeja fija abajo */
+@media (max-width: 900px) {
+  .archivo-columnas { grid-template-columns: 1fr; }
+  body.archivo { padding-bottom: 46vh; }
+  #definiciones {
+    position: fixed;
+    left: 0; right: 0; bottom: 0; top: auto;
+    max-height: 42vh;
+    margin: 0;
+    padding: 10px 16px 16px;
+    border-left: none;
+    border-top: 1px solid #f01ad3;
+    background: #000;
+    z-index: 30;
+  }
+  .def-vacio { font-size: 15px; }
+}
+
+/* recorridos: de qué palabra viene la acepción que se enseña */
+.def-motivo {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: #ffaffb;
+  opacity: 0.75;
+}
+
+/* =========================================================
+   Archivo más legible (inspirado en Cyberfeminism Index):
+   letra más pequeña y uniforme, filas compactas en columnas,
+   sin huecos grandes entre líneas.
+   ========================================================= */
+body.archivo {
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* nube: pastillas más bajas y juntas */
+body.archivo .grupo { margin-top: 18px; }
+body.archivo .grupo-items { gap: 4px; }
+body.archivo .grupo-items .w,
+body.archivo .grupo-items .d,
+body.archivo .grupo-items .n {
+  height: 26px;
+  padding: 0 10px;
+  font-size: 15px;
+}
+
+/* título de los resultados: fijo arriba mientras bajas por los mensajes */
+body.archivo .results { margin-top: 22px; }
+body.archivo .rlabel {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #000;
+  padding: 8px 0;
+  font-size: 15px;
+  border-bottom: 1px solid #f01ad3;
+}
+
+/* cada mensaje: una fila en columnas */
+body.archivo .qblock {
+  display: grid;
+  grid-template-columns: 44px 120px 92px minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: baseline;
+  padding: 7px 0;
+  margin: 0;
+  border-bottom: 1px dotted #5c2a56;
+}
+
+body.archivo .q-num,
+body.archivo .q-fecha,
+body.archivo .q-dir {
+  font-size: 13px;
+  color: #ffaffb;
+  opacity: 0.75;
+  white-space: nowrap;
+  cursor: pointer;
+}
+body.archivo .q-num { cursor: default; opacity: 0.5; }
+body.archivo .q-fecha:hover,
+body.archivo .q-dir:hover { opacity: 1; text-decoration: underline; }
+
+body.archivo .qtext {
+  font-size: 16px;
+  line-height: 1.45;
+  color: #ffd6fa;
+}
+
+/* palabras dentro del mensaje: siguen siendo pastilla rosa,
+   pero en línea, sin agrandar la altura de la línea */
+body.archivo .qtext .w {
+  display: inline;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 1px 6px;
+  border: none;
+  border-radius: 10px;
+  font-size: inherit;
+  line-height: inherit;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* columna de definiciones: más compacta */
+body.archivo #definiciones { font-size: 15px; }
+body.archivo .def-card .dic-entrada {
+  font-size: 15px;
+  line-height: 1.4;
+  padding: 10px 0 8px;
+}
+body.archivo .def-card .dic-lema { margin-bottom: 2px; }
+body.archivo .def-card .dic-entrada .w {
+  height: 24px;
+  padding: 0 10px;
+  font-size: 15px;
+}
+body.archivo .def-card .acepciones li { padding: 2px 0; margin: 0; }
+body.archivo .def-card .dic-nota { font-size: 13px; margin-top: 4px; }
+body.archivo .def-cerrar { margin-top: 10px; }
+body.archivo .def-motivo { font-size: 12px; margin-top: 2px; }
+
+/* móvil: fecha y dirección encima del texto */
+@media (max-width: 900px) {
+  body.archivo .qblock {
+    grid-template-columns: auto auto 1fr;
+    row-gap: 2px;
+  }
+  body.archivo .q-num { display: none; }
+  body.archivo .qtext { grid-column: 1 / -1; }
+}

@@ -2,14 +2,42 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sex is Glitching Archive</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="Icon/puter.png" type="image/png">
+<link rel="apple-touch-icon" href="Icon/puter.png">
+<link rel="stylesheet" href="styles.css?v=30">
+<link rel="stylesheet" href="archivo.css?v=30">
 </head>
-<body class="home">
-<div id="home">
-  <h1>Sex is Glitching</h1>
-  <a class="enter" href="diccionario.html">entrar</a>
-  <a class="enter" href="about.html">proyecto</a>
-</div>
+<body class="hhha">
+  <!-- título en vertical -->
+  <aside class="lateral">
+    <h1 class="titulo"><button type="button" id="guardar-lateral" aria-expanded="true" title="guardar / abrir">Sex is Glitching</button></h1>
+    <div class="descripcion">
+      <p>La dispareunia es el término médico para el dolor antes, durante o después de las relaciones sexuales, a menudo ligado a la contracción involuntaria del suelo pélvico. ¿Qué pasa cuando poner el cuerpo supone una molestia y cómo se desea desde ahí?</p>
+      <p>Proponemos la xenosexualidad: situar el error no en el cuerpo, sino en el sistema heterosocial que regula el deseo como si fuera natural y clasifica como anomalía lo que lo interfiere. El glitch, la interferencia, como una posición que se puede habitar.</p>
+      <p><span class="nombre">Sex is Glitching</span> es un archivo de mensajes privados (2016–2026) ordenado como un diccionario. Cada palabra se define por lo que se dijo con ella: al abrirla salen su definición y los mensajes donde aparece. Las definiciones cambian según las palabras que hayas pulsado antes, así que tu recorrido también escribe el diccionario.</p>
+    </div>
+  </aside>
+
+  <div class="zona">
+    <!-- años y dirección: filtran todo el archivo -->
+    <div class="barra">
+      <div id="filtros" class="filtros" aria-label="filtros"></div>
+      <p id="recorrido" class="recorrido" hidden></p>
+      <button type="button" id="cerrar-todas" class="cerrar-todo">cerrar todo</button>
+    </div>
+
+    <!-- una columna por letra; dentro, las palabras del archivo -->
+    <main id="tiras" class="columnas"></main>
+
+    <footer class="pie">© 2026 Sex is Glitching · La Jeta</footer>
+  </div>
+
+  <script src="diccionario-data.js?v=30"></script>
+  <script src="diccionario.js?v=30"></script>
+  <script src="terminos-data.js?v=30"></script>
+  <script src="recorridos.js?v=30"></script>
+  <script src="script.js?v=30"></script>
 </body>
 </html>

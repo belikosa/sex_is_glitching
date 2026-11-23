@@ -4,293 +4,346 @@
    Cairopixel, y las palabras como links azules subrayados.
    ===================================================================== */
 
-html:has(body.hhha) { background: #fff; }
+   html:has(body.hhha) { background: #fff; }
 
-body.hhha {
-  --tinta: #111;
-  --gris: #8a8a8a;
-  --linea: #e2e2e2;
-  --link: #f01ad3;
-  --rosa-anos: #ff6fdc;     /* los años */
-  --rosa-dir: #f2a0d8;      /* sent to me / sent by me */
-  --texto-msg: #7a7a7a;     /* las frases del chat */
-
-  max-width: none;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  overflow: hidden;
-  background: #fff;
-  color: var(--tinta);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 1.35;
-}
-body.hhha::before { display: none; }
-
-/* ---------- título en vertical ---------- */
-.lateral {
-  flex: 0 0 200px;
-  height: 100vh;
-  overflow-y: auto;
-  padding: 14px 18px 20px 16px;
-  box-sizing: border-box;
-  border-right: 1px solid var(--linea);
-}
-.titulo {
-  margin: 0 0 18px;
-  font-family: homeFont, monospace;
-  font-weight: 500;
-  font-size: 44px;
-  line-height: 0.95;
-  color: #000;
-}
-.descripcion .w:hover, .descripcion .w.active { background: var(--link); color: #fff; text-decoration: none; }
-.titulo button {
-  all: unset;
-  cursor: pointer;
-}
-.lateral { transition: flex-basis 0.25s ease; }
-/* «Sex is Glitching» guardado: una lámina estrecha como las letras */
-.lateral.guardada {
-  flex-basis: 190px;
-  cursor: pointer;
-}
-.lateral.guardada:hover { background: #f6f6f6; }
-.lateral.guardada .descripcion { display: none; }
-
-/* el recorrido de la persona por el archivo */
-.recorrido {
-  margin: 0 0 0 auto;
-  font-size: 12px;
-  color: var(--gris);
-  text-align: right;
-  max-width: 45%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.recorrido b { font-weight: normal; color: var(--link); }
-.recorrido:not([hidden]) + .cerrar-todo { margin-left: 0; }
-.descripcion .termino {
-  color: var(--link);
-  text-decoration: underline;
-  text-decoration-style: dotted;
-  text-underline-offset: 2px;
-  cursor: pointer;
-}
-.descripcion .termino.activo { background: var(--link); color: #fff; text-decoration: none; }
-.termino-def {
-  margin: -0.3em 0 0.9em;
-  padding: 6px 0 6px 8px;
-  border-left: 2px solid var(--link);
-  font-size: 12px;
-}
-.termino-def .dic-entrada > *:first-child:not(ol) { display: none; }
-.descripcion p {
-  margin: 0 0 0.8em;
-  font-size: 13px;
-  line-height: 1.4;
-  color: var(--tinta);
-}
-
-/* ---------- zona principal ---------- */
-.zona {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 10px 14px 8px 18px;
-}
-
-.barra {
-  display: flex;
-  align-items: baseline;
-  gap: 12px;
-  padding: 2px 0 8px;
-}
-.filtros {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2px 10px;
-  font-size: 13px;
-}
-.filtros button,
-.cerrar-todo {
-  font: inherit;
-  font-size: 13px;
-  background: none;
-  border: none;
-  padding: 0;
-  color: var(--link);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  cursor: pointer;
-}
-.filtros [data-ano] { color: var(--rosa-anos); }
-.filtros [data-dir] { color: var(--rosa-dir); }
-.filtros .active { background: var(--link); color: #fff; text-decoration: none; padding: 0 3px; }
-.filtro-sep { color: var(--gris); }
-.filtro-limpiar { color: var(--gris) !important; }
-.cerrar-todo { margin-left: auto; white-space: nowrap; color: var(--gris); }
-
-/* ---------- columnas A–Z ---------- */
-.columnas {
-  flex: 1;
-  min-height: 0;
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: thin;
-}
-
-.col {
-  position: relative;
-  flex: 1 1 0;
-  min-width: 28px;
-  display: flex;
-  flex-direction: column;
-  background: #fff;
-  border-left: 1px solid var(--linea);
-  box-shadow: -8px 0 12px -8px rgba(0,0,0,0.18);   /* láminas apiladas */
-  overflow: hidden;
-  cursor: pointer;
-  transition: flex-basis 0.3s ease, min-width 0.3s ease;
-}
-.col.vacia { cursor: default; background: #fafafa; }
-.col.vacia .col-letra { color: #c9c9c9; }
-.col.abierta {
-  flex: 0 0 auto;
-  width: clamp(280px, 25vw, 380px);
-  cursor: default;
-  transition: width 0.2s ease;
-}
-/* letra abierta sin ninguna palabra desplegada: solo lo que ocupa la lista */
-.col.abierta:not(:has(.pal.abierta)) {
-  width: max-content;
-  min-width: 90px;
-  max-width: 220px;
-}
-.col:not(.abierta):not(.vacia):hover { background: #f6f6f6; }
-
-.col-letra {
-  flex: 0 0 auto;
-  font-family: bodyFont, monospace;     /* la letra pixel */
-  font-size: 48px;
-  line-height: 1;
-  padding: 4px 6px 6px;
-  text-align: left;
-  background: none;
-  border: none;
-  color: #000;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.col-cuerpo {
-  flex: 1;
-  min-height: 0;
-  overflow: hidden;
-  padding: 0 8px 20px;
-}
-.col.abierta .col-cuerpo { overflow-y: auto; scrollbar-width: thin; }
-
-/* índice de palabras de la letra */
-.col-palabras {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  white-space: nowrap;
-}
-.col.abierta .col-palabras { white-space: normal; }
-.pal { border-top: 1px solid var(--linea); padding: 5px 0; }
-.pal:first-child { border-top: none; }
-.pal.sin .pal-link { color: var(--gris); }
-.pal-link {
-  color: var(--link);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  font-size: 15px;
-}
-.pal.abierta > .pal-link { background: var(--link); color: #fff; text-decoration: none; padding: 0 3px; }
-.pal-n { margin-left: 6px; font-size: 11px; color: var(--gris); }
-
-/* detalle de una palabra: definición + mensajes */
-.pal-detalle:empty { display: none; }
-.pal-detalle { padding: 6px 0 2px; }
-
-.pal-def .dic-entrada {
-  border: none;
-  padding: 0 0 8px;
-  font-family: inherit;
-  font-size: 13px;
-  line-height: 1.35;
-  color: var(--tinta);
-}
-.pal-def .dic-lema { display: none; }
-.pal-def .acepciones { margin: 0; padding: 0; }
-.pal-def .acepciones li { padding: 1px 0; margin: 0; color: var(--tinta); }
-.pal-def .num,
-.pal-def .cat { color: var(--gris); font-size: 12px; }
-.pal-def .ej { color: #444; font-style: italic; }
-.pal-def .dic-nota,
-/* aviso suave cuando una definición abierta cambia por el recorrido */
-.pal-def.cambia { animation: cambia 1.4s ease-out; }
-@keyframes cambia { from { background: #ffd6f7; } to { background: transparent; } }
-.def-motivo { font-size: 12px; color: var(--link); opacity: 1; margin: 3px 0 0; }
-.pal-def .remite { color: var(--tinta); }
-.pal-def .remite a { color: var(--link); }
-
-.pal-mensajes { border-top: 1px solid #000; }
-.msg { padding: 6px 0; border-bottom: 1px solid var(--linea); }
-.msg-meta { font-size: 11px; color: #aaa; margin-bottom: 1px; }
-.msg-texto {
-  font-size: 14px;
-  line-height: 1.35;
-  color: var(--texto-msg);
-  overflow-wrap: anywhere;
-}
-/* las palabras del glosario dentro de un mensaje: link azul subrayado */
-.msg-texto .w,
-.descripcion .w {
-  display: inline;
-  width: auto;
-  height: auto;
-  margin: 0;
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  background: none;
-  color: var(--link);
-  font: inherit;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  cursor: pointer;
-}
-.vacio { font-size: 12px; color: var(--gris); }
-
-.pie {
-  padding-top: 6px;
-  font-size: 12px;
-  color: #000;
-  text-align: right;
-}
-
-/* ---------- móvil: pestañas arriba y letras en filas ---------- */
-@media (max-width: 700px) {
-  body.hhha { display: block; height: auto; overflow: visible; }
-  .lateral { flex: none; height: auto; overflow: visible; padding: 12px 10px 6px; border-right: none; border-bottom: 1px solid var(--linea); }
-  .titulo { font-size: 36px; margin-bottom: 10px; }
-  .lateral.guardada { flex-basis: auto; }
-  .lateral.guardada .titulo { margin: 0; }
-  .recorrido { display: none; }
-  .zona { padding: 8px 10px 20px; }
-  .columnas { flex-direction: column; overflow: visible; }
-  .col { min-width: 0; box-shadow: 0 -6px 10px -8px rgba(0,0,0,0.18); border-left: none; border-top: 1px solid var(--linea); }
-  .col:not(.abierta) { flex: 0 0 auto; height: 44px; }
-  .col.vacia { display: none; }
-  .col.abierta, .col.abierta:not(:has(.pal.abierta)) { width: 100%; max-width: none; }
-  .col-letra { font-size: 34px; }
-  .col.abierta .col-cuerpo { overflow: visible; }
-}
+   body.hhha {
+     --tinta: #111;
+     --gris: #8a8a8a;
+     --linea: #e2e2e2;
+     --link: #f01ad3;
+     --rosa-anos: #ff6fdc;     /* los años */
+     --rosa-dir: #f2a0d8;      /* sent to me / sent by me */
+     --texto-msg: #7a7a7a;     /* las frases del chat */
+   
+     max-width: none;
+     height: 100vh;
+     margin: 0;
+     padding: 0;
+     display: flex;
+     overflow: hidden;
+     background: #fff;
+     color: var(--tinta);
+     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+     font-size: 15px;
+     line-height: 1.35;
+   }
+   body.hhha::before { display: none; }
+   
+   /* ---------- título en vertical ---------- */
+   .lateral {
+     flex: 0 0 200px;
+     height: 100vh;
+     overflow-y: auto;
+     padding: 14px 18px 20px 16px;
+     box-sizing: border-box;
+   }
+   .titulo {
+     margin: 0 0 18px;
+     font-family: homeFont, monospace;
+     font-weight: 500;
+     font-size: 44px;
+     line-height: 0.95;
+     color: #000;
+   }
+   .descripcion .w:hover, .descripcion .w.active { background: var(--link); color: #fff; text-decoration: none; }
+   .titulo button {
+     all: unset;
+     cursor: pointer;
+   }
+   .lateral { transition: flex-basis 0.25s ease; }
+   /* «Sex is Glitching» guardado: una lámina estrecha como las letras */
+   .lateral.guardada {
+     flex-basis: 190px;
+     cursor: pointer;
+   }
+   .lateral.guardada:hover { background: #f6f6f6; }
+   .lateral.guardada .descripcion { display: none; }
+   
+   /* el recorrido de la persona por el archivo */
+   .recorrido {
+     margin: 0 0 0 auto;
+     font-size: 12px;
+     color: var(--gris);
+     text-align: right;
+     max-width: 45%;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     white-space: nowrap;
+   }
+   .recorrido b { font-weight: normal; color: var(--link); }
+   .recorrido:not([hidden]) + .descargar,
+   .recorrido:not([hidden]) + .cerrar-todo { margin-left: 0; }
+   .descripcion .termino {
+     color: var(--link);
+     text-decoration: underline;
+     text-decoration-style: dotted;
+     text-underline-offset: 2px;
+     cursor: pointer;
+   }
+   .descripcion .termino.activo { background: var(--link); color: #fff; text-decoration: none; }
+   .termino-def {
+     margin: -0.3em 0 0.9em;
+     padding: 6px 0 6px 8px;
+     border-left: 2px solid var(--link);
+     font-size: 12px;
+   }
+   .termino-def .dic-entrada > *:first-child:not(ol) { display: none; }
+   .descripcion p {
+     margin: 0 0 0.8em;
+     font-size: 13px;
+     line-height: 1.4;
+     color: var(--tinta);
+   }
+   
+   /* ---------- zona principal ---------- */
+   .zona {
+     flex: 1;
+     min-width: 0;
+     display: flex;
+     flex-direction: column;
+     padding: 10px 14px 8px 0;
+   }
+   .barra { padding-left: 12px !important; }
+   
+   .barra {
+     display: flex;
+     align-items: baseline;
+     gap: 12px;
+     padding: 2px 0 8px;
+   }
+   /* descarga del diccionario en pdf */
+   .descargar {
+     font: inherit;
+     font-size: 13px;
+     background: none;
+     border: none;
+     padding: 0;
+     cursor: pointer;
+     text-decoration: underline;
+     color: var(--link);
+     text-underline-offset: 2px;
+     white-space: nowrap;
+   }
+   .descargar:hover { background: var(--link); color: #fff; text-decoration: none; }
+   /* buscador */
+   /* buscador: rosa sobre blanco */
+   body.hhha #buscar.buscar {
+     -webkit-appearance: none !important;
+     appearance: none !important;
+     box-shadow: none !important;
+     margin: 0;
+     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+     font-size: 13px !important;
+     height: 26px !important;
+     width: 170px !important;
+     padding: 0 12px !important;
+     border: 1px solid var(--link) !important;
+     border-radius: 25px !important;
+     background: #fff !important;
+     color: var(--link) !important;
+     outline: none !important;
+     align-self: center;
+   }
+   body.hhha #buscar.buscar::placeholder { color: var(--link) !important; opacity: 0.6 !important; }
+   body.hhha #buscar.buscar:focus { border-width: 2px !important; padding: 0 11px !important; }
+   body.hhha #buscar.buscar::-webkit-search-cancel-button { display: none; }
+   .columnas.buscando .pal.no-coincide { display: none; }
+   .columnas.buscando .col.sin-resultado .col-letra { color: #d6d6d6; }
+   .columnas.buscando .col.sin-resultado .col-cuerpo { visibility: hidden; }
+   .sin-resultados { font-size: 12px; color: var(--gris); margin: 0; }
+   .filtros {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 2px 10px;
+     font-size: 13px;
+   }
+   .filtros button,
+   .cerrar-todo {
+     font: inherit;
+     font-size: 13px;
+     background: none;
+     border: none;
+     padding: 0;
+     color: var(--link);
+     text-decoration: underline;
+     text-underline-offset: 2px;
+     cursor: pointer;
+   }
+   .filtros [data-ano] { color: var(--rosa-anos); }
+   .filtros [data-dir] { color: var(--rosa-dir); }
+   .filtros .active { background: var(--link); color: #fff; text-decoration: none; padding: 0 3px; }
+   .filtro-sep { color: var(--gris); }
+   .filtro-limpiar { color: var(--gris) !important; }
+   /* la cruz de cerrar todo */
+   .cerrar-todo {
+     margin-left: auto;
+     font-size: 26px !important;
+     line-height: 1;
+     text-decoration: none !important;
+     color: var(--link);
+     align-self: center;
+   }
+   .cerrar-todo:hover { color: #111; }
+   .descargar + .cerrar-todo { margin-left: 0; }
+   
+   /* ---------- columnas A–Z ---------- */
+   .columnas {
+     flex: 1;
+     min-height: 0;
+     display: flex;
+     overflow-x: auto;
+     overflow-y: hidden;
+     scrollbar-width: thin;
+   }
+   
+   .col {
+     position: relative;
+     flex: 1 1 0;
+     min-width: 28px;
+     display: flex;
+     flex-direction: column;
+     background: #fff;
+     border-left: 1px solid var(--linea);
+     box-shadow: -8px 0 12px -8px rgba(0,0,0,0.18);   /* láminas apiladas */
+     overflow: hidden;
+     cursor: pointer;
+     transition: flex-basis 0.3s ease, min-width 0.3s ease;
+   }
+   .col.vacia { cursor: default; background: #fafafa; }
+   .col.vacia .col-letra { color: #c9c9c9; }
+   .col.abierta {
+     flex: 0 0 auto;
+     width: clamp(280px, 25vw, 380px);
+     cursor: default;
+     transition: width 0.2s ease;
+   }
+   /* letra abierta sin ninguna palabra desplegada: solo lo que ocupa la lista */
+   .col.abierta:not(:has(.pal.abierta)) {
+     width: max-content;
+     min-width: 90px;
+     max-width: 220px;
+   }
+   .col:not(.abierta):not(.vacia):hover { background: #f6f6f6; }
+   
+   .col-letra {
+     flex: 0 0 auto;
+     font-family: bodyFont, monospace;     /* la letra pixel */
+     font-size: 48px;
+     line-height: 1;
+     padding: 4px 6px 6px;
+     text-align: left;
+     background: none;
+     border: none;
+     color: #000;
+     cursor: pointer;
+     white-space: nowrap;
+   }
+   
+   .col-cuerpo {
+     flex: 1;
+     min-height: 0;
+     overflow: hidden;
+     padding: 0 8px 20px;
+   }
+   .col.abierta .col-cuerpo { overflow-y: auto; scrollbar-width: thin; }
+   
+   /* índice de palabras de la letra */
+   .col-palabras {
+     list-style: none;
+     margin: 0;
+     padding: 0;
+     white-space: nowrap;
+   }
+   .col.abierta .col-palabras { white-space: normal; }
+   .pal { border-top: 1px solid var(--linea); padding: 5px 0; }
+   .pal:first-child { border-top: none; }
+   .pal.sin .pal-link { color: var(--gris); }
+   .pal-link {
+     color: var(--link);
+     text-decoration: underline;
+     text-underline-offset: 2px;
+     font-size: 15px;
+   }
+   .pal.abierta > .pal-link { background: var(--link); color: #fff; text-decoration: none; padding: 0 3px; }
+   .pal-n { margin-left: 6px; font-size: 11px; color: var(--gris); }
+   
+   /* detalle de una palabra: definición + mensajes */
+   .pal-detalle:empty { display: none; }
+   .pal-detalle { padding: 6px 0 2px; }
+   
+   .pal-def .dic-entrada {
+     border: none;
+     padding: 0 0 8px;
+     font-family: inherit;
+     font-size: 13px;
+     line-height: 1.35;
+     color: var(--tinta);
+   }
+   .pal-def .dic-lema { display: none; }
+   .pal-def .acepciones { margin: 0; padding: 0; }
+   .pal-def .acepciones li { padding: 1px 0; margin: 0; color: var(--tinta); }
+   .pal-def .num,
+   .pal-def .cat { color: var(--gris); font-size: 12px; }
+   .pal-def .ej { color: #444; font-style: italic; }
+   .pal-def .dic-nota,
+   /* aviso suave cuando una definición abierta cambia por el recorrido */
+   .pal-def.cambia { animation: cambia 1.4s ease-out; }
+   @keyframes cambia { from { background: #ffd6f7; } to { background: transparent; } }
+   .def-motivo { font-size: 12px; color: var(--link); opacity: 1; margin: 3px 0 0; }
+   .pal-def .remite { color: var(--tinta); }
+   .pal-def .remite a { color: var(--link); }
+   
+   .pal-mensajes { border-top: 1px solid #000; }
+   .msg { padding: 6px 0; border-bottom: 1px solid var(--linea); }
+   .msg-meta { font-size: 11px; color: #aaa; margin-bottom: 1px; }
+   .msg-texto {
+     font-size: 14px;
+     line-height: 1.35;
+     color: var(--texto-msg);
+     overflow-wrap: anywhere;
+   }
+   /* las palabras del glosario dentro de un mensaje: link azul subrayado */
+   .msg-texto .w,
+   .descripcion .w {
+     display: inline;
+     width: auto;
+     height: auto;
+     margin: 0;
+     padding: 0;
+     border: none;
+     border-radius: 0;
+     background: none;
+     color: var(--link);
+     font: inherit;
+     text-decoration: underline;
+     text-underline-offset: 2px;
+     cursor: pointer;
+   }
+   .vacio { font-size: 12px; color: var(--gris); }
+   
+   .pie {
+     padding-top: 6px;
+     font-size: 12px;
+     color: #000;
+     text-align: right;
+   }
+   
+   /* ---------- móvil: pestañas arriba y letras en filas ---------- */
+   @media (max-width: 700px) {
+     body.hhha { display: block; height: auto; overflow: visible; }
+     .lateral { flex: none; height: auto; overflow: visible; padding: 12px 10px 6px; border-right: none; border-bottom: 1px solid var(--linea); }
+     .titulo { font-size: 36px; margin-bottom: 10px; }
+     .lateral.guardada { flex-basis: auto; }
+     .barra { flex-wrap: wrap; }
+     body.hhha #buscar.buscar { width: 100%; }
+     .lateral.guardada .titulo { margin: 0; }
+     .recorrido { display: none; }
+     .zona { padding: 8px 10px 20px; }
+     .columnas { flex-direction: column; overflow: visible; }
+     .col { min-width: 0; box-shadow: 0 -6px 10px -8px rgba(0,0,0,0.18); border-left: none; border-top: 1px solid var(--linea); }
+     .col:not(.abierta) { flex: 0 0 auto; height: 44px; }
+     .col.vacia { display: none; }
+     .col.abierta, .col.abierta:not(:has(.pal.abierta)) { width: 100%; max-width: none; }
+     .col-letra { font-size: 34px; }
+     .col.abierta .col-cuerpo { overflow: visible; }
+   }

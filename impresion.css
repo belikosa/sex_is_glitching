@@ -1,0 +1,115 @@
+/* =========================================================
+   Sex is Glitching — el PDF que se descarga con «↓ descargar»
+
+   Puedes retocar aquí todo el diseño del PDF: tamaños, colores,
+   separaciones… sin tocar la web. Los márgenes de la página y el
+   número de página están en script.js (busca «html2pdf().set»).
+   ========================================================= */
+
+   @page {
+    size: A4;
+    margin: 14mm 16mm 16mm;
+  }
+  
+  @media print {
+    /* se esconde la web y solo se ve el recorrido */
+    html, body.hhha {
+      height: auto !important;
+      overflow: visible !important;
+      display: block !important;
+      background: #fff !important;
+    }
+    body.hhha > *:not(.imp-fuera) { display: none !important; }
+    .imp-fuera { position: static !important; }
+    #impresion { display: block !important; }
+  }
+  
+  /* normalmente no se ve; mientras se genera el PDF se coloca fuera de la pantalla */
+  #impresion { display: none; }
+  .imp-fuera { position: absolute; left: -10000px; top: 0; }
+  #impresion.generando {
+    display: block;
+    width: 178mm;          /* ancho de A4 menos los márgenes */
+    background: #fff;
+  }
+  
+  #impresion {
+    --rosa: #f01ad3;
+    --gris: #8a8a8a;
+    --texto-msg: #6f6f6f;
+    --linea: #e4e4e4;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10pt;
+    line-height: 1.4;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* ---------- cabecera ---------- */
+  #impresion .imp-titulo {
+    font-family: homeFont, cursive;
+    font-weight: normal;
+    font-size: 40pt;
+    line-height: 0.95;
+    margin: 0 0 4mm;
+  }
+  #impresion .imp-recorrido {
+    font-size: 10pt;
+    color: var(--gris);
+    margin: 0 0 8mm;
+  }
+  #impresion .imp-recorrido b { font-weight: normal; color: var(--rosa); }
+  
+  /* ---------- cada palabra ---------- */
+  #impresion .imp-palabra {
+    border-top: 1px solid #111;
+    padding-top: 3mm;
+    margin-bottom: 8mm;
+  }
+  #impresion .imp-lema {
+    font-size: 16pt;
+    color: var(--rosa);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin: 0 0 2mm;
+    font-weight: normal;
+    break-after: avoid;
+  }
+  #impresion .imp-n { font-size: 9pt; color: var(--gris); text-decoration: none; margin-left: 4px; }
+  
+  /* la definición: usa los mismos estilos que en la web (archivo.css, .pal-def) */
+  #impresion .imp-def {
+    margin-bottom: 3mm;
+    padding-bottom: 2mm;
+    border-bottom: 1px solid #111;
+    break-inside: avoid;
+    font-size: 10pt;
+  }
+  
+  /* los mensajes */
+  #impresion .msg {
+    padding: 1.6mm 0;
+    border-top: 1px solid var(--linea);
+    break-inside: avoid;
+  }
+  #impresion .msg-meta { font-size: 7.5pt; color: var(--gris); }
+  #impresion .msg-texto { font-size: 9.5pt; color: var(--texto-msg); }
+  #impresion .msg-texto .w {
+    color: var(--rosa);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    background: none;
+    padding: 0;
+    border: 0;
+  }
+  #impresion .vacio { font-size: 8.5pt; color: var(--gris); }
+  
+  /* ---------- créditos al final (como el texto verde de Cyberfeminism Index) ---------- */
+  #impresion .imp-creditos {
+    break-before: page;
+    font-size: 20pt;
+    line-height: 1.25;
+    color: var(--rosa);
+    margin: 0;
+  }

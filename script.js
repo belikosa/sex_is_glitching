@@ -33,6 +33,9 @@ function contieneForma(texto, forma){
   return false;
 }
 
+// palabras que solo se toman de la descripción, no de los mensajes
+const SOLO_DESCRIPCION = new Set(["cuerpo", "vulva"]);
+
 function tagsForText(text){
   const t = " " + text.toLowerCase() + " ";
   const found = [];
@@ -59,7 +62,7 @@ function normalizeEntry(row){
   const text = (row.text || "").trim();
   return {
     fecha_larga, year, month, direction, text,
-    tags: tagsForText(text),
+    tags: tagsForText(text).filter(t => !SOLO_DESCRIPCION.has(t)),
   };
 }
 
@@ -412,12 +415,86 @@ function actualizarAbiertas(excepto){
 function pintarRecorrido(){
   const el = document.getElementById("recorrido");
   if(!el) return;
+  const boton = document.getElementById("descargar");
+  if(boton) boton.hidden = !RECORRIDO.length;
   if(!RECORRIDO.length){ el.hidden = true; el.innerHTML = ""; return; }
   const ultimas = RECORRIDO.slice(-6).map(b => `<b>${escapeHtml(nombreDe(b))}</b>`).join(" → ");
   el.innerHTML = `tu recorrido: ${RECORRIDO.length > 6 ? "… → " : ""}${ultimas}`;
   el.title = RECORRIDO.map(nombreDe).join(" → ");
   el.hidden = false;
 }
+
+// ---------- descargar el recorrido ----------
+// Solo las palabras que has pulsado, en ese orden, con la definición tal como
+// te ha salido y sus mensajes. El PDF se genera directamente, sin imprimir
+// (con lib/html2pdf.bundle.min.js). El diseño está en impresion.css.
+function prepararImpresion(){
+  const caja = document.getElementById("impresion");
+  if(!caja || !RECORRIDO.length) return null;
+  const palabras = RECORRIDO.map(b => palabraLi(b)?.dataset.key).filter(Boolean);
+  const fecha = new Date().toLocaleDateString("es-ES", {day: "numeric", month: "long", year: "numeric"});
+  caja.innerHTML = `
+    <p class="imp-titulo">Sex is Glitching</p>
+    <p class="imp-recorrido">tu recorrido, ${escapeHtml(fecha)}:<br>${palabras.map(w => `<b>${escapeHtml(w)}</b>`).join(" → ")}</p>
+    ${palabras.map(w => `
+      <article class="imp-palabra">
+        <p class="imp-lema">${escapeHtml(w)}<span class="imp-n">${cuentaDe(w)}</span></p>
+        <div class="imp-def pal-def">${definicionHTML(w, palabraLi(w)?.classList.contains("abierta") ? "vivo" : true)}</div>
+        ${mensajesHTML(w)}
+      </article>`).join("")}
+    <p class="imp-creditos">Sex is Glitching es un archivo de mensajes privados ordenado como un diccionario, de La Jeta. Las definiciones de este documento se han formado con tu recorrido: otro recorrido habría escrito otro diccionario.</p>`;
+  return caja;
+}
+
+// la librería solo se carga la primera vez que alguien descarga
+function cargarHtml2pdf(){
+  if(window.html2pdf) return Promise.resolve();
+  return new Promise((ok, mal) => {
+    const s = document.createElement("script");
+    s.src = "lib/html2pdf.bundle.min.js";
+    s.onload = ok; s.onerror = mal;
+    document.head.appendChild(s);
+  });
+}
+
+const botonDescargar = document.getElementById("descargar");
+botonDescargar?.addEventListener("click", async () => {
+  const caja = prepararImpresion();
+  if(!caja) return;
+  const texto = botonDescargar.textContent;
+  botonDescargar.textContent = "preparando…";
+  botonDescargar.disabled = true;
+  try{
+    await cargarHtml2pdf();
+    await document.fonts.ready;
+    caja.classList.add("generando");
+    await html2pdf().set({
+      margin: [14, 16, 16, 16],                         // mm: arriba, izquierda, abajo, derecha
+      filename: "sex-is-glitching-tu-recorrido.pdf",
+      image: {type: "jpeg", quality: 0.95},
+      html2canvas: {scale: 2, backgroundColor: "#ffffff"},
+      jsPDF: {unit: "mm", format: "a4", orientation: "portrait"},
+      pagebreak: {mode: ["css"], avoid: [".msg", ".imp-def", ".imp-lema"]},
+    }).from(caja).toPdf().get("pdf").then(pdf => {
+      // número de página abajo a la derecha
+      const n = pdf.internal.getNumberOfPages();
+      for(let i = 1; i <= n; i++){
+        pdf.setPage(i);
+        pdf.setFontSize(7.5);
+        pdf.setTextColor(138);
+        pdf.text("Sex is Glitching", 16, 290);
+        pdf.text(`${i}/${n}`, 194, 290, {align: "right"});
+      }
+    }).save();
+  } catch(err){
+    console.error(err);
+    alert("No se ha podido generar el PDF.");
+  } finally {
+    caja.classList.remove("generando");
+    botonDescargar.textContent = texto;
+    botonDescargar.disabled = false;
+  }
+});
 
 function nombreDe(b){
   const e = PORNOMBRE[b];
@@ -480,10 +557,9 @@ function pintarFiltros(){
 // cada palabra que comparte con él suma 1 y enseña las frases donde aparece.
 let DESCRIPCION = [];   // [{texto, tags}]
 function leerDescripcion(){
-  const texto = [...document.querySelectorAll(".descripcion p")].map(p => p.textContent.trim()).join(" ")
-    .replace(/Sex is Glitching/g, "\u0000");   // el nombre del proyecto no cuenta como «sex»
+  const texto = [...document.querySelectorAll(".descripcion p")].map(p => p.textContent.trim()).join(" ");
   DESCRIPCION = (texto.match(/[^.?!]+[.?!]+/g) || []).map(f => {
-    const frase = f.trim().replace(/\u0000/g, "Sex is Glitching");
+    const frase = f.trim();
     // solo las palabras que se marcan en el texto (en «sexual» cuenta sexual, no sex)
     const tags = [...new Set([...highlightAll(f.trim()).matchAll(/data-key="([^"]+)"/g)].map(m => m[1]))];
     return {texto: frase, tags};
@@ -532,10 +608,12 @@ function pintarTiras(){
   }).join("");
 
   colsAbiertas.forEach(L => tiras.querySelector(`.col[data-letra="${L}"]`)?.classList.add("abierta"));
+  // si había una búsqueda escrita, se vuelve a aplicar tras repintar
   palsAbiertas.forEach(k => {
     const li = tiras.querySelector(`.pal[data-key="${CSS.escape(k)}"]`);
     if(li) abrirPalabra(li, {sinRecorrido: true, sinScroll: true});
   });
+  if(typeof aplicarBusqueda === "function" && buscador?.value.trim()) aplicarBusqueda();
 }
 
 // ---------- definición y mensajes de una palabra ----------
@@ -606,6 +684,55 @@ function cerrarPalabra(li){
   li.querySelector(".pal-detalle").innerHTML = "";
   marcarEnDescripcion();
 }
+
+// ---------- buscador ----------
+// filtra las palabras de todas las letras (también por sus formas: «ligo» encuentra ligar)
+const buscador = document.getElementById("buscar");
+let colsAntesDeBuscar = null;   // qué letras estaban abiertas antes de empezar a buscar
+
+const sinEnye = t => base(t).replace(/ñ/g, "n");   // «cono» también encuentra coño
+function coincide(w, q){
+  if(sinEnye(w).includes(q)) return true;
+  return (CANON[w] || []).some(f => sinEnye(f).includes(q));
+}
+function aplicarBusqueda(){
+  if(!buscador) return;
+  const q = sinEnye(buscador.value.trim());
+  const cols = [...tiras.querySelectorAll(".col")];
+  if(!q){
+    tiras.classList.remove("buscando");
+    tiras.querySelectorAll(".no-coincide").forEach(x => x.classList.remove("no-coincide"));
+    cols.forEach(c => c.classList.remove("sin-resultado"));
+    if(colsAntesDeBuscar){
+      cols.forEach(c => c.classList.toggle("abierta",
+        colsAntesDeBuscar.has(c.dataset.letra) || !!c.querySelector(".pal.abierta")));
+      colsAntesDeBuscar = null;
+    }
+    return [];
+  }
+  if(!colsAntesDeBuscar) colsAntesDeBuscar = new Set(cols.filter(c => c.classList.contains("abierta")).map(c => c.dataset.letra));
+  tiras.classList.add("buscando");
+  const encontradas = [];
+  cols.forEach(c => {
+    let hay = false;
+    c.querySelectorAll(".pal").forEach(li => {
+      const si = coincide(li.dataset.key, q);
+      li.classList.toggle("no-coincide", !si);
+      if(si){ hay = true; encontradas.push(li); }
+    });
+    c.classList.toggle("sin-resultado", !hay);
+    c.classList.toggle("abierta", hay);
+  });
+  return encontradas;
+}
+buscador?.addEventListener("input", aplicarBusqueda);
+buscador?.addEventListener("keydown", ev => {
+  if(ev.key === "Enter"){
+    const [primera] = aplicarBusqueda();
+    if(primera) irAPalabra(primera.dataset.key);
+  }
+  if(ev.key === "Escape"){ buscador.value = ""; aplicarBusqueda(); }
+});
 
 // las palabras abiertas en el archivo se marcan también en la descripción
 function marcarEnDescripcion(){
@@ -702,6 +829,7 @@ document.getElementById("cerrar-todas")?.addEventListener("click", () => {
   tiras.querySelectorAll(".col.abierta").forEach(c => c.classList.remove("abierta"));
   RECORRIDO = [];   // también empieza el recorrido de cero
   pintarRecorrido();
+  if(buscador){ buscador.value = ""; colsAntesDeBuscar = null; aplicarBusqueda(); }
 });
 
 // «Sex is Glitching» se guarda y se abre como las columnas

@@ -6,25 +6,27 @@
 <title>Sex is Glitching Archive</title>
 <link rel="icon" href="Icon/puter.png" type="image/png">
 <link rel="apple-touch-icon" href="Icon/puter.png">
-<link rel="stylesheet" href="styles.css?v=30">
-<link rel="stylesheet" href="archivo.css?v=30">
+<link rel="stylesheet" href="styles.css?v=46">
+<link rel="stylesheet" href="archivo.css?v=46">
+<link rel="stylesheet" href="impresion.css?v=46">
 </head>
 <body class="hhha">
   <!-- título en vertical -->
   <aside class="lateral">
     <h1 class="titulo"><button type="button" id="guardar-lateral" aria-expanded="true" title="guardar / abrir">Sex is Glitching</button></h1>
     <div class="descripcion">
-      <p>La dispareunia es el término médico para el dolor antes, durante o después de las relaciones sexuales, a menudo ligado a la contracción involuntaria del suelo pélvico. ¿Qué pasa cuando poner el cuerpo supone una molestia y cómo se desea desde ahí?</p>
-      <p>Proponemos la xenosexualidad: situar el error no en el cuerpo, sino en el sistema heterosocial que regula el deseo como si fuera natural y clasifica como anomalía lo que lo interfiere. El glitch, la interferencia, como una posición que se puede habitar.</p>
-      <p><span class="nombre">Sex is Glitching</span> es un archivo de mensajes privados (2016–2026) ordenado como un diccionario. Cada palabra se define por lo que se dijo con ella: al abrirla salen su definición y los mensajes donde aparece. Las definiciones cambian según las palabras que hayas pulsado antes, así que tu recorrido también escribe el diccionario.</p>
+      <p>¿Qué pasa cuando poner el cuerpo supone una molestia, y cómo se desea desde ahí? Sex is Glitching es un archivo de mensajes privados ordenado como un diccionario, en el que las palabras con las que hablamos de sexo y de deseo significan lo que se dijo con ellas: cada entrada se define a partir de los mensajes privados en los que aparece. Ninguna palabra significa siempre lo mismo: lo que dice depende del camino que te ha traído hasta ella.</p>
+      <p>Como la experiencia del sexo no es siempre normativa ni universal, a veces hacen falta palabras nuevas que se ajusten a lo que pasa: la chochóloga, una persona que habla con autoridad sobre la vulva, y su chochología; o la xenosexualidad, que sitúa el error en el sistema heterosocial que regula el deseo como si fuera natural y clasifica como anomalía todo lo que lo interfiere.</p>
     </div>
   </aside>
 
   <div class="zona">
     <!-- años y dirección: filtran todo el archivo -->
     <div class="barra">
+      <input type="search" id="buscar" class="buscar" placeholder="buscar" aria-label="buscar una palabra" autocomplete="off">
       <div id="filtros" class="filtros" aria-label="filtros"></div>
       <p id="recorrido" class="recorrido" hidden></p>
+      <button type="button" id="descargar" class="descargar" hidden title="guardar tu recorrido como PDF">↓ descargar</button>
       <button type="button" id="cerrar-todas" class="cerrar-todo">cerrar todo</button>
     </div>
 
@@ -34,10 +36,12 @@
     <footer class="pie">© 2026 Sex is Glitching · La Jeta</footer>
   </div>
 
-  <script src="diccionario-data.js?v=30"></script>
-  <script src="diccionario.js?v=30"></script>
-  <script src="terminos-data.js?v=30"></script>
-  <script src="recorridos.js?v=30"></script>
-  <script src="script.js?v=30"></script>
+  <script src="diccionario-data.js?v=46"></script>
+  <script src="diccionario.js?v=46"></script>
+  <script src="terminos-data.js?v=46"></script>
+  <script src="recorridos.js?v=46"></script>
+  <script src="script.js?v=46"></script>
+  <!-- lo que se descarga: se rellena al pulsar «↓ descargar» -->
+  <div class="imp-fuera" aria-hidden="true"><section id="impresion"></section></div>
 </body>
 </html>

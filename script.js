@@ -252,22 +252,24 @@ const PORNOMBRE = {};
 DICCIONARIO.forEach(e => PORNOMBRE[base(nombre(e.termino))] = e);
 const nombreDe = b => PORNOMBRE[b] ? nombre(PORNOMBRE[b].termino) : b;
 
-// qué acepción sale según las palabras pulsadas antes
-function acepcionPorRecorrido(termino, previas){
+// qué acepciones salen según las palabras pulsadas antes:
+// siempre la de «sino», y se van sumando las que activa cada palabra del recorrido
+function acepcionesPorRecorrido(termino, previas){
   const b = base(nombre(termino));
-  const buscar = (reglas, sino) => {
-    for(let i = previas.length - 1; i >= 0; i--)
-      for(const r of reglas)
-        if(r.desde.some(d => base(d) === previas[i])) return {num: r.acepcion, desde: previas[i]};
-    return {num: sino, desde: null};
+  const recoger = (reglas, sino, extra = []) => {
+    const lista = [{num: sino, desde: null}];
+    previas.forEach(p => reglas.forEach(r => {
+      if(r.desde.some(d => base(d) === p)) lista.push({num: r.acepcion, desde: p});
+    }));
+    return lista.concat(extra);
   };
   if(b === "vaginismo"){
     const cuerpo = new Set(VAGINISMO.cuerpoYDeseo.map(base));
-    if(new Set(previas.filter(p => cuerpo.has(p))).size >= VAGINISMO.minimo) return {num: VAGINISMO.final, desde: null};
-    return buscar(VAGINISMO.reglas, VAGINISMO.sino);
+    const llega = new Set(previas.filter(p => cuerpo.has(p))).size >= VAGINISMO.minimo;
+    return recoger(VAGINISMO.reglas, VAGINISMO.sino, llega ? [{num: VAGINISMO.final, desde: null}] : []);
   }
   const clave = Object.keys(RECORRIDOS).find(k => base(k) === b);
-  return clave ? buscar(RECORRIDOS[clave].reglas, RECORRIDOS[clave].sino) : null;
+  return clave ? recoger(RECORRIDOS[clave].reglas, RECORRIDOS[clave].sino) : null;
 }
 
 // «(Ver rabo)» -> «(→ rabo)» con enlace; «(Ver vaginismo, 2)» -> una sola remisión
@@ -295,17 +297,29 @@ function definicionHTML(palabra, modo = "abrir"){
   const previas = modo === "fijo" && i >= 0 ? RECORRIDO.slice(0, i) : otras;
   if(modo === "abrir") RECORRIDO = otras.concat(yo);
 
-  const elegida = acepcionPorRecorrido(e.termino, previas);
   let acepciones = e.acepciones;
-  if(elegida){
-    let a = e.acepciones.find(x => x.num === elegida.num);
-    // la palabra que decide la acepción sale como una remisión más: (→ coño)
-    if(a && elegida.desde){
-      const desde = nombreDe(elegida.desde);
-      if(!new RegExp("\\(Ver " + desde + "\\)", "i").test(a.def))
-        a = {...a, def: /\)\s*$/.test(a.def) ? `${a.def.trim()} (Ver ${desde})` : `${a.def.replace(/\.?\s*$/, "")}. (Ver ${desde})`};
-    }
-    if(a) acepciones = [a];
+  const lista = acepcionesPorRecorrido(e.termino, previas);
+  if(lista){
+    // juntar por número: cada acepción una vez, con todas las palabras que la han traído
+    const porNum = new Map();
+    lista.forEach(({num, desde}) => {
+      if(!porNum.has(num)) porNum.set(num, new Set());
+      if(desde) porNum.get(num).add(nombreDe(desde));
+    });
+    acepciones = [...porNum.keys()]
+      .map(num => {
+        let a = e.acepciones.find(x => x.num === num);
+        if(!a) return null;
+        // las palabras que la han traído salen como remisiones: (→ coño)
+        const nuevas = [...porNum.get(num)].filter(d => !new RegExp("\\(Ver[^)]*" + d, "i").test(a.def));
+        if(nuevas.length){
+          const ver = `(Ver ${nuevas.join(", ")})`;
+          a = {...a, def: /\)\s*$/.test(a.def) ? `${a.def.trim()} ${ver}` : `${a.def.replace(/\.?\s*$/, "")}. ${ver}`};
+        }
+        return a;
+      })
+      .filter(Boolean)
+      .sort((x, y) => Number(x.num) - Number(y.num));
   }
   return `<ol class="acepciones">${acepciones.map(a => `<li>
       ${a.num ? `<span class="num">${escapeHtml(a.num)}.</span>` : ""}
@@ -384,7 +398,7 @@ function pintarRecorrido(){
   document.getElementById("descargar").hidden = !RECORRIDO.length;
   el.hidden = !RECORRIDO.length;
   el.innerHTML = RECORRIDO.length
-    ? `tu recorrido: ${RECORRIDO.length > 6 ? "… → " : ""}${RECORRIDO.slice(-6).map(b => `<b>${escapeHtml(nombreDe(b))}</b>`).join(" → ")}`
+    ? `‧₊⟳｡: ${RECORRIDO.length > 6 ? "… → " : ""}${RECORRIDO.slice(-6).map(b => `<b>${escapeHtml(nombreDe(b))}</b>`).join(" → ")}`
     : "";
   el.title = RECORRIDO.map(nombreDe).join(" → ");
 }
@@ -491,7 +505,7 @@ async function descargar(boton){
     alert("No se ha podido generar el PDF.\n\n" + (err && err.message || err));
   } finally {
     caja.classList.remove("generando");
-    boton.textContent = "↓ descargar";
+    boton.textContent = "*‧₊˚descargar‧₊˚";
     boton.disabled = false;
   }
 }

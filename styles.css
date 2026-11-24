@@ -143,14 +143,21 @@ body {
 }
 .recorrido b { font-weight: normal; color: var(--link); }
 
-/* descargar el recorrido en pdf */
-.descargar:hover { background: var(--link); color: #fff; text-decoration: none; }
-
+/* botón de descargar: bordes redondeados, fondo blanco, borde y texto gris */
+.descargar {
+  background: #fff;
+  color: #8c8c8c;
+  border: 1px solid #8c8c8c;
+  border-radius: 20px;
+  text-decoration: none;
+  padding: 2px 8px;
+}
+.descargar:hover { background: #8c8c8c; color: #fff; }
 /* la cruz de cerrar todo */
 .cerrar-todo {
   margin-left: auto;
   align-self: center;
-  font-size: 26px;
+  font-size: 20px;
   line-height: 1;
   text-decoration: none;
 }

@@ -1,3 +1,19 @@
+// =====================================================================
+// DICCIONARIO de Sex is Glitching
+//
+// Cada entrada:
+//   termino     la palabra (tiene que coincidir con la primera columna de words.csv)
+//   origen      opcional, p. ej. "Voz ingl."
+//   acepciones  lista de sentidos:
+//                 num  número de la acepción
+//                 cat  categoría gramatical (m., f., adj.…)
+//                 def  definición
+//                 ej   ejemplo sacado del archivo (opcional)
+//
+// Dentro de una definición, "(Ver rabo)" se convierte en un enlace (→ rabo),
+// y "(Ver vaginismo, 2)" remite a la acepción 2 de vaginismo.
+// =====================================================================
+
 const DICCIONARIO = [
   {
     "termino": "anticonceptivas",
@@ -22,6 +38,17 @@ const DICCIONARIO = [
         "num": "2",
         "cat": "m. pl.",
         "def": "Acción que se desea sobre el propio cuerpo. (Ver spanked)"
+      }
+    ]
+  },
+  {
+    "termino": "besar",
+    "acepciones": [
+      {
+        "num": "1",
+        "cat": "tr.",
+        "def": "Gesto que se nombra después, cuando no apetecía. (Ver besos)",
+        "ej": "No me apetecía nada besarnos."
       }
     ]
   },
@@ -140,10 +167,12 @@ const DICCIONARIO = [
     ]
   },
   {
-    "termino": "chochólogo, -a, -e",
+    "termino": "chochóloga, -o, -e",
     "acepciones": [
       {
-        "def": "Persona que habla, trata o tiene autoridad sobre la vulva. De chocho, «vulva», y -logo, del gr. lógos, «discurso, tratado». (Ver chocho)"
+        "num": "1",
+        "cat": "f.",
+        "def": "Persona que habla, trata o tiene autoridad sobre la vulva. De chocho, «vulva», y -logo, del gr. lógos, «discurso, tratado». (Ver chocho, vulva)"
       }
     ]
   },
@@ -338,7 +367,7 @@ const DICCIONARIO = [
       {
         "num": "2",
         "cat": "m.",
-        "def": "Denomina a a otra persona, dicho en mayúsculas.",
+        "def": "Denomina a otra persona, dicho en mayúsculas.",
         "ej": "TENGO UN DUGAR DADDY DE PROFESOR DE CONSTITUCIONAL"
       },
       {
@@ -436,6 +465,18 @@ const DICCIONARIO = [
     ]
   },
   {
+    "termino": "fuckboy",
+    "origen": "Voz ingl.",
+    "acepciones": [
+      {
+        "num": "1",
+        "cat": "m.",
+        "def": "Figura con la que se mide un encuentro que no llegó a ser sexual. (Ver follar)",
+        "ej": "No d forma como fuckboy xq no llegamos a follar."
+      }
+    ]
+  },
+  {
     "termino": "guapa",
     "acepciones": [
       {
@@ -475,7 +516,7 @@ const DICCIONARIO = [
       {
         "num": "1",
         "cat": "adj.",
-        "def": "Dicho del sistema que produce y regula el deseo como si fuera natural y que clasifica como anomalía lo que lo interfiere."
+        "def": "Dicho del sistema que produce y regula el deseo."
       }
     ]
   },
@@ -529,6 +570,18 @@ const DICCIONARIO = [
         "cat": "m.",
         "def": "Pregunta.",
         "ej": "What do you think is your biggest kink?"
+      }
+    ]
+  },
+  {
+    "termino": "kiss",
+    "origen": "Voz ingl.",
+    "acepciones": [
+      {
+        "num": "1",
+        "cat": "intr.",
+        "def": "Sinónimo de cuddle, puede exceder. (Ver cuddle)",
+        "ej": "Sorry if I oppressed you too much this morning w cuddling/kissing."
       }
     ]
   },
@@ -1032,7 +1085,7 @@ const DICCIONARIO = [
       },
       {
         "num": "3",
-        "def": "(Ver xenosexualidad)"
+        "def": "Ocupación deliberada en la sexualidad de un sujeto (Ver xenosexualidad)"
       }
     ]
   },
@@ -1111,7 +1164,7 @@ const DICCIONARIO = [
       {
         "num": "1",
         "cat": "f.",
-        "def": "Aquello sobre lo que habla con autoridad la chochóloga. (Ver chocho, chocho)"
+        "def": "Aquello sobre lo que habla con autoridad la chochóloga. (Ver chocho, chochóloga)"
       }
     ]
   },
@@ -1133,7 +1186,7 @@ const DICCIONARIO = [
       {
         "num": "1",
         "cat": "f.",
-        "def": "Ocupación deliberada de la interferencia en la sexualidad de un sujeto, que se produce como posición epistémica y política elegida. Del gr. xénos, «extranjero», en el sentido que le da el xenofeminismo (Laboria Cuboniks, 2015)."
+        "def": "Ocupación deliberada de la interferencia en la sexualidad de un sujeto, que se produce como posición epistémica y política elegida. Del gr. xénos, «extranjero», en el sentido que le da el xenofeminismo (Laboria Cuboniks, 2015). (Ver vaginismo)"
       }
     ]
   }

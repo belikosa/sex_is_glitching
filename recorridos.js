@@ -72,15 +72,13 @@ const RECORRIDOS = {
 };
 
 const VAGINISMO = {
-  minimo: 5,
-  cuerpoYDeseo: [
-    "coño", "culo", "tetas", "polla", "rabo", "pussy", "cock", "dick", "tits",
-    "follar", "correrse", "orgasmo", "desnudo", "placer", "cama", "chupar",
-    "mamada", "azotes", "choked", "bruised", "spanked", "cachondo", "horny",
-    "wet", "sexo", "sex", "sexual", "nude",
-  ],
+  // vaginismo: siempre la 1; la 2 (anomalía) si se ha pasado por xenosexualidad;
+  // la 3 (→ xenosexualidad) si se ha pasado por coño, culo, tetas, follar o cama
+  minimo: 1,
+  cuerpoYDeseo: [],
   reglas: [
-    { desde: ["pélvico", "anticonceptivas"], acepcion: "2" },
+    { desde: ["xenosexualidad","cuerpo","cuddle","kiss"], acepcion: "2" },
+    { desde: ["follar"], acepcion: "3" },
   ],
   sino: "1",
   final: "3",

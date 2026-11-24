@@ -417,7 +417,7 @@ function aplicarBusqueda(){
 
 
 // ---------- descargar el recorrido en PDF ----------
-// Solo las palabras pulsadas, con la definición tal como salió y sus mensajes.
+// Solo las palabras pulsadas, con la definición tal como salió (sin los mensajes).
 // Lo genera lib/html2pdf.bundle.min.js. El diseño está al final de styles.css.
 function prepararPDF(){
   const caja = document.getElementById("impresion");
@@ -430,20 +430,26 @@ function prepararPDF(){
       <article class="imp-palabra">
         <p class="imp-lema">${escapeHtml(w)}<span class="imp-n">${cuentaDe(w)}</span></p>
         <div class="imp-def pal-def">${definicionHTML(w, palabraLi(w).classList.contains("abierta") ? "vivo" : "fijo")}</div>
-        ${mensajesHTML(w)}
       </article>`).join("")}
     <p class="imp-creditos">Sex is Glitching es un archivo de mensajes privados ordenado como un diccionario, de La Jeta. Las definiciones de este documento se han formado con tu recorrido: otro recorrido habría escrito otro diccionario.</p>`;
   return caja;
 }
 
-function cargarHtml2pdf(){   // la librería solo se carga la primera vez que alguien descarga
-  if(window.html2pdf) return Promise.resolve();
+// la librería solo se carga la primera vez que alguien descarga;
+// la busca en la carpeta lib/ y, si no está, junto a index.html
+function cargarScript(src){
   return new Promise((ok, mal) => {
     const s = document.createElement("script");
-    s.src = "lib/html2pdf.bundle.min.js";
-    s.onload = ok; s.onerror = mal;
+    s.src = src;
+    s.onload = ok;
+    s.onerror = () => { s.remove(); mal(new Error("no encuentro " + src)); };
     document.head.appendChild(s);
   });
+}
+async function cargarHtml2pdf(){
+  if(window.html2pdf) return;
+  try{ await cargarScript("lib/html2pdf.bundle.min.js"); }
+  catch(e){ await cargarScript("html2pdf.bundle.min.js"); }
 }
 
 async function descargar(boton){
@@ -461,7 +467,7 @@ async function descargar(boton){
       image: {type: "jpeg", quality: 0.95},
       html2canvas: {scale: 2, backgroundColor: "#ffffff"},
       jsPDF: {unit: "mm", format: "a4"},
-      pagebreak: {mode: ["css"], avoid: [".msg", ".imp-def", ".imp-lema"]},
+      pagebreak: {mode: ["css"], avoid: [".imp-palabra"]},
     }).from(caja).toPdf().get("pdf").then(pdf => {      // pie de página
       const n = pdf.internal.getNumberOfPages();
       for(let i = 1; i <= n; i++){
@@ -474,7 +480,7 @@ async function descargar(boton){
     }).save();
   } catch(err){
     console.error(err);
-    alert("No se ha podido generar el PDF.");
+    alert("No se ha podido generar el PDF.\n\n" + (err && err.message || err));
   } finally {
     caja.classList.remove("generando");
     boton.textContent = "↓ descargar";

@@ -1,10 +1,3 @@
-/* =====================================================================
-   SEX IS GLITCHING — estilos del archivo (index.html)
-   Fondo blanco, una sans básica, una columna por letra con la letra
-   en Cairopixel y las palabras como links rosas subrayados.
-   Al final está el diseño del PDF que se descarga.
-   ===================================================================== */
-
 /* ---------- tipografías ---------- */
 @font-face {
   font-family: bodyFont;                 /* las letras A, B, C… */
@@ -22,8 +15,8 @@
   --linea: #e2e2e2;
   --link: #f01ad3;          /* rosa principal */
   --rosa-anos: #ff6fdc;     /* los años */
-  --rosa-dir: #f2a0d8;      /* sent to me / sent by me */
-  --texto-msg: #7a7a7a;     /* las frases del chat */
+  --rosa-dir: #8a8a8a;      /* sent to me / sent by me */
+  --texto-msg: #8a8a8a;     /* las frases del chat */
 }
 
 /* ---------- base ---------- */
@@ -93,9 +86,9 @@ body {
 .buscar {
   -webkit-appearance: none;
   appearance: none;
-  align-self: center;
+  align-self: top;
   width: 170px;
-  height: 26px;
+  height: 2opx;
   margin: 0;
   padding: 0 12px;
   border: 1px solid var(--link);
@@ -324,7 +317,7 @@ body {
 #impresion .imp-recorrido { margin: 0 0 8mm; color: var(--gris); }
 #impresion .imp-recorrido b { font-weight: normal; color: var(--link); }
 
-#impresion .imp-palabra { border-top: 1px solid #111; padding-top: 3mm; margin-bottom: 8mm; }
+#impresion .imp-palabra { border-top: 1px solid #111; padding-top: 3mm; margin-bottom: 6mm; }
 #impresion .imp-lema {
   margin: 0 0 2mm;
   font-size: 16pt;
@@ -333,12 +326,10 @@ body {
   text-underline-offset: 3px;
 }
 #impresion .imp-n { margin-left: 4px; font-size: 9pt; color: var(--gris); }
-#impresion .imp-def { margin-bottom: 3mm; padding-bottom: 2mm; border-bottom: 1px solid #111; font-size: 10pt; }
-
-#impresion .msg { padding: 1.6mm 0; border-bottom: none; border-top: 1px solid var(--linea); }
-#impresion .msg-meta { font-size: 7.5pt; color: var(--gris); }
-#impresion .msg-texto { font-size: 9.5pt; color: #6f6f6f; }
-#impresion .msg-texto .w { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+#impresion .imp-def { padding: 0; font-size: 11pt; line-height: 1.45; }
+#impresion .imp-def .num,
+#impresion .imp-def .cat { font-size: 9pt; }
+#impresion .imp-def .remite a { text-decoration: underline; text-underline-offset: 2px; }
 
 /* créditos al final, en una página aparte */
 #impresion .imp-creditos {

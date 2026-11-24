@@ -140,17 +140,8 @@ const DICCIONARIO = [
     "acepciones": [
       {
         "cat": "m.",
-        "def": "Tratamiento afectuoso colectivo. (Ver chochólogo)",
+        "def": "Tratamiento afectuoso colectivo. (Ver chochóloga)",
         "ej": "El día d los inocentes chochos."
-      }
-    ]
-  },
-  {
-    "termino": "chochología",
-    "acepciones": [
-      {
-        "cat": "f.",
-        "def": "El saber o el discurso constituido por quien habla, trata o tiene autoridad sobre la vulva. (Ver chochólogo)"
       }
     ]
   },
@@ -158,7 +149,7 @@ const DICCIONARIO = [
     "termino": "chochólogo, -a, -e",
     "acepciones": [
       {
-        "def": "Persona que habla, trata o tiene autoridad sobre la vulva. De chocho, «vulva», y -logo, del gr. lógos, «discurso, tratado». (Ver chochología)"
+        "def": "Persona que habla, trata o tiene autoridad sobre la vulva. De chocho, «vulva», y -logo, del gr. lógos, «discurso, tratado». (Ver chocho)"
       }
     ]
   },
@@ -1091,7 +1082,7 @@ const DICCIONARIO = [
     "acepciones": [
       {
         "cat": "f.",
-        "def": "Aquello sobre lo que habla con autoridad la chochóloga. (Ver chocho, chochólogo)"
+        "def": "Aquello sobre lo que habla con autoridad la chochóloga. (Ver chocho, chocho)"
       }
     ]
   },

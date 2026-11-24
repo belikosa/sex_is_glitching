@@ -1,17 +1,3 @@
-// =====================================================================
-// RECORRIDOS: la definición que sale depende de las palabras que la persona
-// ha pulsado antes.
-//
-// Para cada palabra:
-//   reglas  lista de { desde: [palabras], acepcion: "n" }.
-//           Se mira el recorrido hacia atrás, de la última palabra pulsada a la
-//           primera: la primera palabra que aparezca en alguna regla decide.
-//   sino    acepción que sale si ninguna palabra del recorrido encaja.
-//
-// Las palabras se escriben como en el diccionario; tildes y mayúsculas dan igual.
-// Las palabras que no están aquí enseñan todas sus acepciones.
-// =====================================================================
-
 const RECORRIDOS = {
   "cita": {
     reglas: [
@@ -85,9 +71,6 @@ const RECORRIDOS = {
   },
 };
 
-// Vaginismo depende de todo el recorrido, no de una sola palabra:
-// cuando la persona ha pasado por al menos MINIMO palabras distintas del cuerpo
-// y del deseo, la definición se convierte en la acepción 3 (→ xenosexualidad).
 const VAGINISMO = {
   minimo: 5,
   cuerpoYDeseo: [
@@ -96,7 +79,6 @@ const VAGINISMO = {
     "mamada", "azotes", "choked", "bruised", "spanked", "cachondo", "horny",
     "wet", "sexo", "sex", "sexual", "nude",
   ],
-  // antes de llegar al mínimo:
   reglas: [
     { desde: ["pélvico", "anticonceptivas"], acepcion: "2" },
   ],

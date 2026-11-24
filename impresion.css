@@ -1,10 +1,4 @@
-/* =========================================================
-   Sex is Glitching — el PDF que se descarga con «↓ descargar»
 
-   Puedes retocar aquí todo el diseño del PDF: tamaños, colores,
-   separaciones… sin tocar la web. Los márgenes de la página y el
-   número de página están en script.js (busca «html2pdf().set»).
-   ========================================================= */
 
    @page {
     size: A4;
@@ -105,12 +99,4 @@
   }
   #impresion .vacio { font-size: 8.5pt; color: var(--gris); }
   
-  /* ---------- créditos al final (como el texto verde de Cyberfeminism Index) ---------- */
-  #impresion .imp-creditos {
-    break-before: page;
-    font-size: 20pt;
-    line-height: 1.25;
-    color: var(--rosa);
-    margin: 0;
-  }
   

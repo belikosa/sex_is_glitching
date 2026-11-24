@@ -339,14 +339,6 @@ body {
 #impresion .imp-def .cat { font-size: 9pt; }
 #impresion .imp-def .remite a { text-decoration: underline; text-underline-offset: 2px; }
 
-/* créditos al final, en una página aparte */
-#impresion .imp-creditos {
-  break-before: page;
-  margin: 0;
-  font-size: 20pt;
-  line-height: 1.25;
-  color: var(--link);
-}
 
 /* ---------- móvil ---------- */
 @media (max-width: 700px) {

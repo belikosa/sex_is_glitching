@@ -172,10 +172,18 @@ function leerDescripcion(){
 }
 const frasesDescripcion = w => DESCRIPCION.filter(f => f.tags.includes(w));
 
+// enlaza las palabras de la descripción sin tocar el resto del HTML (<i>, <b>…)
 function pintarDescripcion(){
   document.querySelectorAll(".descripcion p").forEach(p => {
-    p.innerHTML = highlightAll(p.textContent);
-    p.querySelectorAll(".w").forEach(w => { if(!palabraLi(w.dataset.key)) w.replaceWith(w.textContent); });
+    const paseo = document.createTreeWalker(p, NodeFilter.SHOW_TEXT);
+    const textos = [];
+    while(paseo.nextNode()) textos.push(paseo.currentNode);
+    textos.forEach(nodo => {
+      const caja = document.createElement("span");
+      caja.innerHTML = highlightAll(nodo.textContent);
+      caja.querySelectorAll(".w").forEach(w => { if(!palabraLi(w.dataset.key)) w.replaceWith(w.textContent); });
+      nodo.replaceWith(...caja.childNodes);
+    });
   });
 }
 function marcarEnDescripcion(){

@@ -13,13 +13,13 @@
   
   @media print {
     /* se esconde la web y solo se ve el recorrido */
-    html, body.hhha {
+    html, body {
       height: auto !important;
       overflow: visible !important;
       display: block !important;
       background: #fff !important;
     }
-    body.hhha > *:not(.imp-fuera) { display: none !important; }
+    body > *:not(.imp-fuera) { display: none !important; }
     .imp-fuera { position: static !important; }
     #impresion { display: block !important; }
   }
@@ -113,3 +113,4 @@
     color: var(--rosa);
     margin: 0;
   }
+  

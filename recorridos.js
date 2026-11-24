@@ -1,5 +1,6 @@
-// Recorridos: la definición que sale en la columna de la derecha depende de
-// las palabras que la persona ha pulsado antes.
+// =====================================================================
+// RECORRIDOS: la definición que sale depende de las palabras que la persona
+// ha pulsado antes.
 //
 // Para cada palabra:
 //   reglas  lista de { desde: [palabras], acepcion: "n" }.
@@ -8,7 +9,8 @@
 //   sino    acepción que sale si ninguna palabra del recorrido encaja.
 //
 // Las palabras se escriben como en el diccionario; tildes y mayúsculas dan igual.
-// Las palabras que no están aquí enseñan todas sus acepciones, como siempre.
+// Las palabras que no están aquí enseñan todas sus acepciones.
+// =====================================================================
 
 const RECORRIDOS = {
   "cita": {

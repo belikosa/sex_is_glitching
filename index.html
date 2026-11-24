@@ -3,17 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sex is Glitching Archive</title>
-<link rel="icon" href="Icon/puter.png" type="image/png">
-<link rel="apple-touch-icon" href="Icon/puter.png">
-<link rel="stylesheet" href="styles.css?v=47">
-<link rel="stylesheet" href="archivo.css?v=47">
-<link rel="stylesheet" href="impresion.css?v=47">
+<title>Sex is Glitching</title>
+<link rel="icon" href="Icon/puter.png">
+<link rel="stylesheet" href="styles.css?v=50">
 </head>
-<body class="hhha">
-  <!-- título en vertical -->
+<body>
+  <!-- lateral: título y descripción (pulsar el título la guarda o la abre) -->
   <aside class="lateral">
-    <h1 class="titulo"><button type="button" id="guardar-lateral" aria-expanded="true" title="guardar / abrir">Sex is Glitching</button></h1>
+    <h1 class="titulo">Sex is Glitching</h1>
     <div class="descripcion">
       <p>¿Qué pasa cuando poner el cuerpo supone una molestia, y cómo se desea desde ahí? Sex is Glitching es un archivo de mensajes privados ordenado como un diccionario, en el que las palabras con las que hablamos de sexo y de deseo significan lo que se dijo con ellas: cada entrada se define a partir de los mensajes privados en los que aparece. Ninguna palabra significa siempre lo mismo: lo que dice depende del camino que te ha traído hasta ella.</p>
       <p>Como la experiencia del sexo no es siempre normativa ni universal, a veces hacen falta palabras nuevas que se ajusten a lo que pasa: la chochóloga, una persona que habla con autoridad sobre la vulva, y su chochología; o la xenosexualidad, que sitúa el error en el sistema heterosocial que regula el deseo como si fuera natural y clasifica como anomalía todo lo que lo interfiere.</p>
@@ -21,27 +18,25 @@
   </aside>
 
   <div class="zona">
-    <!-- años y dirección: filtran todo el archivo -->
     <div class="barra">
-      <input type="search" id="buscar" class="buscar" placeholder="buscar" aria-label="buscar una palabra" autocomplete="off">
-      <div id="filtros" class="filtros" aria-label="filtros"></div>
+      <input type="search" id="buscar" class="buscar" placeholder="buscar" autocomplete="off">
+      <div id="filtros" class="filtros"></div>
       <p id="recorrido" class="recorrido" hidden></p>
-      <button type="button" id="descargar" class="descargar" hidden title="guardar tu recorrido como PDF">↓ descargar</button>
-      <button type="button" id="cerrar-todas" class="cerrar-todo" title="cerrar todo" aria-label="cerrar todo">×</button>
+      <button type="button" id="descargar" class="descargar" hidden>↓ descargar</button>
+      <button type="button" id="cerrar-todas" class="cerrar-todo" title="cerrar todo">×</button>
     </div>
 
-    <!-- una columna por letra; dentro, las palabras del archivo -->
+    <!-- una columna por letra -->
     <main id="tiras" class="columnas"></main>
 
     <footer class="pie">© 2026 Sex is Glitching · La Jeta</footer>
   </div>
 
-  <script src="diccionario-data.js?v=47"></script>
-  <script src="diccionario.js?v=47"></script>
-  <script src="terminos-data.js?v=47"></script>
-  <script src="recorridos.js?v=47"></script>
-  <script src="script.js?v=47"></script>
-  <!-- lo que se descarga: se rellena al pulsar «↓ descargar» -->
-  <div class="imp-fuera" aria-hidden="true"><section id="impresion"></section></div>
+  <!-- lo que se descarga en PDF -->
+  <div class="imp-fuera"><section id="impresion"></section></div>
+
+  <script src="diccionario.js?v=50"></script>
+  <script src="recorridos.js?v=50"></script>
+  <script src="script.js?v=50"></script>
 </body>
 </html>

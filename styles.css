@@ -1,865 +1,370 @@
+/* =====================================================================
+   SEX IS GLITCHING — estilos del archivo (index.html)
+   Fondo blanco, una sans básica, una columna por letra con la letra
+   en Cairopixel y las palabras como links rosas subrayados.
+   Al final está el diseño del PDF que se descarga.
+   ===================================================================== */
+
+/* ---------- tipografías ---------- */
 @font-face {
-  font-family: bodyFont;
+  font-family: bodyFont;                 /* las letras A, B, C… */
   src: url(Fonts/cairopixel/Cairopixel.ttf);
 }
-
 @font-face {
-  font-family: homeFont;
+  font-family: homeFont;                 /* el título «Sex is Glitching» */
   src: url(Fonts/cavalhatriz/Cavalhatriz.ttf);
 }
 
-* {
-  box-sizing: border-box;
+/* ---------- colores (cámbialos aquí) ---------- */
+:root {
+  --tinta: #111;
+  --gris: #8a8a8a;
+  --linea: #e2e2e2;
+  --link: #f01ad3;          /* rosa principal */
+  --rosa-anos: #ff6fdc;     /* los años */
+  --rosa-dir: #f2a0d8;      /* sent to me / sent by me */
+  --texto-msg: #7a7a7a;     /* las frases del chat */
 }
 
-html,
+/* ---------- base ---------- */
+* { box-sizing: border-box; }
+
+html { background: #fff; }
+
 body {
+  height: 100vh;
   margin: 0;
-  background: #000;
+  display: flex;
+  overflow: hidden;
+  background: #fff;
+  color: var(--tinta);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.35;
 }
 
-body {
-  font-family: bodyFont;
-  color: #f01ad3;
-  font-size: 20px;
-  line-height: 2.3;
-  padding: 40px 24px 120px;
-  max-width: 960px;
-  margin: 0 auto;
+/* ---------- lateral: «Sex is Glitching» y la descripción ---------- */
+.lateral {
+  flex: 0 0 200px;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 14px 18px 20px 16px;
+  transition: flex-basis 0.25s ease;
 }
-/* Título unificado: misma tipografía y color en home, archivo, diccionario y proyecto */
-h1,
-h2 {
+.titulo {
+  margin: 0 0 18px;
   font-family: homeFont, monospace;
   font-weight: 500;
-  color: #ffaffb;
-}
-
-h2 {
   font-size: 44px;
-  line-height: 1;
-  margin: 0;
-}
-
-/* cabecera de la página del archivo: volver + título */
-.pagina-top {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
-  padding: 0 0 14px;
-}
-
-#home{
-  text-align:center;
-}
-#home h1{
-  font-family:'homeFont', monospace;
-  font-size:130px;
-  font-weight:500;
-  letter-spacing:1px;
-  margin:500 0 0 0px;
-  color:#ffaffb;
-  animation: blink-text 0.7s steps(1) infinite;
-}
-
-@keyframes blink-text{
-  0%, 49%{ opacity:1; }
-  50%, 100%{ opacity:0; }
-}
-
-.enter {
-  position: relative;
-  text-decoration: none;
-  display: inline-flex;
-
-  background: #000000;
-  color: #ffaffb;
-
-  border: 1px solid #ffaffb;
-  border-radius: 25px;
-
-  width: 110px;
-  height: 40px;
-
-  margin: 2px;
-  padding: 0 3px;
-
-  justify-content: center;
-  align-items: center;
-
-  vertical-align: middle;
-  cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-}
-
-/* hover / foco de teclado: se invierte (rosa claro con texto negro) */
-.enter:hover,
-.enter:focus-visible {
-  background: #ffaffb;
+  line-height: 0.95;
   color: #000;
+}
+.titulo { cursor: pointer; }
+
+/* guardado: se esconde la descripción */
+.lateral.guardada { flex-basis: 190px; cursor: pointer; }
+.lateral.guardada:hover { background: #f6f6f6; }
+.lateral.guardada .descripcion { display: none; }
+
+.descripcion p {
+  margin: 0 0 0.8em;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* ---------- zona principal ---------- */
+.zona {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 14px 8px 0;
+}
+
+/* barra de arriba: buscador, filtros, recorrido, descargar y cruz */
+.barra {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 2px 0 8px 12px;
+}
+
+/* buscador: rosa sobre blanco */
+.buscar {
+  -webkit-appearance: none;
+  appearance: none;
+  align-self: center;
+  width: 170px;
+  height: 26px;
+  margin: 0;
+  padding: 0 12px;
+  border: 1px solid var(--link);
+  border-radius: 25px;
+  background: #fff;
+  color: var(--link);
+  font: inherit;
+  font-size: 13px;
   outline: none;
 }
+.buscar::placeholder { color: var(--link); opacity: 0.6; }
+.buscar:focus { border-width: 2px; padding: 0 11px; }
+.buscar::-webkit-search-cancel-button { display: none; }
 
-/* Contenedor del texto */
-#cloud {
-  display: block;
-}
-
-  .w {
-    position: relative;
-    display: inline-flex;
-  
-    background: #f01ad3;
-    color: #fff;
-  
-    border: 1px solid #000;
-    border-radius: 25px;
-  
-    width: 125px;
-    height: 40px;
-  
-    margin: 2px;
-    padding: 0 3px;
-  
-    justify-content: center;
-    align-items: center;
-  
-    vertical-align: middle;
-    cursor: pointer;
-  }
-  
-/* Palabra integrada en una frase */
-.w.inline {
-  background: transparent;
-  border: none;
-  border-radius: 0;
-
-  width: auto;
-  height: auto;
-
-  padding: 0;
-  margin: 0;
-
-  display: inline;
-
-  color: #f01ad3;
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 3px;
-
-  cursor: pointer;
-}
-
-/* Información desplegada encima de la palabra */
-.meta {
-  position: absolute;
-
-  bottom: calc(100% + 5px);
-  left: 50%;
-  transform: translateX(-50%);
-
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
-
-  white-space: nowrap;
-  z-index: 10;
-}
-
-
-/* Fecha */
-.d {
-  background: #ffaffb;
-  color: #000;
-
-  border: 1px solid #000;
-  border-radius: 25px;
-
-  height: 40px;
-  padding: 0 10px;
-  margin: 0;
-
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-}
-
-
-/* Sent to me / sent by me */
-.n {
-  background: #000;
-  color: #fff;
-
-  border: 1px solid #fff;
-  border-radius: 25px;
-
-  height: 40px;
-  padding: 0 10px;
-  margin: 0;
-
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-}
-
-
-/* Estado activo */
-.w.active,
-.d.active,
-.n.active {
-  outline: 2px solid #fff;
-  outline-offset: 1px;
-}
-
-/* ---------- Página diccionario / archivo ---------- */
-body.dicc {
-  line-height: 1.4;
-  padding-top: 0;
-}
-
-.dicc-top {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 18px 0 14px;
-  background: #000;
-  border-bottom: 1px solid #f01ad3;
-}
-
-.grupo {
-  margin: 28px 0 0;
-}
-
-.grupo-titulo {
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  color: #ffaffb;
-  opacity: 0.7;
-  margin-bottom: 10px;
-}
-
-.grupo-items {
+/* filtros: años y sent to me / sent by me */
+.filtros {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-}
-
-/* etiquetas del índice: tamaño según la palabra, no ancho fijo */
-.grupo-items .w,
-.grupo-items .d,
-.grupo-items .n {
-  width: auto;
-  height: 34px;
-  margin: 0;
-  padding: 0 14px;
-  font-size: 18px;
-}
-
-/* palabras dentro de los mensajes: misma pastilla que la nube */
-.qtext .w {
-  width: auto;
-  height: 30px;
-  margin: 2px 1px;
-  padding: 0 11px;
-}
-
-/* Resultados: sin recuadro */
-.results {
-  margin: 28px 0 4px;
-}
-
-.rlabel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 0 6px;
-  color: #ffaffb;
-  font-size: 17px;
-}
-
-.cerrar {
-  font-family: bodyFont, monospace;
-  font-size: 24px;
-  line-height: 1;
-  color: #ffaffb;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0 4px;
-}
-
-.qblock {
-  padding: 14px 0;
-  border-bottom: 1px dotted #5c2a56;
-}
-
-.qblock:last-child {
-  border-bottom: none;
-}
-
-.qmeta {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 8px;
-}
-
-.qmeta .d,
-.qmeta .n {
-  height: 24px;
-  padding: 0 9px;
+  gap: 2px 10px;
   font-size: 13px;
 }
-
-.qtext {
-  font-size: 19px;
-  line-height: 1.9;
-  color: #ffd6fa;
+.filtros button,
+.descargar,
+.cerrar-todo {
+  font: inherit;
+  font-size: 13px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  white-space: nowrap;
 }
+.filtros [data-ano] { color: var(--rosa-anos); }
+.filtros [data-dir] { color: var(--rosa-dir); }
+.filtros .active { background: var(--link); color: #fff; text-decoration: none; padding: 0 3px; }
+.filtro-sep { color: var(--gris); }
+.filtros .filtro-limpiar { color: var(--gris); }
 
-@media (max-width: 600px) {
-  h2 { font-size: 34px; }
-  .grupo-items .w,
-  .grupo-items .d,
-  .grupo-items .n { font-size: 16px; height: 32px; padding: 0 11px; }
-  .qtext { font-size: 17px; }
+/* tu recorrido */
+.recorrido {
+  margin: 0 0 0 auto;
+  max-width: 45%;
+  font-size: 12px;
+  color: var(--gris);
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+.recorrido b { font-weight: normal; color: var(--link); }
 
-/* ---------- Página "sobre mí" ---------- */
-body.sobre {
-  max-width: 680px;
-  padding: 80px 24px 120px;
-}
+/* descargar el recorrido en pdf */
+.descargar:hover { background: var(--link); color: #fff; text-decoration: none; }
 
-/* separación bajo el título de «proyecto» */
-.sobre-texto h2 { margin-bottom: 40px; }
-
-/* Texto largo con la tipografía del proyecto, ajustada para leer */
-.sobre-texto p {
-  font-family: bodyFont, monospace;
-  font-size: 21px;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-  word-spacing: 0.12em;
-  color: #ffd6fa;
-  margin: 0 0 1.6em;
-  text-align: left;
-  -webkit-font-smoothing: none;
-}
-
-/* La pregunta final destacada, en el rosa del proyecto */
-.sobre-texto p.pregunta {
-  color: #f01ad3;
-  border-left: 2px solid #f01ad3;
-  padding-left: 18px;
-  margin: 2em 0 2.4em;
-}
-
-/* botones al pie de «proyecto» */
-.sobre-botones {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-/* botón con texto largo: el ancho se ajusta a la palabra */
-.enter.ancho {
-  width: auto;
-  padding: 0 18px;
-}
-
-@media (max-width: 600px) {
-  .sobre-texto p { font-size: 18px; line-height: 1.45; }
-}
-/* ---------- Diccionario descargable ---------- */
-/* botón de descarga con flecha, a la derecha de la cabecera */
-.descarga {
+/* la cruz de cerrar todo */
+.cerrar-todo {
   margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 25px;
-  border: 1px solid #f01ad3;
-  background: #f01ad3;
-  color: #fff;
+  align-self: center;
+  font-size: 26px;
+  line-height: 1;
   text-decoration: none;
+}
+.cerrar-todo:hover { color: #111; }
+.recorrido:not([hidden]) ~ .cerrar-todo,
+.descargar:not([hidden]) + .cerrar-todo { margin-left: 0; }
+
+/* ---------- columnas A–Z ---------- */
+.columnas {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+}
+
+.col {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 28px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-left: 1px solid var(--linea);
+  box-shadow: -8px 0 12px -8px rgba(0,0,0,0.18);   /* láminas apiladas */
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex-basis 0.3s ease, min-width 0.3s ease;
+}
+.col.vacia { cursor: default; background: #fafafa; }
+.col.vacia .col-letra { color: #c9c9c9; }
+.col:not(.abierta):not(.vacia):hover { background: #f6f6f6; }
+
+/* letra abierta con una palabra desplegada */
+.col.abierta {
+  flex: 0 0 auto;
+  width: clamp(280px, 25vw, 380px);
+  cursor: default;
+  transition: width 0.2s ease;
+}
+/* letra abierta sin ninguna palabra desplegada: solo lo que ocupa la lista */
+.col.abierta:not(:has(.pal.abierta)) {
+  width: max-content;
+  min-width: 90px;
+  max-width: 220px;
+}
+
+.col-letra {
+  flex: 0 0 auto;
+  padding: 4px 6px 6px;
+  background: none;
+  border: none;
+  color: #000;
+  font-family: bodyFont, monospace;     /* la letra pixel */
+  font-size: 48px;
+  line-height: 1;
+  text-align: left;
+  white-space: nowrap;
   cursor: pointer;
 }
 
-.descarga .flecha {
-  display: inline-block;
-  font-size: 22px;
-  line-height: 1;
-  transition: transform 0.15s;
-}
-
-.descarga:hover {
-  background: #000;
-  color: #f01ad3;
-}
-
-.descarga:hover .flecha {
-  transform: translateY(3px);
-}
-
-/* cabecera del diccionario: dos filas (título + índice) */
-.dic-cabecera {
-  flex-direction: column;
-  align-items: stretch;
-  gap: 12px;
-}
-
-.dic-fila {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  flex-wrap: wrap;
-}
-
-#letras {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
+.col-cuerpo {
   flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0 8px 20px;
 }
+.col.abierta .col-cuerpo { overflow-y: auto; scrollbar-width: thin; }
 
-.letra {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 30px;
-  height: 30px;
-  padding: 0 6px;
-  border-radius: 25px;
-  border: 1px solid #ffaffb;
-  color: #ffaffb;
-  text-decoration: none;
-  font-size: 16px;
-}
+/* buscando: se esconden las palabras y letras que no coinciden */
+.columnas.buscando .pal.no-coincide { display: none; }
+.columnas.buscando .col.sin-resultado .col-letra { color: #d6d6d6; }
+.columnas.buscando .col.sin-resultado .col-cuerpo { visibility: hidden; }
 
-a.letra:hover {
-  background: #ffaffb;
-  color: #000;
-}
-
-.letra.vacia {
-  opacity: 0.25;
-}
-
-#buscar {
-  font-family: bodyFont, monospace;
-  font-size: 16px;
-  height: 34px;
-  width: 200px;
-  padding: 0 14px;
-  border-radius: 25px;
-  border: 1px solid #f01ad3;
-  background: #000;
-  color: #ffd6fa;
-  outline: none;
-}
-
-#buscar::placeholder {
-  color: #f01ad3;
-  opacity: 0.7;
-}
-
-#buscar:focus {
-  border-color: #ffaffb;
-}
-
-.dic-letra {
-  scroll-margin-top: 150px;
-}
-
-#diccionario {
-  margin-top: 24px;
-}
-
-.dic-letra h3 {
-  font-family: homeFont, monospace;
-  font-weight: 500;
-  font-size: 44px;
-  line-height: 1;
-  color: #ffaffb;
-  margin: 0 0 10px;
-}
-
-.dic-entrada {
-  scroll-margin-top: 150px;
-}
-
-/* entrada o acepción enlazada directamente (#termino, #termino-2) */
-.dic-entrada:target .w {
-  outline: 2px solid #fff;
-  outline-offset: 1px;
-}
-
-.acepciones li:target {
-  background: #2a0024;
-  border-radius: 6px;
-}
-
-/* remisiones: (→ palabra) */
-.remite {
-  color: #ffaffb;
-}
-
-.remite a {
-  color: #f01ad3;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-#vacio {
-  margin-top: 36px;
-  color: #ffaffb;
-}
-
-.dic-entrada {
-  scroll-margin-top: 150px;
-  padding: 16px 0 14px;
-  border-bottom: 1px dotted #5c2a56;
-  font-size: 19px;
-  line-height: 1.5;
-}
-
-.dic-lema {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 6px;
-}
-
-.dic-entrada .w {
-  width: auto;
-  height: 32px;
-  margin: 0;
-  padding: 0 13px;
-  text-decoration: none;
-}
-
-.origen {
-  font-size: 15px;
-  color: #ffaffb;
-}
-
-.acepciones {
+/* ---------- palabras de cada letra ---------- */
+.col-palabras {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.acepciones li {
-  scroll-margin-top: 150px;
-  padding: 4px 6px;
-  margin: 0 -6px;
-  color: #ffd6fa;
-}
-
-.acepciones .num {
-  color: #f01ad3;
-  margin-right: 4px;
-}
-
-/* categoría gramatical (m., f. pl., adj.…) */
-.acepciones .cat {
-  color: #ffaffb;
-  font-size: 0.82em;
-  margin-right: 4px;
-}
-
-/* ejemplo sacado del archivo */
-.acepciones .ej {
-  color: #f01ad3;
-  margin-left: 4px;
-}
-
-.dic-ver {
-  margin: 6px 0 0;
-}
-
-.dic-nota {
-  margin: 8px 0 0;
-  font-size: 16px;
-  color: #ffaffb;
-  opacity: 0.8;
-}
-
-@media (max-width: 600px) {
-  .descarga { padding: 0 12px; }
-  .dic-letra h3 { font-size: 34px; }
-  #buscar { width: 100%; }
-  .dic-entrada { font-size: 17px; }
-  .dic-lema { flex-wrap: wrap; }
-}
-/* botón empujado a la derecha de su fila (cabeceras) */
-.a-la-derecha {
-  margin-left: auto;
-}
-
-/* botón al final de la página, abajo a la derecha */
-.pie-botones {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 36px;
-}
-
-/* ---------- Fotos de fondo: una por página ---------- */
-/* Para cambiar la foto de una página, cambia su ruta aquí. */
-body.home     { --fondo: url("Icon/fondo.jpg"); }
-body.sobre    { --fondo: url("Icon/fondo2.jpg"); }
-body.archivo  { --fondo: url("Icon/fondo3.jpg"); }
-body.dicc     { --fondo: url("Icon/fondo3.jpg"); }
-body.terminos { --fondo: url("Icon/fondo2.jpg"); }
-
-/* Cuánto se oscurece cada foto (0 = nada, 1 = negro).
-   Las páginas con mucho texto necesitan más para que se lea. */
-body.home     { --oscuro: 0.45; }
-body.sobre    { --oscuro: 0.65; }
-body.archivo  { --oscuro: 0.70; }
-body.dicc     { --oscuro: 0.75; }
-
-body.home::before,
-body.sobre::before,
-body.archivo::before,
-body.dicc::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(rgba(0, 0, 0, var(--oscuro)), rgba(0, 0, 0, var(--oscuro))),
-    var(--fondo) center / cover no-repeat;
-}
-
-/* el fondo negro general taparía la foto: lo quitamos del body */
-body.home,
-body.sobre,
-body.archivo,
-body.dicc {
-  background: transparent;
-}
-
-/* se ve mientras carga la foto o si no la encuentra */
-html {
-  background: #000;
-}
-
-/* la cabecera fija del diccionario deja ver un poco la foto al hacer scroll */
-.dicc-top {
-  background: rgba(0, 0, 0, 0.85);
-}
-/* ---------- Archivo como portada: dos columnas ---------- */
-/* izquierda: nube y mensajes · derecha: definiciones de las palabras elegidas */
-body.archivo {
-  max-width: 1320px;
-  line-height: 1.6;
-}
-
-.archivo-columnas {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 380px;
-  gap: 40px;
-  align-items: start;
-}
-
-#definiciones {
-  position: sticky;
-  top: 24px;
-  max-height: calc(100vh - 48px);
-  overflow-y: auto;
-  padding: 0 4px 24px 22px;
-  border-left: 1px solid #f01ad3;
-  margin-top: 28px;
-  scrollbar-width: thin;
-  scrollbar-color: #f01ad3 transparent;
-}
-
-.def-vacio {
-  margin: 0;
-  font-size: 17px;
-  line-height: 1.5;
-  color: #ffaffb;
-  opacity: 0.7;
-}
-
-.def-cabecera {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 4px;
-}
-
-.def-limpiar,
-.def-cerrar {
-  font-family: bodyFont, monospace;
-  background: none;
-  border: none;
-  color: #ffaffb;
-  cursor: pointer;
-  padding: 0 4px;
-}
-
-.def-limpiar { font-size: 15px; text-decoration: underline; text-underline-offset: 3px; }
-.def-cerrar  { font-size: 24px; line-height: 1; float: right; margin-top: 18px; }
-
-.def-limpiar:hover,
-.def-cerrar:hover { color: #fff; }
-
-/* cada definición: el mismo formato que en diccionario.html, un poco más pequeño */
-.def-card .dic-entrada {
-  font-size: 17px;
-  padding: 16px 0 14px;
-}
-
-.def-card .dic-entrada .w {
-  height: 30px;
-  font-size: 17px;
-  text-decoration: none;
-}
-
-/* la última palabra elegida se distingue de las anteriores */
-.def-card:not(.actual) { opacity: 0.6; }
-.def-card:not(.actual):hover { opacity: 1; }
-
-/* móvil: la columna pasa a ser una bandeja fija abajo */
-@media (max-width: 900px) {
-  .archivo-columnas { grid-template-columns: 1fr; }
-  body.archivo { padding-bottom: 46vh; }
-  #definiciones {
-    position: fixed;
-    left: 0; right: 0; bottom: 0; top: auto;
-    max-height: 42vh;
-    margin: 0;
-    padding: 10px 16px 16px;
-    border-left: none;
-    border-top: 1px solid #f01ad3;
-    background: #000;
-    z-index: 30;
-  }
-  .def-vacio { font-size: 15px; }
-}
-
-/* recorridos: de qué palabra viene la acepción que se enseña */
-.def-motivo {
-  margin: 4px 0 0;
-  font-size: 14px;
-  color: #ffaffb;
-  opacity: 0.75;
-}
-
-/* =========================================================
-   Archivo más legible (inspirado en Cyberfeminism Index):
-   letra más pequeña y uniforme, filas compactas en columnas,
-   sin huecos grandes entre líneas.
-   ========================================================= */
-body.archivo {
-  font-size: 16px;
-  line-height: 1.4;
-}
-
-/* nube: pastillas más bajas y juntas */
-body.archivo .grupo { margin-top: 18px; }
-body.archivo .grupo-items { gap: 4px; }
-body.archivo .grupo-items .w,
-body.archivo .grupo-items .d,
-body.archivo .grupo-items .n {
-  height: 26px;
-  padding: 0 10px;
-  font-size: 15px;
-}
-
-/* título de los resultados: fijo arriba mientras bajas por los mensajes */
-body.archivo .results { margin-top: 22px; }
-body.archivo .rlabel {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  background: #000;
-  padding: 8px 0;
-  font-size: 15px;
-  border-bottom: 1px solid #f01ad3;
-}
-
-/* cada mensaje: una fila en columnas */
-body.archivo .qblock {
-  display: grid;
-  grid-template-columns: 44px 120px 92px minmax(0, 1fr);
-  column-gap: 12px;
-  align-items: baseline;
-  padding: 7px 0;
-  margin: 0;
-  border-bottom: 1px dotted #5c2a56;
-}
-
-body.archivo .q-num,
-body.archivo .q-fecha,
-body.archivo .q-dir {
-  font-size: 13px;
-  color: #ffaffb;
-  opacity: 0.75;
   white-space: nowrap;
+}
+.col.abierta .col-palabras { white-space: normal; }
+.pal { border-top: 1px solid var(--linea); padding: 5px 0; }
+.pal:first-child { border-top: none; }
+.pal-link {
+  color: var(--link);
+  font-size: 15px;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.pal.sin .pal-link { color: var(--gris); }   /* 0 mensajes con los filtros */
+.pal.abierta > .pal-link { background: var(--link); color: #fff; text-decoration: none; padding: 0 3px; }
+.pal-n { margin-left: 6px; font-size: 11px; color: var(--gris); }
+
+/* ---------- una palabra abierta: definición + mensajes ---------- */
+.pal-detalle { padding: 6px 0 2px; }
+.pal-detalle:empty { display: none; }
+
+/* definición */
+.pal-def { padding: 0 0 8px; font-size: 13px; line-height: 1.35; }
+.pal-def .acepciones { list-style: none; margin: 0; padding: 0; }
+.pal-def .acepciones li { padding: 1px 0; }
+.pal-def .num,
+.pal-def .cat { color: var(--gris); font-size: 12px; }
+.pal-def .ej { color: #444; font-style: italic; }
+.pal-def .remite a { color: var(--link); }
+.pal-def .dic-nota { margin: 4px 0 0; font-size: 12px; color: var(--gris); }
+
+/* parpadeo cuando la definición cambia por el recorrido */
+.pal-def.cambia { animation: cambia 1.4s ease-out; }
+@keyframes cambia { from { background: #ffd6f7; } to { background: transparent; } }
+
+/* mensajes */
+.pal-mensajes { border-top: 1px solid #000; }
+.msg { padding: 6px 0; border-bottom: 1px solid var(--linea); }
+.msg-meta { font-size: 11px; color: #aaa; margin-bottom: 1px; }
+.msg-texto {
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--texto-msg);
+  overflow-wrap: anywhere;
+}
+.vacio { font-size: 12px; color: var(--gris); }
+
+/* palabras del glosario dentro de un mensaje o de la descripción */
+.msg-texto .w,
+.descripcion .w {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
   cursor: pointer;
 }
-body.archivo .q-num { cursor: default; opacity: 0.5; }
-body.archivo .q-fecha:hover,
-body.archivo .q-dir:hover { opacity: 1; text-decoration: underline; }
+.descripcion .w:hover,
+.descripcion .w.active { background: var(--link); color: #fff; text-decoration: none; }
 
-body.archivo .qtext {
-  font-size: 16px;
-  line-height: 1.45;
-  color: #ffd6fa;
+/* ---------- pie ---------- */
+.pie {
+  padding-top: 6px;
+  font-size: 12px;
+  color: #000;
+  text-align: right;
 }
 
-/* palabras dentro del mensaje: siguen siendo pastilla rosa,
-   pero en línea, sin agrandar la altura de la línea */
-body.archivo .qtext .w {
-  display: inline;
-  width: auto;
-  height: auto;
-  margin: 0;
-  padding: 1px 6px;
-  border: none;
-  border-radius: 10px;
-  font-size: inherit;
-  line-height: inherit;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-
-/* columna de definiciones: más compacta */
-body.archivo #definiciones { font-size: 15px; }
-body.archivo .def-card .dic-entrada {
-  font-size: 15px;
+/* =====================================================================
+   PDF QUE SE DESCARGA con «↓ descargar»
+   Los márgenes de la página y el pie están en script.js (busca «html2pdf»).
+   ===================================================================== */
+.imp-fuera { position: absolute; left: -10000px; top: 0; }   /* fuera de la pantalla */
+#impresion { display: none; }
+#impresion.generando {
+  display: block;
+  width: 178mm;                  /* ancho de A4 menos los márgenes */
+  background: #fff;
+  font-size: 10pt;
   line-height: 1.4;
-  padding: 10px 0 8px;
 }
-body.archivo .def-card .dic-lema { margin-bottom: 2px; }
-body.archivo .def-card .dic-entrada .w {
-  height: 24px;
-  padding: 0 10px;
-  font-size: 15px;
+#impresion .imp-titulo {
+  margin: 0 0 4mm;
+  font-family: homeFont, cursive;
+  font-size: 40pt;
+  line-height: 0.95;
 }
-body.archivo .def-card .acepciones li { padding: 2px 0; margin: 0; }
-body.archivo .def-card .dic-nota { font-size: 13px; margin-top: 4px; }
-body.archivo .def-cerrar { margin-top: 10px; }
-body.archivo .def-motivo { font-size: 12px; margin-top: 2px; }
+#impresion .imp-recorrido { margin: 0 0 8mm; color: var(--gris); }
+#impresion .imp-recorrido b { font-weight: normal; color: var(--link); }
 
-/* móvil: fecha y dirección encima del texto */
-@media (max-width: 900px) {
-  body.archivo .qblock {
-    grid-template-columns: auto auto 1fr;
-    row-gap: 2px;
-  }
-  body.archivo .q-num { display: none; }
-  body.archivo .qtext { grid-column: 1 / -1; }
+#impresion .imp-palabra { border-top: 1px solid #111; padding-top: 3mm; margin-bottom: 8mm; }
+#impresion .imp-lema {
+  margin: 0 0 2mm;
+  font-size: 16pt;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+#impresion .imp-n { margin-left: 4px; font-size: 9pt; color: var(--gris); }
+#impresion .imp-def { margin-bottom: 3mm; padding-bottom: 2mm; border-bottom: 1px solid #111; font-size: 10pt; }
+
+#impresion .msg { padding: 1.6mm 0; border-bottom: none; border-top: 1px solid var(--linea); }
+#impresion .msg-meta { font-size: 7.5pt; color: var(--gris); }
+#impresion .msg-texto { font-size: 9.5pt; color: #6f6f6f; }
+#impresion .msg-texto .w { color: var(--link); text-decoration: underline; text-underline-offset: 2px; }
+
+/* créditos al final, en una página aparte */
+#impresion .imp-creditos {
+  break-before: page;
+  margin: 0;
+  font-size: 20pt;
+  line-height: 1.25;
+  color: var(--link);
+}
+
+/* ---------- móvil ---------- */
+@media (max-width: 700px) {
+  body { display: block; height: auto; overflow: visible; }
+  .lateral { height: auto; overflow: visible; padding: 12px 10px 6px; border-bottom: 1px solid var(--linea); }
+  .titulo { font-size: 36px; margin-bottom: 10px; }
+  .lateral.guardada .titulo { margin: 0; }
+  .barra { flex-wrap: wrap; padding-left: 0; }
+  .buscar { width: 100%; }
+  .recorrido { display: none; }
+  .zona { padding: 8px 10px 20px; }
+  .columnas { flex-direction: column; overflow: visible; }
+  .col { min-width: 0; border-left: none; border-top: 1px solid var(--linea); box-shadow: 0 -6px 10px -8px rgba(0,0,0,0.18); }
+  .col:not(.abierta) { flex: 0 0 auto; height: 44px; }
+  .col.vacia { display: none; }
+  .col.abierta,
+  .col.abierta:not(:has(.pal.abierta)) { width: 100%; max-width: none; }
+  .col-letra { font-size: 34px; }
+  .col.abierta .col-cuerpo { overflow: visible; }
 }

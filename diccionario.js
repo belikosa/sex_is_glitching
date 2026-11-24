@@ -1,19 +1,3 @@
-// =====================================================================
-// DICCIONARIO de Sex is Glitching
-//
-// Cada entrada:
-//   termino     la palabra (tiene que coincidir con la primera columna de words.csv)
-//   origen      opcional, p. ej. "Voz ingl."
-//   acepciones  lista de sentidos:
-//                 num  número de la acepción (solo si hay varias)
-//                 cat  categoría gramatical (m., f., adj.…)
-//                 def  definición
-//                 ej   ejemplo sacado del archivo (opcional)
-//
-// Dentro de una definición, "(Ver rabo)" se convierte en un enlace (→ rabo),
-// y "(Ver vaginismo, 2)" remite a la acepción 2 de vaginismo.
-// =====================================================================
-
 const DICCIONARIO = [
   {
     "termino": "anticonceptivas",
@@ -45,6 +29,7 @@ const DICCIONARIO = [
     "termino": "besos",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m. pl.",
         "def": "Gesto de afecto que se da, se promete y se reclama entre amistades y parejas.",
         "ej": "Podemos quedar en mi casa a las 12, así nos damos besitos un par de horas y podemos dormirnos."
@@ -56,6 +41,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Plan hipotético en un baño de discoteca.",
         "ej": "I mean in the toilet something like a blowjob."
@@ -66,6 +52,7 @@ const DICCIONARIO = [
     "termino": "bonita",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj. f.",
         "def": "Piropo sobre personas y objetos, dicho con letras alargadas y casi siempre en respuesta a otro piropo.",
         "ej": "Bonita tú. / Bonitaaaaaaa."
@@ -77,6 +64,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m. pl.",
         "def": "Palabra del glosario sin ningún uso en el archivo. (Ver tits, tetas)"
       }
@@ -87,6 +75,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "tr.",
         "def": "Dejar marca en el cuerpo.",
         "ej": "It would be a pleasure to leave you bruised."
@@ -98,6 +87,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Espacio de ligoteo.",
         "ej": "El hecho d q me suenan las caras de verlos x el bumble."
@@ -108,6 +98,7 @@ const DICCIONARIO = [
     "termino": "cachondo",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Que denota entusiasmo.",
         "ej": "+1000 d cachonda."
@@ -118,6 +109,7 @@ const DICCIONARIO = [
     "termino": "cama",
     "acepciones": [
       {
+        "num": "1",
         "cat": "f.",
         "def": "Lugar donde se está: se descansa, se come, se comparte y se mira el cuerpo propio o ajeno.",
         "ej": "Estoy comiendo patatas en la cama. / He compartido mucha cama contigo. / A mí me gusta en la cama porque me puedes ver el culo en el espejo."
@@ -129,6 +121,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Reproche sobre el comportamiento de otra persona formulado desde la incomodidad.",
         "ej": "You were pretty childish, to be honest... I was a little uncomfortable."
@@ -139,6 +132,7 @@ const DICCIONARIO = [
     "termino": "chocho",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Tratamiento afectuoso colectivo. (Ver chochóloga)",
         "ej": "El día d los inocentes chochos."
@@ -158,6 +152,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Acción que se desea sobre el propio cuerpo. (Ver bruised)",
         "ej": "And being choked, with bruises."
@@ -168,6 +163,7 @@ const DICCIONARIO = [
     "termino": "chupar",
     "acepciones": [
       {
+        "num": "1",
         "cat": "tr.",
         "def": "Acción o escena que se pide o se observa sobre otro cuerpo.",
         "ej": "De que me la chupes un poco más."
@@ -196,6 +192,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Parte del cuerpo propia.",
         "ej": "Using your hand on my cock."
@@ -240,6 +237,7 @@ const DICCIONARIO = [
     "termino": "correrse",
     "acepciones": [
       {
+        "num": "1",
         "cat": "prnl.",
         "def": "Deseo sobre el propio cuerpo.",
         "ej": "De que me la chupes un poco más y de corrermee."
@@ -251,6 +249,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Plan nocturno.",
         "ej": "D disco cruising contifo."
@@ -262,6 +261,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Interés que una tercera persona declara a través de un mensaje.",
         "ej": "My friend lowkey stalked ur profile today, she's got a lil crush on u."
@@ -273,6 +273,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "intr.",
         "def": "Abrazo y compañía.",
         "ej": "I have noone to cuddle here."
@@ -283,6 +284,7 @@ const DICCIONARIO = [
     "termino": "cuerpo",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Lo que se pone en el sexo, aunque a veces suponga una molestia, y desde donde también se desea. (Ver vaginismo)"
       }
@@ -316,6 +318,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "intr.",
         "def": "Llegar al final.",
         "ej": "A bit horny maybe gonna cum until its finished."
@@ -350,6 +353,7 @@ const DICCIONARIO = [
     "termino": "deseo",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Lo que se quiere que pase con otro cuerpo, a menudo dicho como fantasía. (Ver heterosocial)",
         "ej": "Ojalá tus deseos se hiciesen realidad y te la follases sería fantasía."
@@ -378,6 +382,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Parte del cuerpo en bromas y relatos.",
         "ej": "Small dick energy que te cagas."
@@ -388,6 +393,7 @@ const DICCIONARIO = [
     "termino": "emoji",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Signo que acompaña el mensaje y añade tono. Se usa para despedirse, elogiar o coquetear.",
         "ej": "Salgo guapa jejeje 💋💋"
@@ -422,6 +428,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "interj.",
         "def": "Exclamación e intensificador.",
         "ej": "Fuck the way you moved your hips. / Hot as fuck."
@@ -432,6 +439,7 @@ const DICCIONARIO = [
     "termino": "guapa",
     "acepciones": [
       {
+        "num": "1",
         "cat": "f.",
         "def": "Apelativo y piropo con letras alargadas para marcar entusiasmo.",
         "ej": "Holaa guapa, qué tal. / Qué guapaaaaaaaa."
@@ -442,6 +450,7 @@ const DICCIONARIO = [
     "termino": "guapo",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Piropo a personas y a cosas, dicho en mayúsculas y alargado.",
         "ej": "QUE GUAPOOO. / Está guapísimo eso."
@@ -453,6 +462,7 @@ const DICCIONARIO = [
     "origen": "Voz jap.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Género de animación que se publica en la plataforma OnlyFans. (Ver onlyfans)",
         "ej": "Quería hacer como una animación hentai."
@@ -463,6 +473,7 @@ const DICCIONARIO = [
     "termino": "heterosocial",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Dicho del sistema que produce y regula el deseo como si fuera natural y que clasifica como anomalía lo que lo interfiere."
       }
@@ -473,6 +484,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Estado que se comunica a la otra persona.",
         "ej": "Pf im horny."
@@ -484,6 +496,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Elogio de aspecto o de escena.",
         "ej": "You look so hot. / That was really fucking hot."
@@ -512,6 +525,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Pregunta.",
         "ej": "What do you think is your biggest kink?"
@@ -539,6 +553,7 @@ const DICCIONARIO = [
     "termino": "mamada",
     "acepciones": [
       {
+        "num": "1",
         "cat": "f.",
         "def": "Pieza de una frase hecha.",
         "ej": "Sin arcada no hay mamada."
@@ -550,6 +565,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Palabra del glosario sin ningún uso en el archivo. (Ver desnudo)"
       }
@@ -560,6 +576,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Imagen online que se comparte.",
         "ej": "Send nudes. / Los nudes son en plan..."
@@ -571,6 +588,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Plataforma para proyecto de animación. (Ver hentai)",
         "ej": "Cuando me haga onlyfans de hentai, que tengo una visión."
@@ -581,6 +599,7 @@ const DICCIONARIO = [
     "termino": "orgasmo",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Respuesta a algo.",
         "ej": "Orgasmo."
@@ -591,6 +610,7 @@ const DICCIONARIO = [
     "termino": "pélvico",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Región del cuerpo en cuya terapia empieza un nuevo proceso.",
         "ej": "Hoy tengo mi primera terapia de suelo pélvico de mi vida."
@@ -617,6 +637,7 @@ const DICCIONARIO = [
     "termino": "placer",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Motivo por el que se mira un cuerpo desnudo.",
         "ej": "Osea q tú ves a gente desnuda por placer."
@@ -743,6 +764,7 @@ const DICCIONARIO = [
     "termino": "rabo",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Parte del cuerpo para describir altura. (Ver coño)",
         "ej": "Si me llegas a la altura del rabo que hablas."
@@ -888,6 +910,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Piropo.",
         "ej": "You loook so fucking sexy."
@@ -899,6 +922,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Del inglés, azotado. (Ver azotes)",
         "ej": "And being spanked."
@@ -910,6 +934,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Figura del dinero.",
         "ej": "Un señor sugar daddy me pasa dinero por PayPal."
@@ -985,6 +1010,7 @@ const DICCIONARIO = [
     "termino": "tontear",
     "acepciones": [
       {
+        "num": "1",
         "cat": "intr.",
         "def": "Palabra del glosario sin ningún uso en el archivo. (Ver seducir)"
       }
@@ -1015,6 +1041,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "m.",
         "def": "Nombre con el que se presenta uno mismo ante otra persona. (Ver vaginismo, 2)",
         "ej": "Yeah so I have smth is called vaginismus google it."
@@ -1025,6 +1052,7 @@ const DICCIONARIO = [
     "termino": "verga",
     "acepciones": [
       {
+        "num": "1",
         "cat": "f.",
         "def": "Palabra que denota tanto ausencia como abundancia.",
         "ej": "Ya no hay ni verga hoy. / Ahora estarás toda hambrienta de verga."
@@ -1081,6 +1109,7 @@ const DICCIONARIO = [
     "termino": "vulva",
     "acepciones": [
       {
+        "num": "1",
         "cat": "f.",
         "def": "Aquello sobre lo que habla con autoridad la chochóloga. (Ver chocho, chocho)"
       }
@@ -1091,6 +1120,7 @@ const DICCIONARIO = [
     "origen": "Voz ingl.",
     "acepciones": [
       {
+        "num": "1",
         "cat": "adj.",
         "def": "Estado del cuerpo que se describe a otra persona.",
         "ej": "Would it help if I tell you how wet it is rn?"
@@ -1101,6 +1131,7 @@ const DICCIONARIO = [
     "termino": "xenosexualidad",
     "acepciones": [
       {
+        "num": "1",
         "cat": "f.",
         "def": "Ocupación deliberada de la interferencia en la sexualidad de un sujeto, que se produce como posición epistémica y política elegida. Del gr. xénos, «extranjero», en el sentido que le da el xenofeminismo (Laboria Cuboniks, 2015)."
       }

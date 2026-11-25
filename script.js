@@ -137,6 +137,7 @@ async function boot(){
   ENTRIES = limpiarEntradas(ENTRIES);
 
   leerDescripcion();
+  prepararBusqueda();
   pintarFiltros();
   pintarTiras();
   pintarDescripcion();
@@ -350,6 +351,7 @@ function abrirPalabra(li, {sinRecorrido = false, sinScroll = false} = {}){
   li.querySelector(".pal-detalle").innerHTML =
     `<div class="pal-def">${definicionHTML(w, sinRecorrido ? "fijo" : "abrir")}</div><div class="pal-mensajes">${mensajesHTML(w)}</div>`;
   li.classList.add("abierta");
+  resaltarBusqueda(li);
   const col = li.closest(".col");
   col.classList.add("abierta");
   marcarEnDescripcion();
@@ -386,8 +388,12 @@ function actualizarAbiertas(excepto){
     const def = li.querySelector(".pal-def");
     if(li === excepto || !def) return;
     const nueva = definicionHTML(li.dataset.key, "vivo");
-    if(def.innerHTML === nueva) return;
+    const actual = def.cloneNode(true);                       // se compara sin el resaltado
+    actual.querySelectorAll("mark.buscada").forEach(m => m.replaceWith(m.textContent));
+    actual.normalize();
+    if(actual.innerHTML === nueva) return;
     def.innerHTML = nueva;
+    resaltarBusqueda(def);
     def.classList.remove("cambia"); void def.offsetWidth; def.classList.add("cambia");
   });
 }
@@ -405,15 +411,66 @@ function pintarRecorrido(){
 
 
 // ---------- buscador ----------
-// filtra las palabras de todas las letras (también por sus formas: «ligo» encuentra ligar)
+// Busca en todo el diccionario: el término y sus formas («ligo» encuentra ligar),
+// y también dentro de las definiciones, los ejemplos y los mensajes de cada palabra.
+// Primero salen las palabras que coinciden por nombre; las que coinciden por dentro
+// se marcan con la clase .coincide-dentro.
+const MIN_DENTRO = 3;          // letras mínimas para buscar dentro de definiciones y mensajes
+let TEXTO_BUSQUEDA = {};       // palabra -> todo su texto, sin tildes
 let colsAntesDeBuscar = null;
 
+function prepararBusqueda(){
+  const palabras = new Set();
+  ENTRIES.forEach(e => e.tags.forEach(t => palabras.add(t)));
+  DESCRIPCION.forEach(f => f.tags.forEach(t => palabras.add(t)));
+  palabras.forEach(w => {
+    const partes = [];
+    const e = PORNOMBRE[base(w)];
+    if(e) e.acepciones.forEach(a => partes.push(a.def || "", a.ej || ""));   // definiciones y ejemplos
+    ENTRIES.forEach(m => { if(m.tags.includes(w)) partes.push(m.text); });    // mensajes
+    frasesDescripcion(w).forEach(f => partes.push(f.texto));                  // descripción
+    TEXTO_BUSQUEDA[w] = sinEnye(partes.join(" \n "));
+  });
+}
+
+// resalta lo que se está buscando (sin importar tildes) con <mark class="buscada">
+const MIN_RESALTE = 2;         // letras mínimas para resaltar
+function resaltarBusqueda(raiz){
+  raiz.querySelectorAll("mark.buscada").forEach(m => m.replaceWith(m.textContent));
+  raiz.normalize();
+  const q = sinEnye(buscador.value.trim());
+  if(q.length < MIN_RESALTE) return;
+  const paseo = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT);
+  const nodos = [];
+  while(paseo.nextNode()) nodos.push(paseo.currentNode);
+  nodos.forEach(nodo => {
+    const t = nodo.textContent;
+    let norm = "";
+    for(let i = 0; i < t.length; i++){ const n = sinEnye(t[i]); norm += n.length === 1 ? n : t[i]; }
+    if(!norm.includes(q)) return;
+    const trozos = document.createDocumentFragment();
+    let cursor = 0;
+    for(let i = norm.indexOf(q); i !== -1; i = norm.indexOf(q, i + q.length)){
+      trozos.append(t.slice(cursor, i));
+      const m = document.createElement("mark");
+      m.className = "buscada";
+      m.textContent = t.slice(i, i + q.length);
+      trozos.append(m);
+      cursor = i + q.length;
+    }
+    trozos.append(t.slice(cursor));
+    nodo.replaceWith(trozos);
+  });
+}
+
 function aplicarBusqueda(){
+  resaltarBusqueda(tiras);
+  resaltarBusqueda(document.querySelector(".descripcion"));
   const q = sinEnye(buscador.value.trim());
   const cols = [...tiras.querySelectorAll(".col")];
   if(!q){
     tiras.classList.remove("buscando");
-    tiras.querySelectorAll(".no-coincide").forEach(x => x.classList.remove("no-coincide"));
+    tiras.querySelectorAll(".no-coincide, .coincide-dentro").forEach(x => x.classList.remove("no-coincide", "coincide-dentro"));
     cols.forEach(c => c.classList.remove("sin-resultado"));
     if(colsAntesDeBuscar) cols.forEach(c =>
       c.classList.toggle("abierta", colsAntesDeBuscar.has(c.dataset.letra) || !!c.querySelector(".pal.abierta")));
@@ -422,19 +479,23 @@ function aplicarBusqueda(){
   }
   colsAntesDeBuscar ||= new Set(cols.filter(c => c.classList.contains("abierta")).map(c => c.dataset.letra));
   tiras.classList.add("buscando");
-  const encontradas = [];
+  const porNombre = [], porDentro = [];
   cols.forEach(c => {
     let hay = false;
     c.querySelectorAll(".pal").forEach(li => {
       const w = li.dataset.key;
-      const si = [w, ...(CANON[w] || [])].some(f => sinEnye(f).includes(q));
-      li.classList.toggle("no-coincide", !si);
-      if(si){ hay = true; encontradas.push(li); }
+      const enNombre = [w, ...(CANON[w] || [])].some(f => sinEnye(f).includes(q));
+      const dentro = !enNombre && q.length >= MIN_DENTRO && (TEXTO_BUSQUEDA[w] || "").includes(q);
+      li.classList.toggle("no-coincide", !enNombre && !dentro);
+      li.classList.toggle("coincide-dentro", dentro);
+      if(enNombre) porNombre.push(li);
+      if(dentro) porDentro.push(li);
+      if(enNombre || dentro) hay = true;
     });
     c.classList.toggle("sin-resultado", !hay);
     c.classList.toggle("abierta", hay);
   });
-  return encontradas;
+  return porNombre.concat(porDentro);
 }
 
 
